@@ -1,3 +1,4 @@
+import time
 # base for trace together
 
 # data, list of dict?
@@ -5,18 +6,55 @@
 
 # what output do we want 
 
-#import date
+#import datetime
 
 #create two enums, one for cluster rank, one for bt signal
 
 #with the token, we can search this class to get their number to inform them
 #if we use telegram as UI, we can change the contact to telegram username
-class personData:
-    name:""
-    phoneNumber=999
-    email=""
-    token=-1
+class personData: #There are 7 person in total
+    name="S98765432A"
+    phoneNumber=91234567
+    email="a@gmail.com"
+    persontag=""
+    token=1
+    
+    name="S98765431B"
+    phoneNumber=91234566
+    email="b@gmail.com"
+    persontag=""
+    token=2
 
+    name="S98765421C"
+    phoneNumber=91234565
+    email="c@gmail.com"
+    persontag=""
+    token=3
+    
+    name="S98765321D"
+    phoneNumber=91234564
+    email="d@gmail.com"
+    persontag=""
+    token=4
+
+    name="S98765432E"
+    phoneNumber=91234563
+    email="e@gmail.com"
+    persontag=""
+    token=5
+    
+    name="S98764321F"
+    phoneNumber=91234563
+    email="f@gmail.com"
+    persontag=""
+    token=6
+
+    name="S98654321G"
+    phoneNumber=91234561
+    email="g@gmail.com"
+    persontag=""
+    token=7
+    
 class traceData:
     token=-1 #int primary key
     timestamp="" #date, and in what format
@@ -25,22 +63,10 @@ class traceData:
     v=-1
     msg=""
     
-    #MOH, we dont need this
-    org=""
-    
-    #something about bt?
-    modelP=""
-    modelC=""
-    
     #bluetooth signal
     rssi=-1
-    txPower=-1
     
-    
-    phoneModel=""
-    btSignal=1 #int, 1 will be weakest? or 1 be strongest?
-    otherPhoneModels=""
-    
+    btSignal=1 #int, 1 being less then or equal to 10m, 0 being being more then equal to 10m
     
     #insert data function
     
@@ -54,13 +80,28 @@ class traceData:
 
 def btSignal(time, token1, token2):
     #how to start timer? aka where to use this function
-    if time > 10: #if more than 10 mins
+    #if time > 10: 
+    if rssi[] == 1 and signalb ==1: 
+        return 1
+        #if more than 10 mins
         #means they fulfil the covid visit window?
+    token1:signala, token2:signalb
 
-class btConnections:
+class btConnections: #bt connection within 10metres to form a connection
     firstToken=-1
     secondToken=-1
-    time=""
+    time=
+
+    def startTimer():
+        time1=time.perf_counter()
+
+    def stopTimer():
+        time2=time.perf_counter()
+
+    def isCloseContact():
+        if time2-time1 >= 10*60:
+            return True
+        return False
     
     #how to decide bt signal == contact (also need to keep time in acc?)
     #bc this connection does not use physical location?
@@ -69,17 +110,27 @@ class btConnections:
 class location:
     token=-1
     location=[]
-    timestamp="" #data/time
+    timestamp="" #date/time
+    
+    def checkIn():
+        return timestamp=''
+
+    def checkOut():
+        return timestamp=''
     
     #insert whenever user scans a QR code
     #get function to return list of location
     #search function to check if user is at certain location
+
+
 
 class personTags:
     token=-1
     covid=False #true for covid, false for no covid
     warning=False
     
+    def getCovid():
+        return 
     #insert(for each record in DB, create tags?)-
     #get/set functions
     #convert to DB function
@@ -87,9 +138,13 @@ class personTags:
     #convert from DB function
     
 class locationTags:
-    locationName=""
+    locationName="heartland"
     covidCounter=-1
     clusterRank=-1
+
+    locationName="tenmile"
+    covidCounter=-1
+    clusterRank=-1 #rank according to covid counts then sort to give rank
     
     #function to set clusterrank before we display the data
     
