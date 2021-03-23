@@ -15,27 +15,17 @@ import random
 #if we usetelegram as UI, we can change the contact to telegram usernam
 #PersonData Class
 class personData:
-    name="" #IC number as the name
-    phoneNumber=-1 #Phone number with 8 digits
-    email="" 
-    token=-1 #-This is their primary key
-    timestamp=[] #-timestamp[checkin,checkout] timestamp[0] && timestamp[1] means the date and time range for 1 location in locationtag[i]
-    locationtag=[] #-locationtag[heartland]
-    persontags=-1 #-0 = covid patient, 1 = close contact, 2= Nothing
-    btsignal2=[] #-btsignalArray2=[1,1,0,1,0,0,1] in the btsignalArray2=[i], i means amount of people, 1 means close contact condition is true! 0 means close contact condition is false
-    btcount=-1 #-The number of bluetooth signal made
 
     def __init__(self,name,phoneNumber,email,persontags,token,timestamp,locationtag,btsignal2,btcount):
-        self.name=name
-        self.phoneNumber=phoneNumber
+        self.name=name #IC number as the name
+        self.phoneNumber=phoneNumber #Phone number with 8 digits
         self.email=email
-        self.persontags=persontags
-        self.token=token
-        self.timeStamp.append(timeStamp)
-        self.locationtag.append(locationtag)
-        self.btsignals.append(btsignal2)
-        self.btcount=btcount
-
+        self.persontags=persontags #-0 = covid patient, 1 = close contact, 2= Nothing
+        self.token=token #-This is their primary key
+        self.timeStamp.append(timeStamp) #-timestamp[checkin,checkout] timestamp[0] && timestamp[1] means the date and time range for 1 location in locationtag[i]
+        self.locationtag.append(locationtag) #-locationtag[heartland]
+        self.btsignals.append(btsignal2) #-btsignalArray2=[1,1,0,1,0,0,1] in the btsignalArray2=[i], i means amount of people, 1 means close contact condition is true! 0 means close contact condition is false
+        self.btcount=btcount #-The number of bluetooth signal made
 
     def addLocation(self,location):
         self.locationtag.append(location)
