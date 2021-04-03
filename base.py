@@ -104,11 +104,11 @@ class btConnection:
         self.firstToken=firstToken
         self.secondToken=secondToken
 
-    def startTimer(self):
-        self.time1=
+    def startTimer(self, time):
+        self.time1=time
 
-    def stopTimer(self):
-        self.time2=
+    def stopTimer(self, time):
+        self.time2=time
 
     def checkDuration(self):
         return self.time2-self.time1
