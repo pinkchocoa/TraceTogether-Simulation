@@ -23,3 +23,7 @@ lng range = 103.631319 to 104.031859 = 40054
 should i round to 2sf or 3sf
 lets take x as 230
 and y as 400?
+
+{'VivoCity': ['1.289440', ' 103.849980'], 
+'Alexandra Retail Centre': ['1.291930', ' 103.820270'], 
+'100 AM': ['1.289440', ' 103.849983']}

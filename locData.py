@@ -13,17 +13,25 @@ latRange = sgMaxLat - sgMinLat
 
 def createMaze():
     #gotta convert coords to x,y that i can use for a maze
-    #creating a xrange x yRange maze
-    maze = numpy.zeros((latRange, lngRange), dtype=int)
-    return maze
+    return numpy.zeros((latRange, lngRange), dtype=int)
 
 def getLocFromFile():
+    #changing the location coords to x,y for the maze
     locDict = file_to_dict(locDataFile)
     print(locDict)
+    #for each coord, we want to trucante it to the first 3dp
+    for k, v in locDict.items():
+        x,y = v
+        x = x.split('.')[1][:3]
+        y = y.split('.')[1][:3]
+        x = int(x)-sgMinLat
+        y = int(y)-sgMinLng
+        locDict[k] = (x,y)
+    #print(locDict)
+    return locDict 
     
     
 
-start = (289-sgMinLat, 849-sgMinLng)
-end = (291-sgMinLat, 820-sgMinLng)
-path = astar(createMaze(), start, end)
-print(path)
+# path = astar(createMaze(), start, end)
+# print(path)
+# getLocFromFile()
