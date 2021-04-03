@@ -33,6 +33,9 @@ class person:
             print("tag:", personTag(self.persontags).name)
 
 
+        
+
+
 listOfPpl = list()
 def generatePeople(x):
     for id in range(x):
