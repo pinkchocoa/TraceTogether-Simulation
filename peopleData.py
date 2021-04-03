@@ -1,7 +1,9 @@
 from enum import Enum #https://www.tutorialspoint.com/enum-support-for-enumerations-in-python
-import multidict #pip install multidict https://pypi.org/project/multidict/
+import multidict #pip install multidict https://pypi.org/project/multidict/ https://multidict.readthedocs.io/en/stable/
 import randomFn
-from datetime import datetime,timedelta
+import datetime
+
+listOfPpl = list()
 
 class personTag(Enum):
     nothing = 0
@@ -27,18 +29,31 @@ class person:
         print("name:", self.name)
         print("phone number:", self.phoneNumber)
         print("tag:", personTag(self.persontags).name)
+        for x,y in self.location.items():
+            print(x, y)
 
 def generateLocCheckIn(locData):
     locIdx = list(locData.keys())
-    #print(locIdx)
+    print(locIdx)
     return locIdx
         
-
-listOfPpl = list()
 def generatePeople(x):
     for id in range(x):
       listOfPpl.append(person(id, randomFn.randName(),randomFn.randInt(80000000,99999998)))
 
-generatePeople(5)
-for x in listOfPpl:
-    x.print()
+def generateLoctime(locData):
+    locIdx = generateLocCheckIn(locData)
+    for person in listOfPpl:
+        totalLoc = randomFn.randInt(1,5)
+        time = randomFn.random_timestamp(totalLoc, 1)
+        for x in range(totalLoc):
+            place = randomFn.randInt(0, len(locIdx)-1)
+            person.location.add(locIdx[place], time[x])
+        
+            
+
+# locDict = locData.getLocFromFile()
+# generatePeople(5)
+# generateLoctime(locDict)
+# for x in listOfPpl:
+#     x.print()

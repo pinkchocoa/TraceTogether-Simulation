@@ -27,16 +27,28 @@ def random_date(start, end):
     prop = random.random()
     return str_time_prop(start, end, '%Y-%m-%d %I:%M:%S', prop)
 
-def random_timestamp():
+def random_timestamp(x, today):
+    res = []
     today = datetime.date.today()
     frmt = '%Y-%m-%d %I:%M:%S'
-    start = (today-datetime.timedelta(days=7)).strftime(frmt)
+    d = 1 if today else 7
+    start = (today-datetime.timedelta(days=d)).strftime(frmt)
     end = (today).strftime(frmt)
-    one = random_date(start, end)
-    one = datetime.datetime.strptime(one,frmt)
-    two = one+datetime.timedelta(days=1)
-    two = random_date(one.strftime(frmt), two.strftime(frmt))
-    two = datetime.datetime.strptime(two, frmt)
 
-    return [one,two]
+    for i in range(x):
+        one = random_date(start, end)
+        one = datetime.datetime.strptime(one,frmt)
+        two = one+datetime.timedelta(hours=16)
+        two = random_date(one.strftime(frmt), two.strftime(frmt))
+        two = datetime.datetime.strptime(two, frmt)
+        res.append([one,two])
+        end = one.strftime(frmt)
+        if d == 1:
+            d = 7
+            start = (today-datetime.timedelta(days=d)).strftime(frmt)
+    return res
 
+# res = random_timestamp(3)
+# for i in range(3):
+#     for j in range(2):
+#         print(res[i][j])

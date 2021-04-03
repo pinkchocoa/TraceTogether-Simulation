@@ -4,7 +4,10 @@ import peopleData
 
 maze = locData.createMaze()
 locDict = locData.getLocFromFile()
-peopleData.generateLocCheckIn(locDict)
+peopleData.generatePeople(5)
+peopleData.generateLoctime(locDict)
+for x in peopleData.listOfPpl:
+    x.print()
 
 # start = 'Bugis Junction'
 # end = 'Tampines Mall'
