@@ -1,6 +1,5 @@
 from fileio import file_to_dict
 import numpy
-from aStar import astar
 
 locDataFile = 'malls.txt'
 sgMinLng = 631 #lng 103.631
