@@ -3,6 +3,8 @@ import locData
 
 maze = locData.createMaze()
 locDict = locData.getLocFromFile()
+
+
 start = 'Bugis Junction'
 end = 'Tampines Mall'
 path = astar(maze, locDict[start], locDict[end])
