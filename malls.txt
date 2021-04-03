@@ -1,3 +1,10 @@
 VivoCity: 1.289440, 103.849980
 Alexandra Retail Centre: 1.291930, 103.820270
 100 AM: 1.289440, 103.849983
+Bugis Junction: 1.2989008, 103.855176
+Sim Lim Square: 1.303033, 103.853026
+Tampines Mall: 1.352543, 103.944738
+Changi Airpot: 1.357557, 103.98847
+Junction 8: 1.350589, 103.848745
+NorthPoint: 1.4282064, 103.836264
+Marina Bay Sands: 1.283697, 103.860723 
