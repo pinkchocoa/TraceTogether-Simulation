@@ -30,7 +30,7 @@ class person:
         print("phone number:", self.phoneNumber)
         print("tag:", personTag(self.persontags).name)
         for x,y in self.location.items():
-            print(x, y)
+            print(x, y[0], y[1])
 
 def generateLocCheckIn(locData):
     locIdx = list(locData.keys())
