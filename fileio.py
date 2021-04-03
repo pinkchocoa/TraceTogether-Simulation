@@ -108,4 +108,4 @@ def file_to_dict(file_name):
             results[key] = value
     return results
 
-print(file_to_dict('malls.txt'))
+#print(file_to_dict('malls.txt'))

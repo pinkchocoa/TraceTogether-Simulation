@@ -8,10 +8,6 @@ class personTag(Enum):
     covid = 1
     closeWarning = 2
 
-class locationTag(Enum):
-    Heartland = 1
-    Tenmile = 2
-
 class person:
         def __init__(self,token,name,phoneNumber):
                 super().__init__()
@@ -36,11 +32,11 @@ class person:
         
 
 
-listOfPpl = list()
-def generatePeople(x):
-    for id in range(x):
-        listOfPpl.append(person(id, randomFn.randName(),randomFn.randInt(80000000,99999998)))
+# listOfPpl = list()
+# def generatePeople(x):
+#     for id in range(x):
+#         listOfPpl.append(person(id, randomFn.randName(),randomFn.randInt(80000000,99999998)))
 
-generatePeople(5)
-for x in listOfPpl:
-    x.print()
+# generatePeople(5)
+# for x in listOfPpl:
+#     x.print()
