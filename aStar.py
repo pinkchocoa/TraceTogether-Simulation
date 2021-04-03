@@ -1,3 +1,4 @@
+#i stole this from the internet 
 class Node():
     """A node class for A* Pathfinding"""
 
@@ -94,4 +95,3 @@ def astar(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
-            

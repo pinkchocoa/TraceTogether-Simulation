@@ -28,8 +28,6 @@ def getLocFromFile():
         locDict[k] = (x,y)
     #print(locDict)
     return locDict 
-    
-    
 
 # path = astar(createMaze(), start, end)
 # print(path)
