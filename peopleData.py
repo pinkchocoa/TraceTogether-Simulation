@@ -5,7 +5,7 @@ import datetime
 
 listOfPpl = list() #stores list of person objects
 listOfPplPerLoc = {} #stores location as key and set() of people as value
-warningLoc = {} #stores location as key and int of people that has covid as value
+covidLoc = {} #stores location as key and int of people that has covid as value
 
 class personTag(Enum):
     nothing = 0
@@ -51,7 +51,7 @@ def generateLocCheckIn(locData):
     locIdx = list(locData.keys())
     for x in locData.keys():
         listOfPplPerLoc[x] = set()
-        warningLoc[x] = 0
+        covidLoc[x] = 0
     #print(locIdx)
     return locIdx
         

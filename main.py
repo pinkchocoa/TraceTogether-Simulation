@@ -21,7 +21,7 @@ def hasCovid(token):
     #run through all locations that person has been
     loc = person.getLoc()
     for x in loc.keys():
-        peopleData.warningLoc[x] += 1
+        peopleData.covidLoc[x] += 1
         if len(peopleData.listOfPplPerLoc[x]) == 1:
             continue
         else: #more than one person has been to location
@@ -31,6 +31,7 @@ def hasCovid(token):
                 locX = personX.getLoc()
                 if x in locX: #person as been to said location too
                     #check timeframe
+                    #this may change bc need to check with covid visit window
                     if comparison.checkTimeStamp(locX[x], loc[x]):
                         print("coincide!")
                         print(person.token, "and", personX.token, "were at", x)
@@ -39,7 +40,7 @@ def hasCovid(token):
     
 hasCovid(4)
 
-print(peopleData.warningLoc)
+print(peopleData.covidLoc)
 #peopleData.printLocSet()
 
 #for x in peopleData.listOfPpl:
