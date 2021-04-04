@@ -17,7 +17,7 @@ def createMaze():
 def getLocFromFile():
     #changing the location coords to x,y for the maze
     locDict = file_to_dict(locDataFile)
-    print(locDict)
+    #print(locDict)
     #for each coord, we want to trucante it to the first 3dp
     for k, v in locDict.items():
         x,y = v

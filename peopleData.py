@@ -31,10 +31,13 @@ class person:
         print("tag:", personTag(self.persontags).name)
         for x,y in self.location.items():
             print(x, y[0], y[1])
+    
+    def setTag(self, tag):
+        self.persontags=tag.value
 
 def generateLocCheckIn(locData):
     locIdx = list(locData.keys())
-    print(locIdx)
+    #print(locIdx)
     return locIdx
         
 def generatePeople(x):
