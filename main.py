@@ -21,7 +21,7 @@ def hasCovid(token):
     #run through all locations that person has been
     loc = person.getLoc()
     for x in loc.keys():
-        peopleData.covidLoc[x] += 1
+        peopleData.covidLoc[x] += 1 #remember to remove duplicates
         if len(peopleData.listOfPplPerLoc[x]) == 1:
             continue
         else: #more than one person has been to location
@@ -39,6 +39,7 @@ def hasCovid(token):
                         print("end")
     
 hasCovid(4)
+hasCovid(6)
 
 print(peopleData.covidLoc)
 #peopleData.printLocSet()
