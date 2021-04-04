@@ -3,13 +3,21 @@ import multidict #pip install multidict https://pypi.org/project/multidict/ http
 import randomFn
 import datetime
 
-listOfPpl = list()
-listOfPplPerLoc = {}
+listOfPpl = list() #stores list of person objects
+listOfPplPerLoc = {} #stores location as key and set() of people as value
+warningLoc = {} #stores location as key and int of people that has covid as value
 
 class personTag(Enum):
     nothing = 0
     covid = 1
+
+    #means you were close to someone w covid
+    #supposed to be decided via bluetooth
+    #need to turn it into weight before we can do this
     closeWarning = 2
+
+    #means someone w covid has been to the place that u have been to
+    locationWarning = 3 
 
 class person:
     def __init__(self,token,name,phoneNumber):
@@ -43,6 +51,7 @@ def generateLocCheckIn(locData):
     locIdx = list(locData.keys())
     for x in locData.keys():
         listOfPplPerLoc[x] = set()
+        warningLoc[x] = 0
     #print(locIdx)
     return locIdx
         

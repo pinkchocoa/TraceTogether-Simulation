@@ -11,12 +11,17 @@ peopleData.generateLoctime(locDict)
 for x in peopleData.listOfPpl:
     x.print()
 
+def setLocWarning(person):
+    person.setTag(peopleData.personTag.locationWarning)
+
 def hasCovid(token):
     person = peopleData.listOfPpl[token]
     person.setTag(peopleData.personTag.covid)
+    
     #run through all locations that person has been
     loc = person.getLoc()
     for x in loc.keys():
+        peopleData.warningLoc[x] += 1
         if len(peopleData.listOfPplPerLoc[x]) == 1:
             continue
         else: #more than one person has been to location
@@ -29,9 +34,12 @@ def hasCovid(token):
                     if comparison.checkTimeStamp(locX[x], loc[x]):
                         print("coincide!")
                         print(person.token, "and", personX.token, "were at", x)
+                        setLocWarning(personX)
                         print("end")
     
 hasCovid(4)
+
+print(peopleData.warningLoc)
 #peopleData.printLocSet()
 
 #for x in peopleData.listOfPpl:
