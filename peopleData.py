@@ -4,6 +4,7 @@ import randomFn
 import datetime
 
 listOfPpl = list()
+listOfPplPerLoc = {}
 
 class personTag(Enum):
     nothing = 0
@@ -35,8 +36,13 @@ class person:
     def setTag(self, tag):
         self.persontags=tag.value
 
+    def getLoc(self):
+        return self.location
+
 def generateLocCheckIn(locData):
     locIdx = list(locData.keys())
+    for x in locData.keys():
+        listOfPplPerLoc[x] = set()
     #print(locIdx)
     return locIdx
         
@@ -52,8 +58,13 @@ def generateLoctime(locData):
         for x in range(totalLoc):
             place = randomFn.randInt(0, len(locIdx)-1)
             person.location.add(locIdx[place], time[x])
+            listOfPplPerLoc[locIdx[place]].add(person.token)
         
-            
+def printLocSet():
+    for x in listOfPplPerLoc.values():
+        print("location", x)
+        for i in x:
+            print(i)
 
 # locDict = locData.getLocFromFile()
 # generatePeople(5)

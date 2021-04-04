@@ -4,12 +4,7 @@ import randomFn
 
 
 # function to check if timestamp coincides
-def checkTimeStamp():
-    setoftimestamps1 = randomFn.random_timestamp(1, 1)[0]
-    setoftimestamps2 = randomFn.random_timestamp(1, 1)[0]
-
-    print(setoftimestamps1[0], setoftimestamps1[1])
-    print(setoftimestamps2[0], setoftimestamps2[1])
+def checkTimeStamp(setoftimestamps1, setoftimestamps2):
 
     # version 1
     results = []
@@ -49,4 +44,3 @@ def checkTimeStamp():
     # return should be an integer
 
 
-print(checkTimeStamp())
