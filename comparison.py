@@ -1,36 +1,49 @@
-import randomFn
+import datetime
 
 # in this file stores the functions we need to compare trace together data
 
 
 # function to check if timestamp coincides
+<<<<<<< Updated upstream
 def checkTimeStamp(setoftimestamps1, setoftimestamps2):
+=======
+<<<<<<< HEAD
+def checkTimeStamp():
+    setoftimestamps1=[]
+    setoftimestamps2=[]
 
-    # version 1
+    setoftimestamps1.append(datetime.datetime(2020, 4, 4, 11, 30, 00))
+    setoftimestamps1.append(datetime.datetime(2020, 4, 4, 18, 30, 00))
+    setoftimestamps2.append(datetime.datetime(2020, 4, 4, 10, 30, 00))
+    setoftimestamps2.append(datetime.datetime(2020, 4, 4, 20, 30, 00))
+
+    print(setoftimestamps1[0], setoftimestamps1[1])
+    print(setoftimestamps2[0], setoftimestamps2[1])
+=======
+def checkTimeStamp(setoftimestamps1, setoftimestamps2):
+>>>>>>> 5fdc1c0b662e3ee01cd684ea970ca1ff82b43dd4
+>>>>>>> Stashed changes
+
     results = []
     for timestamp in setoftimestamps1:
-        results.append(setoftimestamps2[0] < timestamp < setoftimestamps2[1])
+        if setoftimestamps2[0] < timestamp < setoftimestamps2[1]:
+            results.append(timestamp)
     for timestamp in setoftimestamps2:
-        results.append(setoftimestamps1[0] < timestamp < setoftimestamps1[1])
-        return True in results
+        if setoftimestamps1[0] < timestamp < setoftimestamps1[1]:
+            results.append(timestamp)
 
-    # version 2
-    # person1 = [
-    #     {'check_in_time': setoftimestamps1[0], 'check_out_time': setoftimestamps1[1]},
-    # ]
-    # person2 = [
-    #     {'check_in_time': setoftimestamps2[0], 'check_out_time': setoftimestamps2[1]},
-    # ]
-    #
-    # for i1, d1 in enumerate(person1):
-    #     for i2, d2 in enumerate(person2):
-    #         start1 = d1["check_in_time"]
-    #         start2 = d2["check_in_time"]
-    #         end1 = d1["check_out_time"]
-    #         end2 = d2["check_out_time"]
-    #
-    #         if start2 >= start1 and end2 >= end1:
-    #             print("person1", i1, "overlaps with person2", i2)
+    timeDiff = 0
+    if len(results) == 0:
+        return timeDiff
+    else:
+        if results[0] > results[1]:
+            timeDiff = results[0] - results[1]
+            timeDiff = timeDiff.total_seconds()/60
+        else:
+            timeDiff = results[1] - results[0]
+            timeDiff = timeDiff.total_seconds()/60
+
+    return timeDiff
 
     # # ^i used the above to generate 2 random sets of timestamps,
     # # u can create ur own too for checking
@@ -44,3 +57,10 @@ def checkTimeStamp(setoftimestamps1, setoftimestamps2):
     # return should be an integer
 
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+print(checkTimeStamp())
+=======
+>>>>>>> 5fdc1c0b662e3ee01cd684ea970ca1ff82b43dd4
+>>>>>>> Stashed changes
