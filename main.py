@@ -60,3 +60,9 @@ print(peopleData.covidLoc)
 # path = astar(maze, locDict[start], locDict[end])
 # print(path)
 # print(len(path)) #16
+
+#jodie's todo
+#create tags for locations as well
+#use a star algo to set location tags
+#think of a way to add weight for bluetooth and use graph algos
+#make sure everything works and clean up codes
