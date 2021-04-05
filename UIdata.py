@@ -1,11 +1,10 @@
 import peopleData
 import json
 
-peopleEdge = {}
-peopleEdge['edges']=[]
+peopleJson = {}
+peopleJson["nodes"]=[]
+peopleJson["edges"]=[]
 def createPeopleJson():
-    peopleJson = {}
-    peopleJson["nodes"] = []
     for x in peopleData.listOfPpl:
         peopleJson["nodes"].append({
             "id": x.name,
@@ -14,10 +13,9 @@ def createPeopleJson():
         })
     with open('people.json', 'w') as outfile:
         json.dump(peopleJson, outfile)
-        json.dump(peopleEdge, outfile)
 
 def addPeopleConnectJson(x):
-    peopleEdge["edges"].append(x)
+    peopleJson["edges"].append(x)
 
 # def createPeopleConnectJson():
 #     with open('peopleEdge.json', 'w') as outfile:
