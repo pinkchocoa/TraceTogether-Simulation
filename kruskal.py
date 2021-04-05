@@ -1,3 +1,5 @@
+import json
+
 parent = dict()
 rank = dict()
 
@@ -50,4 +52,13 @@ minimum_spanning_tree = set([
             (2, 'B', 'D'),
             (1, 'C', 'D'),
             ])
+
 assert kruskal(graph) == minimum_spanning_tree
+
+mst = kruskal(graph)
+mstJson = {}
+for x in mst:
+    mstJson[x[1]] = [x[1], x[2]]
+
+with open('test.json', 'w') as outfile:
+    json.dump(mstJson, outfile)
