@@ -1,4 +1,5 @@
 import json
+import aStar
 
 parent = dict()
 rank = dict()
@@ -26,14 +27,14 @@ def kruskal(graph):
     for vertice in graph['vertices']:
         make_set(vertice)
 
-    minimum_spanning_tree = set()
+    minimum_spanning_tree = []
     edges = list(graph['edges'])
     edges.sort()
     for edge in edges:
         weight, vertice1, vertice2 = edge
         if find(vertice1) != find(vertice2):
             union(vertice1, vertice2)
-            minimum_spanning_tree.add(edge)
+            minimum_spanning_tree.append(edge)
     return minimum_spanning_tree
 
 graph = {
@@ -53,12 +54,22 @@ minimum_spanning_tree = set([
             (1, 'C', 'D'),
             ])
 
-assert kruskal(graph) == minimum_spanning_tree
-
+#assert kruskal(graph) == minimum_spanning_tree
+aStar.setGraph()
+graph = {
+    'vertices': aStar.locations,
+    'edges' : aStar.edgeList
+}
 mst = kruskal(graph)
-mstJson = {}
+print(mst)
+mstJson = {} #this overrides some edges, need to think of a diff way to store
 for x in mst:
-    mstJson[x[1]] = [x[1], x[2]]
+    #print(x)
+    if x in mstJson.keys():
+        mstJson[x].append([x[1], x[2]])
+    else:
+        mstJson[x[1]]= [x[1], x[2]]
+    print(mstJson)
 
 with open('mst.json', 'w') as outfile:
     json.dump(mstJson, outfile)

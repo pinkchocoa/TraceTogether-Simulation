@@ -7,7 +7,7 @@ import randomFn
 import UIdata
 
 chanceToCatchCovid = 3
-maze = locData.createMaze()
+
 locDict = locData.getLocFromFile()
 peopleData.generatePeople(100)
 peopleData.generateLoctime(locDict)
@@ -46,7 +46,7 @@ def hasCovid(token):
                         #add edge
                         UIdata.addPeopleConnectJson({"from": person.name, "to": personX.name})
         prevLoc = x
-    
+
 hasCovid(4)
 hasCovid(6)
 

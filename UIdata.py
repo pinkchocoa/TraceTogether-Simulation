@@ -1,5 +1,6 @@
 import peopleData
 import json
+import randomFn
 
 peopleJson = {}
 peopleJson["nodes"]=[]
@@ -8,8 +9,10 @@ def createPeopleJson():
     for x in peopleData.listOfPpl:
         peopleJson["nodes"].append({
             "id": x.name,
-            "token": x.token,
-            "tag": peopleData.personTag(x.persontags).name,
+            #"token": x.token,
+            "group": x.persontags,
+            #"x": randomFn.randInt(1,300),
+            #"y": randomFn.randInt(1,300)
         })
     with open('people.json', 'w') as outfile:
         json.dump(peopleJson, outfile)
