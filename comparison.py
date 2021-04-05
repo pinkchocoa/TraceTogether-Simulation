@@ -4,10 +4,6 @@ import datetime
 
 
 # function to check if timestamp coincides
-<<<<<<< Updated upstream
-def checkTimeStamp(setoftimestamps1, setoftimestamps2):
-=======
-<<<<<<< HEAD
 def checkTimeStamp():
     setoftimestamps1=[]
     setoftimestamps2=[]
@@ -19,10 +15,6 @@ def checkTimeStamp():
 
     print(setoftimestamps1[0], setoftimestamps1[1])
     print(setoftimestamps2[0], setoftimestamps2[1])
-=======
-def checkTimeStamp(setoftimestamps1, setoftimestamps2):
->>>>>>> 5fdc1c0b662e3ee01cd684ea970ca1ff82b43dd4
->>>>>>> Stashed changes
 
     results = []
     for timestamp in setoftimestamps1:
@@ -43,6 +35,8 @@ def checkTimeStamp(setoftimestamps1, setoftimestamps2):
             timeDiff = results[1] - results[0]
             timeDiff = timeDiff.total_seconds()/60
 
+    # for result in results:
+    #     print(str(result))
     return timeDiff
 
     # # ^i used the above to generate 2 random sets of timestamps,
@@ -57,10 +51,4 @@ def checkTimeStamp(setoftimestamps1, setoftimestamps2):
     # return should be an integer
 
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 print(checkTimeStamp())
-=======
->>>>>>> 5fdc1c0b662e3ee01cd684ea970ca1ff82b43dd4
->>>>>>> Stashed changes
