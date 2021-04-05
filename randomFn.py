@@ -6,6 +6,9 @@ import datetime
 def randInt(min,max): #min <= x <= max
     return random.randint(min,max)
 
+def randChance(perc):
+    return (randInt(0,100) < perc)
+
 def randName(): #generates a random name
     x = "female" if randInt(0,1) == 0 else "male"
     return names.get_full_name(x)

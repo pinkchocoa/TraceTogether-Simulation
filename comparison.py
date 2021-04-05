@@ -4,40 +4,15 @@ import datetime
 
 
 # function to check if timestamp coincides
-def checkTimeStamp():
-    setoftimestamps1=[]
-    setoftimestamps2=[]
 
-    setoftimestamps1.append(datetime.datetime(2020, 4, 4, 11, 30, 00))
-    setoftimestamps1.append(datetime.datetime(2020, 4, 4, 18, 30, 00))
-    setoftimestamps2.append(datetime.datetime(2020, 4, 4, 10, 30, 00))
-    setoftimestamps2.append(datetime.datetime(2020, 4, 4, 20, 30, 00))
-
-    print(setoftimestamps1[0], setoftimestamps1[1])
-    print(setoftimestamps2[0], setoftimestamps2[1])
-
+def checkTimeStamp(setoftimestamps1,setoftimestamps2):
+    # version 1
     results = []
     for timestamp in setoftimestamps1:
-        if setoftimestamps2[0] < timestamp < setoftimestamps2[1]:
-            results.append(timestamp)
+        results.append(setoftimestamps2[0] < timestamp < setoftimestamps2[1])
     for timestamp in setoftimestamps2:
-        if setoftimestamps1[0] < timestamp < setoftimestamps1[1]:
-            results.append(timestamp)
-
-    timeDiff = 0
-    if len(results) == 0:
-        return timeDiff
-    else:
-        if results[0] > results[1]:
-            timeDiff = results[0] - results[1]
-            timeDiff = timeDiff.total_seconds()/60
-        else:
-            timeDiff = results[1] - results[0]
-            timeDiff = timeDiff.total_seconds()/60
-
-    # for result in results:
-    #     print(str(result))
-    return timeDiff
+        results.append(setoftimestamps1[0] < timestamp < setoftimestamps1[1])
+        return True in results
 
     # # ^i used the above to generate 2 random sets of timestamps,
     # # u can create ur own too for checking
@@ -50,5 +25,3 @@ def checkTimeStamp():
     # check if timestamp coincides and return by how many minutes
     # return should be an integer
 
-
-print(checkTimeStamp())

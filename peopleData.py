@@ -7,6 +7,7 @@ listOfPpl = list() #stores list of person objects
 listOfPplPerLoc = {} #stores location as key and set() of people as value
 covidLoc = {} #stores location as key and int of people that has covid as value
 
+
 class personTag(Enum):
     nothing = 0
     covid = 1
