@@ -60,5 +60,5 @@ mstJson = {}
 for x in mst:
     mstJson[x[1]] = [x[1], x[2]]
 
-with open('test.json', 'w') as outfile:
+with open('mst.json', 'w') as outfile:
     json.dump(mstJson, outfile)

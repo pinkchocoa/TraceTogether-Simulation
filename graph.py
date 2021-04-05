@@ -51,7 +51,7 @@ def shortest_path(graph, start, end, path=[]):
                     shortest = new_path
     return shortest
 
-fileName = 'test.json'
+fileName = 'mst.json'
 data = load_graph(fileName)
 route = shortest_path(data, 'A', 'D')
 print(route)
