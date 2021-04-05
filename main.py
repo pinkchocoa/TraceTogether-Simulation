@@ -3,25 +3,31 @@ import locData
 import peopleData
 import multidict 
 import comparison
+import randomFn
+import UIdata
 
+chanceToCatchCovid = 3
 maze = locData.createMaze()
 locDict = locData.getLocFromFile()
-peopleData.generatePeople(10)
+peopleData.generatePeople(100)
 peopleData.generateLoctime(locDict)
 for x in peopleData.listOfPpl:
     x.print()
 
 def setLocWarning(person):
     person.setTag(peopleData.personTag.locationWarning)
+    if randomFn.randChance(chanceToCatchCovid): 
+        hasCovid(person.token)
 
 def hasCovid(token):
     person = peopleData.listOfPpl[token]
     person.setTag(peopleData.personTag.covid)
-    
     #run through all locations that person has been
     loc = person.getLoc()
+    prev = None
     for x in loc.keys():
-        peopleData.covidLoc[x] += 1 #remember to remove duplicates
+        if prev != x:
+            peopleData.covidLoc[x] += 1 #remember to remove duplicates
         if len(peopleData.listOfPplPerLoc[x]) == 1:
             continue
         else: #more than one person has been to location
@@ -34,14 +40,19 @@ def hasCovid(token):
                     #this may change bc need to check with covid visit window
                     if comparison.checkTimeStamp(locX[x], loc[x]):
                         print("coincide!")
-                        print(person.token, "and", personX.token, "were at", x)
+                        print(token, "and", personX.token, "were at", x)
                         setLocWarning(personX)
                         print("end")
+                        #add edge
+                        UIdata.addPeopleConnectJson({"from": person.name, "to": personX.name})
+        prevLoc = x
     
 hasCovid(4)
 hasCovid(6)
 
 print(peopleData.covidLoc)
+
+UIdata.createJson()
 #peopleData.printLocSet()
 
 #for x in peopleData.listOfPpl:
