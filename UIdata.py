@@ -10,7 +10,7 @@ def createPeopleJson():
         peopleJson["nodes"].append({
             "id": x.name,
             #"token": x.token,
-            "group": x.persontags,
+            "group": peopleData.personTag(x.persontags).name,
             #"x": randomFn.randInt(1,300),
             #"y": randomFn.randInt(1,300)
         })
