@@ -1,0 +1,30 @@
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+*, *::before, *::after{
+    box-sizing: inherit;
+}
+
+body{
+    margin: 100;
+    padding: 0;
+    background-color: black;
+    color: aliceblue;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-family: 'Yatra One', cursive;
+    text-align: center;
+    font-size: 3rem;
+}
+
+#map{
+    height:90vh;
+}
+
+.gm-style-iw-d {
+    color:black;
+}
