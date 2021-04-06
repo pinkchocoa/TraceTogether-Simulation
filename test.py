@@ -31,10 +31,9 @@ class Player(pygame.sprite.Sprite):
         self.movey = 0
         self.frame = 0
         self.images = []
-        img = pygame.image.load(os.path.join('images', 'hero1.png'))
-        self.images.append(img)
-        img = pygame.image.load(os.path.join('images', 'hero2.png'))
-        self.images.append(img)
+        self.images.append(pygame.image.load(os.path.join('images', 'green.png')))
+        self.images.append(pygame.image.load(os.path.join('images', 'red.png')))
+        self.images.append(pygame.image.load(os.path.join('images', 'yellow.png')))
         self.image = self.images[0]
         self.rect = self.image.get_rect()
 
@@ -114,11 +113,11 @@ def covid(covidSet):
             if abs(player.rect.x - y.rect.x) > covidRange or  abs(player.rect.y - y.rect.y) > covidRange:
                 continue
             else:
-                if randomFn.randChance(3):
-                    newcovidSet.add(idx)
-            #path = aStar.astar(maze, (player.rect.x, player.rect.y), (y.rect.x, y.rect.y))
-            #if len(path) <= 5:
-                #covidSet.add(idx)
+                path = aStar.astar(maze, (player.rect.x, player.rect.y), (y.rect.x, y.rect.y))
+                if len(path) <= covidRange:
+                    print(len(path))
+                    if randomFn.randChance(3):
+                        newcovidSet.add(idx)
     return set.union(covidSet, newcovidSet)
 
 
