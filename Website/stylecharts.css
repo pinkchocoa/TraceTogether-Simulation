@@ -1,30 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:400,500,600,700,800,900&display=swap');
 *
 {
-    margin: 1;
-    padding: 1 px;
-    font-weight: bold;
+    margin: 0;
+    padding: 0 px;
     font-family: "Poppins",sans-serif;
 }
-html, body, #container 
+body
 {
-    width: 100%;
-    height: 100%;
+    display: flex;
     margin: 0;
-    padding: 0;
-    
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f2f3f7;
 }
-.h1
+.container
 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  font-weight: bold;
-  font-size: 45px;
-  padding: 2px;
-  margin: 1px;
-    
+    height: 100vh;
 }
 a
 {
@@ -59,8 +51,33 @@ a:hover span
     display: inline-block;
     transform: scale(0.98);
 }
-ul
+h1
 {
+  display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 45px;
+  padding: 2px;
+  margin: 1px;
+    
+}
+.card-header
+{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    margin: 1px;
+}
+.canvas-card
+{
+    width: 800px;
+    height: 1000px;
+    margin: 0 auto;
 }
