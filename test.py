@@ -11,20 +11,13 @@ Variables
 
 worldx = 960
 worldy = 720
-fps = 40
-ani = 4
+fps = 12
 world = pygame.display.set_mode([worldx, worldy])
-
-BLUE = (25, 25, 200)
-BLACK = (23, 23, 23)
-WHITE = (254, 254, 254)
-ALPHA = (0, 255, 0)
+Pixsize = 5 #size of object
 
 '''
 Objects
 '''
-
-
 class Player(pygame.sprite.Sprite):
     """
     Spawn a player
@@ -46,44 +39,58 @@ class Player(pygame.sprite.Sprite):
         control player movement
         """
         #bounding box
-        self.movex += x
-        self.movey += y
+        self.movex = x
+        self.movey = y
 
     def update(self):
         """
         Update sprite position
         """
         if (self.rect.x + self.movex) < 0:
+            moveInDirection(randomFn.randInt(1,8))
             return
         elif  (self.rect.x + self.movex) > worldx-20:
+            moveInDirection(randomFn.randInt(1,8))
             return
         if (self.rect.y + self.movey) < 0:
+            moveInDirection(randomFn.randInt(1,8))
             return
         elif  (self.rect.y + self.movey) > worldy-20:
+            moveInDirection(randomFn.randInt(1,8))
+            return
+        if (randomFn.randChance(5)):
+            moveInDirection(randomFn.randInt(1,8))
             return
         self.rect.x = self.rect.x + self.movex
         self.rect.y = self.rect.y + self.movey
 
-
 '''
 Setup
 '''
-
 backdrop = pygame.image.load(os.path.join('images', 'stage.png'))
 clock = pygame.time.Clock()
 pygame.init()
 backdropbox = world.get_rect()
 main = True
 
-player = Player()  # spawn player
-player.rect.x = 0  # go to x
-player.rect.y = 0  # go to y
+totalPlayers = 100
 player_list = pygame.sprite.Group()
-player_list.add(player)
-steps = 0.1
+def createPlayers():
+    player = Player()  # spawn player
+    player.rect.x = randomFn.randInt(0,worldx)  # go to x
+    player.rect.y = randomFn.randInt(0,worldy)  # go to y
+    x,y = direction[randomFn.randInt(1,8)]
+    player.movex = x
+    player.movey = y
+    player_list.add(player)
+
+steps = 1
+direction={1:[steps,0], 2:[-steps,0], 3:[0,steps], 4:[0,-steps]
+    ,5:[steps,steps], 6:[-steps,steps], 7:[steps,-steps], 8:[-steps,-steps]}
+for x in range(totalPlayers):
+    createPlayers()
 
 def moveInDirection(d):
-    direction={1:[steps,0], 2:[-steps,0], 3:[0,steps], 4:[0,-steps]}
     player.control(direction[d][0], direction[d][1])
 
 
@@ -98,11 +105,8 @@ while main:
                 sys.exit()
             finally:
                 main = False
-    prevx,prevy = player.rect.x, player.rect.y
-    while(prevx == player.rect.x and prevy == player.rect.y):
-        moveInDirection(randomFn.randInt(1,4))
+    for player in player_list:
         player.update()
-
 
     world.blit(backdrop, backdropbox)
     
