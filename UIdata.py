@@ -1,6 +1,7 @@
 import peopleData
 import json
 import randomFn
+import multidict
 
 peopleJson = {}
 peopleJson["nodes"]=[]
@@ -12,9 +13,16 @@ tagJson[peopleData.personTag(1).name]=0
 tagJson[peopleData.personTag(2).name]=0
 tagJson[peopleData.personTag(3).name]=0
 
+peopleDetails = {}
+peopleDetails["details"]=[]
 def createPeopleJson():
     for x in peopleData.listOfPpl:
         tagJson[peopleData.personTag(x.persontags).name]+=1
+        peopleDetails["details"].append({
+            "id": x.name,
+            "group": peopleData.personTag(x.persontags).name,
+            "location": list(x.location.keys())
+        })
         if x.persontags == peopleData.personTag.nothing.value:
             continue
         peopleJson["nodes"].append({
@@ -29,6 +37,8 @@ def createPeopleJson():
         json.dump(peopleJson, outfile)
     with open('tag.json', 'w') as outfile:
         json.dump(tagJson, outfile)
+    with open('peopleDetails.json', 'w') as outfile:
+        json.dump(peopleDetails, outfile)
 
 def addPeopleConnectJson(x):
     peopleJson["edges"].append(x)
