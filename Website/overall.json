@@ -1,0 +1,10 @@
+{
+    "overall":[
+        {
+            "nothing": 475, 
+            "covid": 2, 
+            "closeWarning": 2, 
+            "locationWarning": 21
+        }
+    ]
+}

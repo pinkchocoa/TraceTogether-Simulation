@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Data Charts</title>
+        <meta charset="UTF-8">
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+        <link rel="stylesheet" type="text/css" href="stylecharts.css">
+    
+    </head>
+
+    <body>
+        <div class="container">
+                    <div class="header">
+                        <h1>Data Charts</h1>
+                    </div>
+                    <div class="card-header">
+                        <a href="">Network Graph</a>
+                    </div>
+                    <div class="canvas-card">
+                        <canvas id="overAllChart"></canvas>
+                        <canvas id="genderChart"></canvas>
+                    </div>
+        </div>
+
+        <script>
+        Chart.defaults.global.plugins.datalabels.display = true;
+        window.horichart = [];
+
+        var xmlhttp = new XMLHttpRequest();
+        var url = "overall.json";
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var data = JSON.parse(this.responseText);
+                //console.log(data);
+
+                var nothing = data.overall.map(function(elem){
+                    return elem.nothing;
+                });
+                var covid = data.overall.map(function(elem){
+                    return elem.covid;
+                });
+                var closeWarning = data.overall.map(function(elem){
+                    return elem.closeWarning;
+                });
+                var locationWarning = data.overall.map(function(elem){
+                    return elem.locationWarning;
+                });
+                
+                
+                //appending into an array for my y values
+                horichart.push(nothing);
+                horichart.push(covid);
+                horichart.push(locationWarning);
+                horichart.push(closeWarning);
+                console.log(horichart);
+            
+            
+            /*
+                This is the chart that displays the Overall Chart (Doughnut): 
+                STARTS HERE
+            */
+                
+            var ctx = document.getElementById('overAllChart').getContext('2d');
+            var overall_doughnut = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'doughnut',
+                // The data for our dataset
+                data: {
+                    labels: ["Not Affected","Covid","Close Warning","Location Warning"],
+                    datasets: [{
+                        label: 'Amount of People',
+                        backgroundColor: ["#059BFF","#FF6384","#F0C929","#fb5607"],
+                        data: horichart
+                    }]
+                },
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    title:{
+                        display:true,
+                        text:"Overall chart",
+                        fontSize:25,
+                        padding: 10,
+                        margin: 10,
+                        fontColor: "#000",
+                        position:"top"
+                    },
+                    scales: {
+                    },
+                    legend:{
+                        position:"top",
+                        labels:{
+                            fontColor:'rgba(0,0,0)'
+                        }
+                    },
+                    plugins:{
+                        datalabels:{
+                            color: "#1B1717",
+                            anchor: "end",
+                            align: "start",
+                            offset: 30,
+                            borderWidth: 2,
+                            borderRadius: 25,
+                            borderColor: "#1B1717",
+                            backgroundColor: (context) => {
+                                return context.dataset.backgroundColor;
+                            },
+                            font:{
+                                weight: "bold",
+                                size:"8"
+                            },
+                            formatter: (value) => {
+                                return value + " People";
+                            }
+                        }
+                    }
+                }
+            });
+            /*
+                This is the chart that displays the Overall Chart (Doughnut): 
+                ENDS HERE
+            */
+            }
+        }
+
+
+
+            /*
+                This is the chart that displays the Gender Chart: 
+                STARTS HERE
+            
+            var ctx = document.getElementById('genderChart').getContext('2d');
+            var genderchart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'bar',
+                // The data for our dataset
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Female",
+                        data: 
+                    }]
+                },
+                // Configuration options go here
+                options: {
+                    indexAxis: "y",
+                    elements:{
+                        bar:{
+                            borderWidth: 2,
+                        }
+                    },
+                    responsive: true,
+                    title:{
+                        display:true,
+                        text:"Overall chart",
+                        fontSize:25,
+                        padding: 10,
+                        margin: 10,
+                        fontColor: "#000",
+                        position:"top"
+                    },
+                    scales: {
+                    },
+                    legend:{
+                        position:"top",
+                        labels:{
+                            fontColor:'rgba(0,0,0)'
+                        }
+                    }
+                }
+            });
+            
+                This is the chart that displays the Gender Chart: 
+                Ends HERE
+            */
+            
+
+        </script>
+    </body>
+</html>
