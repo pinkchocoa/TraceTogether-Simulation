@@ -16,6 +16,9 @@ tagJson["overall"]=[]
 peopleDetails = {}
 peopleDetails["details"]=[]
 
+tableJson = {}
+tableJson["rank"] = []
+
 def createPeopleJson():
     temp={}
     temp[peopleData.personTag(0).name]=0
@@ -54,6 +57,16 @@ def createPeopleJson():
 def addPeopleConnectJson(x):
     peopleJson["edges"].append(x)
 
+def createTableJson():
+
+    for k,v in peopleData.covidLoc.items():
+        tableJson["rank"].append({
+            "mall": k,
+            "covidCount": v,
+            "crowdCount": len(peopleData.listOfPplPerLoc[k]) #numbner of unique check in over 7 days
+        })
+    with open('table.json', 'w') as outfile:
+        json.dump(tableJson, outfile)
 # def createPeopleConnectJson():
 #     with open('peopleEdge.json', 'w') as outfile:
 #         json.dump(peopleEdge, outfile)
@@ -61,3 +74,4 @@ def addPeopleConnectJson(x):
 
 def createJson():
     createPeopleJson()
+    createTableJson()
