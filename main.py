@@ -1,4 +1,4 @@
-from aStar import astar
+#from aStar import astar
 import locData
 import peopleData
 import multidict 

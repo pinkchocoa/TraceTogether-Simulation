@@ -103,9 +103,10 @@ def file_to_dict(file_name):
         for line in f:
             line = line.replace('\n', '') # remove new line character
             data = line.split(': ')
-            key = data[0]
-            value = data[1].split(',')
-            results[key] = value
+            if data and len(data) > 1:
+                key = data[0]
+                value = data[1].split(',')
+                results[key] = value
     return results
 
 #print(file_to_dict('malls.txt'))
