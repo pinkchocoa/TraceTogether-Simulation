@@ -16,11 +16,11 @@
                         <h1>Data Charts</h1>
                     </div>
                     <div class="card-header">
-                        <a href="">Network Graph</a>
+                        <a href="networkGraph.html">Network Graph</a>
                     </div>
-                    <div class="canvas-card">
+                    <div class="canvas-card1">
                         <canvas id="overAllChart"></canvas>
-                        <canvas id="genderChart"></canvas>
+                        <canvas id="clusterRanks"></canvas>
                     </div>
         </div>
 
@@ -127,36 +127,50 @@
             }
         }
 
+        var xmlhttp = new XMLHttpRequest();
+        var url = "table.json";
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var data = JSON.parse(this.responseText);
+                //console.log(data);
 
+                var mallname = data.rank.map(function(elem){
+                    return elem.mall;
+                });
+                var covidcount = data.rank.map(function(elem){
+                    return elem.covidCount;
+                });
+                var crowdcount = data.rank.map(function(elem){
+                    return elem.crowdcount;
+                });        
 
             /*
                 This is the chart that displays the Gender Chart: 
                 STARTS HERE
-            
-            var ctx = document.getElementById('genderChart').getContext('2d');
-            var genderchart = new Chart(ctx, {
+            */
+            var ctx = document.getElementById('clusterRanks').getContext('2d');
+            var clusterRankChart = new Chart(ctx, {
                 // The type of chart we want to create
                 type: 'bar',
                 // The data for our dataset
                 data: {
-                    labels: labels,
+                    labels: mallname,
                     datasets: [{
-                        label: "Female",
-                        data: 
+                        label: "Clusters",
+                        borderWidth: 2,
+                        borderColor: "red",
+                        backgroundColor: "transparent",
+                        data: covidcount
                     }]
                 },
                 // Configuration options go here
                 options: {
-                    indexAxis: "y",
-                    elements:{
-                        bar:{
-                            borderWidth: 2,
-                        }
-                    },
                     responsive: true,
                     title:{
                         display:true,
-                        text:"Overall chart",
+                        text:"Mall's Covid Clusters ",
                         fontSize:25,
                         padding: 10,
                         margin: 10,
@@ -173,10 +187,13 @@
                     }
                 }
             });
-            
+            /*
                 This is the chart that displays the Gender Chart: 
                 Ends HERE
             */
+            }
+        }
+            
             
 
         </script>

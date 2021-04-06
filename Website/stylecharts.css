@@ -75,9 +75,17 @@ h1
     padding: 1px;
     margin: 1px;
 }
-.canvas-card
+.canvas-card1
 {
     width: 800px;
-    height: 1000px;
-    margin: 0 auto;
+    height: 800px;
+    margin: 2 ;
+    padding: 1;
+}
+.canvas-card2
+{
+    width: 1000px;
+    height: 800px;
+    margin: 2 ;
+    padding: 1;
 }
