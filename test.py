@@ -1,9 +1,11 @@
 from typing import Tuple
 
+import aStar
 import pygame
 import sys
 import os
 import randomFn
+import numpy
 
 '''
 Variables
@@ -13,7 +15,7 @@ worldx = 960
 worldy = 720
 fps = 12
 world = pygame.display.set_mode([worldx, worldy])
-Pixsize = 5 #size of object
+maze = numpy.zeros((worldx, worldy), dtype=int)
 
 '''
 Objects
@@ -30,6 +32,8 @@ class Player(pygame.sprite.Sprite):
         self.frame = 0
         self.images = []
         img = pygame.image.load(os.path.join('images', 'hero1.png'))
+        self.images.append(img)
+        img = pygame.image.load(os.path.join('images', 'hero2.png'))
         self.images.append(img)
         self.image = self.images[0]
         self.rect = self.image.get_rect()
@@ -73,27 +77,54 @@ pygame.init()
 backdropbox = world.get_rect()
 main = True
 
-totalPlayers = 100
-player_list = pygame.sprite.Group()
+totalPlayers = 500
+playerList = []
+playerGroup = pygame.sprite.Group()
+
 def createPlayers():
     player = Player()  # spawn player
     player.rect.x = randomFn.randInt(0,worldx)  # go to x
     player.rect.y = randomFn.randInt(0,worldy)  # go to y
-    x,y = direction[randomFn.randInt(1,8)]
-    player.movex = x
-    player.movey = y
-    player_list.add(player)
+    player.movex, player.movey = direction[randomFn.randInt(1,8)]
+    playerGroup.add(player)
+    playerList.append(player)
 
-steps = 1
+steps = 5
+covidSet = set()
+covidSet.add(5)
+covidRange = 30
+
 direction={1:[steps,0], 2:[-steps,0], 3:[0,steps], 4:[0,-steps]
     ,5:[steps,steps], 6:[-steps,steps], 7:[steps,-steps], 8:[-steps,-steps]}
+
 for x in range(totalPlayers):
     createPlayers()
 
+def covid(covidSet):
+    
+    newcovidSet = set()
+    for x in covidSet:
+        player = playerList[x]
+        player.image = player.images[1]
+
+        #gotta check if anyone is close to this guy
+        for idx, y in enumerate(playerList):
+            if idx == x or idx in covidSet or idx in newcovidSet:
+                continue
+            if abs(player.rect.x - y.rect.x) > covidRange or  abs(player.rect.y - y.rect.y) > covidRange:
+                continue
+            else:
+                if randomFn.randChance(3):
+                    newcovidSet.add(idx)
+            #path = aStar.astar(maze, (player.rect.x, player.rect.y), (y.rect.x, y.rect.y))
+            #if len(path) <= 5:
+                #covidSet.add(idx)
+    return set.union(covidSet, newcovidSet)
+
+
 def moveInDirection(d):
     player.control(direction[d][0], direction[d][1])
-
-
+    
 '''
 Main Loop
 '''
@@ -105,11 +136,13 @@ while main:
                 sys.exit()
             finally:
                 main = False
-    for player in player_list:
+    for player in playerGroup:
         player.update()
+
+    covidSet = covid(covidSet)
 
     world.blit(backdrop, backdropbox)
     
-    player_list.draw(world)
+    playerGroup.draw(world)
     pygame.display.flip()
     clock.tick(fps)

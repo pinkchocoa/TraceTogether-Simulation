@@ -97,20 +97,6 @@ def astar(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
-maze = locData.createMaze()
-locDict = locData.getLocFromFile()
-locations = list(locDict.keys())#vertices
-edgeList = []
-def setGraph():
-    edges = set() #edges
-    for i in locations:
-        for j in locations:
-            if i == j:
-                continue
-            weight = len(astar(maze, locDict[i] , locDict[j]))
-            weight = 1 if weight == 0 else weight
-            edgeList.append((weight, i, j))
-            edgeList.append((weight, j, i))
 
 # setGraph()
 # print(edgeList)\
