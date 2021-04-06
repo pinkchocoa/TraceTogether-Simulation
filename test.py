@@ -54,16 +54,12 @@ class Player(pygame.sprite.Sprite):
         Update sprite position
         """
         if (self.rect.x + self.movex) < 0:
-            self.rect.x = 0
             return
-        elif  (self.rect.x + self.movex) > worldx:
-            self.rect.x = worldx-20
+        elif  (self.rect.x + self.movex) > worldx-20:
             return
         if (self.rect.y + self.movey) < 0:
-            self.rect.y = 0
             return
-        elif  (self.rect.y + self.movey) > worldy:
-            self.rect.y = worldy-20
+        elif  (self.rect.y + self.movey) > worldy-20:
             return
         self.rect.x = self.rect.x + self.movex
         self.rect.y = self.rect.y + self.movey
@@ -84,7 +80,7 @@ player.rect.x = 0  # go to x
 player.rect.y = 0  # go to y
 player_list = pygame.sprite.Group()
 player_list.add(player)
-steps = 1
+steps = 0.1
 
 def moveInDirection(d):
     direction={1:[steps,0], 2:[-steps,0], 3:[0,steps], 4:[0,-steps]}
