@@ -9,10 +9,14 @@ peopleJson["edges"]=[]
 tagJson = {}
 tagJson[peopleData.personTag(0).name]=0
 tagJson[peopleData.personTag(1).name]=0
+tagJson[peopleData.personTag(2).name]=0
 tagJson[peopleData.personTag(3).name]=0
 
 def createPeopleJson():
     for x in peopleData.listOfPpl:
+        tagJson[peopleData.personTag(x.persontags).name]+=1
+        if x.persontags == peopleData.personTag.nothing.value:
+            continue
         peopleJson["nodes"].append({
             "id": x.name,
             #"token": x.token,
@@ -20,7 +24,7 @@ def createPeopleJson():
             #"x": randomFn.randInt(1,300),
             #"y": randomFn.randInt(1,300)
         })
-        tagJson[peopleData.personTag(x.persontags).name]+=1
+        
     with open('people.json', 'w') as outfile:
         json.dump(peopleJson, outfile)
     with open('tag.json', 'w') as outfile:
