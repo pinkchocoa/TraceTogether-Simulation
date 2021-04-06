@@ -80,6 +80,18 @@ def set_to_file(links, file_name):
             url = l.replace(" ","") # remove spaces
             f.write(l+"\n")
 
+# Iterate through a list, each item will be a line in a file
+def list_to_file(x, file_name):
+    """! This method iterate through a set, each item will be a line in a file
+    @param links a set of data to be entered into the file
+    @param file_name file name
+    """
+    with open(file_name, "w", encoding="utf-8") as f: #added encoding for UnicodeEncodeError 
+        for a in x:
+            for b in a:
+                f.write(str(b)+" ")
+            f.write("\n")
+
 # Read a file and convert each line to set items
 def file_to_list(file_name):
     """! This method reads a file and convert each line to set items
@@ -91,6 +103,22 @@ def file_to_list(file_name):
         for line in f:
             results.append(line.replace('\n', '')) # remove new line character
     return results
+
+def file_to_2dlist(file_name):
+    """! This method reads a file and convert each line to set items
+    @param file_name file name
+    @return set with the file data
+    """
+    results = []
+    with open(file_name, 'rt', encoding="utf-8") as f:
+        for line in f:
+            res=[]
+            for x in line:
+                if x != '\n' and x != ' ':
+                    res.append(int(x))
+            results.append(res)
+    return results
+
 
 # Read a file and convert each line to set items
 def file_to_dict(file_name):
