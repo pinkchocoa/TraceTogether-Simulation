@@ -12,12 +12,10 @@ class personTag(Enum):
     nothing = 0
     covid = 1
 
-    #means you were close to someone w covid
-    #supposed to be decided via bluetooth
-    #need to turn it into weight before we can do this
+    #closewarning is close contact ( person has been in the same mall same time on the same day)
     closeWarning = 2
 
-    #means someone w covid has been to the place that u have been to
+    #locationwarning is just a warning (person has been in the same mall within the last 7 days)
     locationWarning = 3 
 
 class person:

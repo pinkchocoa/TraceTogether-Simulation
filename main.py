@@ -1,4 +1,4 @@
-from aStar import astar
+#from aStar import astar
 import locData
 import peopleData
 import multidict 
@@ -6,16 +6,19 @@ import comparison
 import randomFn
 import UIdata
 
-chanceToCatchCovid = 3
+chanceToCatchCovid = 20
 
 locDict = locData.getLocFromFile()
-peopleData.generatePeople(100)
+peopleData.generatePeople(500)
 peopleData.generateLoctime(locDict)
-for x in peopleData.listOfPpl:
-    x.print()
 
 def setLocWarning(person):
     person.setTag(peopleData.personTag.locationWarning)
+
+def setCloseWarning(person):
+    person.setTag(peopleData.personTag.closeWarning)
+
+def setSpread(person):
     if randomFn.randChance(chanceToCatchCovid): 
         hasCovid(person.token)
 
@@ -41,16 +44,21 @@ def hasCovid(token):
                     if comparison.checkTimeStamp(locX[x], loc[x]):
                         print("coincide!")
                         print(token, "and", personX.token, "were at", x)
-                        setLocWarning(personX)
+                        setCloseWarning(personX)
+                        setSpread(personX)
                         print("end")
                         #add edge
                         UIdata.addPeopleConnectJson({"from": person.name, "to": personX.name})
+                    else:
+                        if personX.persontags == peopleData.personTag.nothing.value:
+                            print("same location!")
+                            setLocWarning(personX)
         prevLoc = x
 
 hasCovid(4)
 hasCovid(6)
 
-print(peopleData.covidLoc)
+#print(peopleData.covidLoc)
 
 UIdata.createJson()
 #peopleData.printLocSet()
