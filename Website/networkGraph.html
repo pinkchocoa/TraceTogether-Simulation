@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  <script src="js/anychart-base.min.js"></script>
+  <script src="js/anychart-graph.min.js"></script>
+  <script src="js/anychart-data-adapter.min.js"></script>
+  <script src="js/anychart-ui.min.js"></script>
+  <script src="js/anychart-exports.min.js"></script>
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <link href="css/anychart-ui.min.css" rel="stylesheet" type="text/css">
+  <link href="css/anychart-font.min.css" rel="stylesheet" type="text/css">
+    
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+        anychart.onDocumentReady(function () {
+            anychart.data.loadJsonFile("people.json", function (data) {
+            // create a chart from the loaded data
+            var chart = anychart.graph(data);
+
+            // set the title
+            chart.title("TraceTogether Network Graph");
+
+            // draw the chart
+            chart.container("container").draw();
+            chart.interactivity().scrollOnMouseWheel(false);
+              
+            // enable the labels of nodes
+            chart.nodes().labels().enabled(true);
+
+            //iteration count
+            chart.layout().iterationCount();
+
+            // configure the labels of nodes
+            chart.nodes().labels().format("{%id}");
+            chart.nodes().labels().fontSize(10);
+            chart.nodes().labels().fontColor("black");
+            chart.nodes().labels().fontWeight(100);
+           
+            //access group of nodes
+            var nothing = chart.group("nothing")
+            var covid = chart.group("covid");
+            var locationWarning = chart.group("locationWarning");
+
+            //fill the nothing nodes in groups
+            nothing.normal().fill("#1E90FF");
+            nothing.hovered().fill("white");
+            nothing.normal().height(20);
+
+            //fill the locationWarning nodes in groups
+            locationWarning.normal().fill("#FFFF00");
+            locationWarning.hovered().fill("white");
+            locationWarning.normal().height(20);
+
+            //fill the coivd nodes in groups
+            covid.normal().fill("#ff0000");
+            covid.hovered().fill("white");
+            covid.normal().height(20);
+          
+            //edges config
+            var edges = chart.edges();
+            edges.stroke('#FF0000');
+
+            
+            }); 
+        });
+        
+
+    </script>
+  </body>
+</html>

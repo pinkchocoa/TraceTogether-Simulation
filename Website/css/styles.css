@@ -1,0 +1,25 @@
+*
+{
+    margin: 1;
+    padding: 1 px;
+    font-weight: bold;
+}
+html, body, #container 
+{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.h1
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 45px;
+  padding: 2px;
+  margin: 1px;
+    
+}

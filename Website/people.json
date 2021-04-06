@@ -1,0 +1,130 @@
+{
+    "nodes": [
+      {
+        "id": "Jacinda Buchman",
+        "group": "nothing"
+      },
+      {
+        "id": "Adele Thacker",
+        "group": "nothing"
+      },
+      {
+        "id": "Cassie Biasi",
+        "group": "nothing"
+      },
+      {
+        "id": "Jordan Campbell",
+        "group": "nothing"
+      },
+      {
+        "id": "Mary Morales",
+        "group": "covid"
+      },
+      {
+        "id": "Tamara Bright",
+        "group": "locationWarning"
+      },
+      {
+        "id": "Sharron Root",
+        "group": "locationWarning"
+      },
+      {
+        "id": "Ann Mathis",
+        "group": "locationWarning"
+      },
+      {
+        "id": "George Nelson",
+        "group": "locationWarning"
+      },
+      {
+        "id": "Clifford Camp",
+        "group": "covid"
+      },
+      {
+        "id": "Richard Valente",
+        "group": "locationWarning"
+      },
+      {
+        "id": "Diana James",
+        "group": "locationWarning"
+      },
+      {
+        "id": "Dennis Baker",
+        "group": "locationWarning"
+      },
+      {
+        "id": "Thomas Copley",
+        "group": "locationWarning"
+      },
+      {
+        "id": "Paul Trujillo",
+        "group": "locationWarning"
+      },
+      {
+        "id": "William Thomason",
+        "group": "locationWarning"
+      }
+    ],
+    "edges": [
+      {
+        "from": "Mary Morales",
+        "to": "Diana James"
+      },
+      {
+        "from": "Mary Morales",
+        "to": "Diana James"
+      },
+      {
+        "from": "Sharron Root",
+        "to": "Tamara Bright"
+      },
+      {
+        "from": "Sharron Root",
+        "to": "George Nelson"
+      },
+      {
+        "from": "Sharron Root",
+        "to": "Dennis Baker"
+      },
+      {
+        "from": "Sharron Root",
+        "to": "William Thomason"
+      },
+      {
+        "from": "Clifford Camp",
+        "to": "Ann Mathis"
+      },
+      {
+        "from": "Clifford Camp",
+        "to": "Thomas Copley"
+      },
+      {
+        "from": "Clifford Camp",
+        "to": "Paul Trujillo"
+      },
+      {
+        "from": "Clifford Camp",
+        "to": "Sharron Root"
+      },
+      {
+        "from": "Clifford Camp",
+        "to": "Richard Valente"
+      },
+      {
+        "from": "Clifford Camp",
+        "to": "Ann Mathis"
+      },
+      {
+        "from": "Clifford Camp",
+        "to": "Thomas Copley"
+      },
+      {
+        "from": "Clifford Camp",
+        "to": "Paul Trujillo"
+      },
+      {
+        "from": "Sharron Root",
+        "to": "Clifford Camp"
+      }
+    ]
+  }
