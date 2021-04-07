@@ -58,26 +58,23 @@ class person:
         return self.location #return all the locations 
 
 def generateLocCheckIn(locData): #function to initiliaze variables for location data
-    locIdx = list(locData.keys()) 
-    for x in locData.keys():
+    for x in locData:
         listOfPplPerLoc[x] = set()
         covidLoc[x] = 0
-    #print(locIdx)
-    return locIdx
         
 def generatePeople(x): #function to generate people data
     for id in range(x):
-      listOfPpl.append(person(id, randomFn.randName(),randomFn.randInt(80000000,99999998))) #appending all the generated data into a list
+      listOfPpl.append(person(id, randomFn.randName(),randomFn.randInt(80000000,99999998)))
 
-def generateLoctime(locData): #function to generate check in time
-    locIdx = generateLocCheckIn(locData) 
-    for person in listOfPpl: #iterate through every person in the list
-        totalLoc = randomFn.randInt(1,14) #function to generate a certain amount of check ins, 
-        time = randomFn.random_timestamp(totalLoc, 1) # for each check in, a random time check in will be given, the value 1 is for today
-        for x in range(totalLoc):  #generate a time for every location 
+def generateLoctime(locIdx): #function to generate check in time
+    generateLocCheckIn(locIdx)
+    for person in listOfPpl: 
+        totalLoc = randomFn.randInt(1,14) 
+        time = randomFn.random_timestamp(totalLoc, 1)
+        for x in range(totalLoc):
             place = randomFn.randInt(0, len(locIdx)-1) #for each location
-            person.location.add(locIdx[place], time[x]) # for each location person has visited, add a time person visited to it
-            listOfPplPerLoc[locIdx[place]].add(person.token)# add all the locations person has visited into a list based on different locations
+            person.location.add(locIdx[place], time[x]) #add a time
+            listOfPplPerLoc[locIdx[place]].add(person.token)
         
 def printLocSet():
     for x in listOfPplPerLoc.values():

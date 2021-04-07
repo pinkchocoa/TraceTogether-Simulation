@@ -17,9 +17,9 @@ import multidict
 
 
 chanceToCatchCovid = 3  #percentage chance of catching covid(3% chance)
-locDict = locData.getLocFromFile() #retrieve location data by calling function getLocFromFile() 
+locList = locData.getLocFromFile() #retrieve location data by calling function getLocFromFile() 
 peopleData.generatePeople(100) #generate the amount of person data needed  
-peopleData.generateLoctime(locDict) #generate timestamp for each person generated
+peopleData.generateLoctime(locList) #generate timestamp for each person generated
 
 def setLocWarning(person):
     """! This method set a location warning for a person
