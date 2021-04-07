@@ -1,5 +1,4 @@
 #i stole this from the internet 
-import locData
 
 class Node():
     """A node class for A* Pathfinding"""
