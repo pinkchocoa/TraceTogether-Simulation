@@ -23,68 +23,57 @@ peopleData.generateLoctime(locDict) #generate timestamp for each person generate
 
 def setLocWarning(person):
     """! This method set a location warning for a person
-       brief: if a person has a location warning, a number "3" will be tag to them
     """
     person.setTag(peopleData.personTag.locationWarning)  
 
 def setCloseWarning(person): 
     """! This method set a close contact warning for a person
-       brief: if a person has a close contact warning, a number "2" will be tag to them
     """
     person.setTag(peopleData.personTag.closeWarning) 
 
 def setSpread(person): #function to set covid spread rate
     #real life use case, u ask them to go swab
     #therefore there actually isnt that much recursion
-    """! This method set covid spread rate 
+    """! 
     """
     if randomFn.randChance(chanceToCatchCovid): 
         hasCovid(person.token)
 
-def hasCovid(token): #function to check if the person has covid
-    """! This method set a location warning for a person
-       brief: if a person has covid, a number "1" will be tag to them
+def hasCovid(token):
+    """!
     """
-    person = peopleData.listOfPpl[token] #establishing person as an object to be easily reference
-    person.setTag(peopleData.personTag.covid) #if a person has a location warning, a number "1" will be tag to them
-    #run through all locations that person has been
-    loc = person.getLoc() #retriving all location that person has been too
+    personWCovid = peopleData.listOfPpl[token]
+    personWCovid.setTag(peopleData.personTag.covid) #set person to covid
+    loc = personWCovid.getLoc() #location data
     prev = None #to check for location duplicates for count
                 #since people can go to the same location many times
-    for location, value in loc.items(): #look through all the locations
-        if prev != location:  #check if the mall a covid infected person has been to is not on the list
-            peopleData.covidLoc[location] += 1  #add the location into the list
-        if len(peopleData.listOfPplPerLoc[location]) <= 1: #check the amount of people in the covid infected location
-            continue
+    for location, value in loc.items():
+        if prev != location:  #person already added to count for that location
+            peopleData.covidLoc[location] += 1  #otherwise add
+        if len(peopleData.listOfPplPerLoc[location]) <= 1: #only 1 unique person that has been to the location
+            continue #we dont need to check
         else:
-            #more than one person has been to location
             #check everyone that has been to location
-            for tokenX in peopleData.listOfPplPerLoc[location]: #check the token for each person in th covid infected location
-                personX = peopleData.listOfPpl[tokenX] #establishing personX as an object for easy reference
-                #for each person
-                locX = personX.getLoc() #retrieving all the location that personX has been too
-                #check timeframe
-                #this may change bc need to check with covid visit window
-
+            for tokenX in peopleData.listOfPplPerLoc[location]: #get each unique person that has been to said location
+                closePerson = peopleData.listOfPpl[tokenX]
+                cpLocData = closePerson.getLoc() #grab the location data for closePerson
                 #need to loop through duplicate keys/values, for the same location as it is a multdict
-                xLocKeyList = locX.getall(location)
-                for x in xLocKeyList:
-                    if comparison.checkTimeStamp(locX[location], value): #checking the time personX check in to all the locations he visited
-                        print("coincide!") #if their timing meets, print out conincide
-                        print(token, "and", personX.token, "were at", location)
-                        setCloseWarning(personX) #set a close contact warning on personX
-                        setSpread(personX) 
-                        print("end")
-                        #add edge
-                        UIdata.addPeopleConnectJson({"from": person.name, "to": personX.name})
-                    else:
-                        if personX.persontags == peopleData.personTag.nothing.value: #check if the person has a nothing value
+                locationCheckIns = cpLocData.getall(location) #grab a list of timestamp for the same location
+                for checkIn in locationCheckIns:
+                    if comparison.checkTimeStamp(checkIn, value):
+                        print(token, "and", closePerson.token, "were at", location)
+                        setCloseWarning(closePerson) #set a close contact warning on closePerson
+                        setSpread(closePerson) #chance of spreading the virus
+                        #add edge for network graph/connection display
+                        UIdata.addPeopleConnectJson({"from": personWCovid.name, "to": closePerson.name})
+                    else: #they have both been to the same place but not at the same time
+                        if closePerson.persontags == peopleData.personTag.nothing.value:
                             print("same location!") 
-                            setLocWarning(personX)  #set a location warning on personX
+                            setLocWarning(closePerson)  #set a location warning on closePerson
         prev = location
 
 
-#setting how many people to have covid 
+#setting people to have covid 
 #randomly setting 2 people catch the virus
 hasCovid(4) 
 hasCovid(6) 
