@@ -29,23 +29,28 @@ def createPeopleJson():
     mid = -250
     for x in peopleData.listOfPpl:
         temp[peopleData.personTag(x.persontags).name]+=1
-        peopleDetails["details"].append({
-            "id": x.name,
-            "group": peopleData.personTag(x.persontags).name,
-            "location": list(x.location.keys())
-        })
         if x.persontags == peopleData.personTag.nothing.value:
             continue
         if x.persontags == peopleData.personTag.covid.value:
             xCoord = mid # -250, 250
             yCoord = randomFn.randInt(-150,150)
             mid+=90
+            peopleDetails["details"].append({
+            "id": x.name,
+            "group": peopleData.personTag(x.persontags).name,
+            "location": list(x.location.keys())
+            })
         elif x.persontags == peopleData.personTag.locationWarning.value:
             xCoord = randomFn.randInt(-750,-350)
             yCoord = randomFn.randInt(-350,350)
         else: #closeWarning
             xCoord = randomFn.randInt(350,750)
             yCoord = randomFn.randInt(-350,350)
+            peopleDetails["details"].append({
+            "id": x.name,
+            "group": peopleData.personTag(x.persontags).name,
+            "location": list(x.location.keys())
+            })
 
         peopleJson["nodes"].append({
             "id": x.name,
