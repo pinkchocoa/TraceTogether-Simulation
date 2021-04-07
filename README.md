@@ -3,9 +3,13 @@
  external libraries used:
 
 > $ pip install multidict
+> 
 > $ pip install pygame
+> 
 > $ pip install datetime
+> 
 > $ pip install names
+> 
 > $ pip install numpy
 
 
