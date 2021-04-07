@@ -1,7 +1,7 @@
 from fileio import file_to_dict
 import numpy
 
-locDataFile = 'malls.txt'
+locDataFile = 'data/malls.txt'
 sgMinLng = 631 #lng 103.631
 sgMaxLng = 999
 lngRange = sgMaxLng - sgMinLng
@@ -10,6 +10,7 @@ sgMinLat = 238 #lat 1.238
 sgMaxLat = 466
 latRange = sgMaxLat - sgMinLat
 
+#not in used
 def createMaze():
     #gotta convert coords to x,y that i can use for a maze
     return numpy.zeros((latRange, lngRange), dtype=int)
