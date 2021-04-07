@@ -84,9 +84,3 @@ def printLocSet():
         print("location", x)
         for i in x:
             print(i)
-
-# locDict = locData.getLocFromFile()
-# generatePeople(5)
-# generateLoctime(locDict)
-# for x in listOfPpl:
-#     x.print()
