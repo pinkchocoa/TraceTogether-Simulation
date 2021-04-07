@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script language="JavaScript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="css/aboutUs.css">
 </head>
 
@@ -8,19 +11,80 @@
     <div class="container">
         <div class="header">
             <h1>About Us</h1>
-            <h3>Talking About Our Tracetogether Project</h3>
-            <h4>Tagging</h4>
-        </div>
+            <a href="main.html">Main</a>
+            <h3>Tracetogether Project</h3>
+            <h4>
+                Covid-19, its a highly contagious virus causes global pandamic. <br>The gif image shown shows how quickly a 
+                spread can<br> happen without lockdown.
+            </h4>
+            <img src="pics/covidSpread.gif" class="gifimage">
+        <div>
+
         <div class="content-box">
+
             <div class="talk-chart">
+                <h3>Data Charts Page</h3>
+                <a href="chart.html">Charts</a>
                 <h4>
-                    The chart page for graphs, charts and tables.
+                    The doughnut chart is to show amount of each tags. The bar chart is to<br> show the overview  of which 
+                    mall had covid cluster. The table list is to<br> identify which malls  had the most covid cluster or crowd cluster to avoid.
                 </h4>
             </div>
-            <div class="talk-clusterMap"></div>
-            <div class="talk-networkGraph"></div>
-            <div class="talk-particulars"></div>
+
+            <div class="talk-clusterMap">
+                <h3>Cluster Map Page</h3>
+                <a href="clusterMap.html">Cluster Map</a>
+                <h4>
+                    This map is to show an overview of Singapore to see the covid clusters <br> and trace the infected person travelled destinations.
+                </h4>
+            </div>
+
+            <div class="talk-networkGraph">
+                <h3>Network Graph Page</h3>
+                <a href="networkGraph.html">Network Graph</a>
+                <h4>
+                    This network graph is to map out all the people there is an edge. <br>Red represents the person is 
+                    infected, orange represents close <br>contact and yellow represents the person who is  at the same <br>location as the 
+                    infected person.
+                </h4>
+            </div>
+
+            <div class="talk-particulars">
+                <h3>Particulars Page</h3>
+                <a href="particulars.html">Particulars</a>
+                <h4>
+                    This page list out the details of all the people we generated. <br> It is meant for contacting the individuals.
+                </h4>
+            </div>
+
         </div>
     </div>
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        var url = "json/infectedStatic.json";
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var data = JSON.parse(this.responseText);
+                //console.log(data);
+
+                for (var i in data.nodes){
+                var row = `<tr>
+                    <td>${data.nodes[i].from}</td>
+                    <td>${data.nodes[i].to}</td>`
+                    var table = $('#table-body')
+                    table.append(row)
+                }
+                $(document).ready(function () {
+                    $('#our-table').DataTable({
+                    "scrollY": 200,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    });
+            }
+        }
+    </script>
+
 </body>
 </html>

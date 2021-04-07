@@ -17,7 +17,7 @@ body
     min-height: 100vh;
     background: #f2f3f7;
 }
-h1 
+h1
 {
     font-weight: bold;
     font-size: 45px;
@@ -25,9 +25,15 @@ h1
     margin: 2px;
     text-align: center;
 }
-h3 
+h2
 {
     font-weight: bold;
+    padding: 2px;
+    margin: 2px;
+    text-align: center;
+}
+h3 
+{
     font-size: 20px;
     padding: 2px;
     margin: 2px;
@@ -36,13 +42,66 @@ h3
 }
 h4 
 {
-    font-weight: bold;
     font-size: 16px;
     padding: 2px;
     margin: 2px;
     text-align: center;
     letter-spacing: 1px;
 }
+.gifimage
+{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    
+}
+.header
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    margin: 2px;
+}
+.talk-chart
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    margin: 2px;
+}
+.talk-clusterMap
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    margin: 2px;
+}
+.talk-networkGraph
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    margin: 2px;
+}
+.talk-particulars
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    margin: 2px;
+}
+
 a
 {
     position: relative;
