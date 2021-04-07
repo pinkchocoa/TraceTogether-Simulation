@@ -6,6 +6,7 @@ function initMap(){
       mapTypeControl: false,
       fullScreenControl: false,
       streetViewControl: false
+
     });
 
   const image_url = "https://freesvg.org/img/location_icon.png";
@@ -42,7 +43,7 @@ function initMap(){
          }
          for (let i=0; i<data.locationData.length; i++){
              allPopulation[i]=data.locationData[i].population;
-         }
+      }
          //console.log(allPopulation);
          //console.log(allLng);
 
@@ -69,60 +70,6 @@ function initMap(){
               infowindow.close(map, marker);
             });
          }
-          locationPath.setMap(map);
-        } 
-     })
-
-  for (let i=0; i<locationmarkers.length; i++){
-    const currentMarker=locationmarkers[i];
-
-    const marker = new google.maps.Marker({
-      position: {lat:currentMarker[1], lng: currentMarker[2]},
-      map,
-      icon: {
-          url: image_url,
-          scaledSize: new google.maps.Size(size1,size2)
-      },
-      animation: google.maps.Animation.DROP
-    });
-
-    const infowindow = new google.maps.InfoWindow({
-      content: currentMarker[0],
-    });
-
-    marker.addListener("click", () => {
-        infowindow.open(map, marker);
-      });
-}
-
-//   for (const location in locationmap) {
-//   // Add the circle for this city to the map.
-//     const cityCircle = new google.maps.Circle({
-//       strokeColor: "#FF0000",
-//       strokeOpacity: 0.8,
-//       strokeWeight: 2,
-//       fillColor: "#FF0000",
-//       fillOpacity: 0.35,
-//       map,
-//       center: locationmap[location].center,
-//       radius: locationmap[location].population * 1000,
-//   });
-// }
-
-  // var locationCoordinates = [
-  //   { lat: locationmarkers[6][1], lng: locationmarkers[6][2] },
-  //   { lat: locationmarkers[100][1], lng: locationmarkers[100][2] },
-  // ];
-  // const locationPath = new google.maps.Polyline({
-  //   path: locationCoordinates,
-  //   geodesic: true,
-  //   strokeColor: "#FF0000",
-  //   strokeOpacity: 3.0,
-  //   strokeWeight: 2,
-  // });
-  // locationPath.setMap(map);
-}
-
 
          fetch("json/personDetails.json")
             .then(function(resp){
@@ -205,10 +152,5 @@ function initMap(){
                 } 
           //console.log(allLng);
       })
-
     })
   }
-
-
-  
-
