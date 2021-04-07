@@ -23,7 +23,7 @@ clock = pygame.time.Clock()
 pygame.init()
 backdropbox = world.get_rect()
 main = True
-totalPlayers = 20
+totalPlayers = 50
 playerList, playerGroup = createPlayers(totalPlayers)
 covidSet = set()
 covidSet.add(0)
