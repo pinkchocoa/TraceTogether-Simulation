@@ -879,7 +879,7 @@ function initMap(){
          }
 
          for (let i=0; i<allGroup.length; i++){
-          if (allGroup[i] == "covid" || allGroup[i] == "locationWarning" || allGroup[i] == "closeWarning"){
+          if (allGroup[i] == "covid" || allGroup[i] == "closeWarning"){
             covidIndex.push(i);
           }
         }
@@ -912,7 +912,7 @@ function initMap(){
               fillOpacity: 0.35,
               map,
               center: {lat: locationmarkers[i][1], lng: locationmarkers[i][2]},
-              radius: locationmarkers[i][3] * 100,
+              radius: locationmarkers[i][3] * 400,
           });
           }
         }
