@@ -18,6 +18,7 @@ peopleDetails["details"]=[]
 
 tableJson = {}
 tableJson["rank"] = []
+tableJson["chart"] = []
 
 def createPeopleJson():
     temp={}
@@ -78,6 +79,11 @@ def createTableJson():
             "covidCount": v,
             "crowdCount": len(peopleData.listOfPplPerLoc[k]) #numbner of unique check in over 7 days
         })
+        if v != 0:
+            tableJson["chart"].append({
+                "mall": k,
+                "covidCount": v
+            })
     with open('website/json/table.json', 'w') as outfile:
         json.dump(tableJson, outfile)
 

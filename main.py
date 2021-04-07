@@ -9,7 +9,7 @@ import UIdata
 chanceToCatchCovid = 3  #percentage chance of catching covid(3% chance)
 
 locDict = locData.getLocFromFile() #retrieve location data by calling function getLocFromFile() 
-peopleData.generatePeople(500) #generate the amount of person data needed  
+peopleData.generatePeople(100) #generate the amount of person data needed  
 peopleData.generateLoctime(locDict) #generate timestamp for each person generated
 
 def setLocWarning(person):   #function to set location warning for a person
