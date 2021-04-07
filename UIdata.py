@@ -25,6 +25,7 @@ def createPeopleJson():
     temp[peopleData.personTag(1).name]=0
     temp[peopleData.personTag(2).name]=0
     temp[peopleData.personTag(3).name]=0
+    mid = 150
     for x in peopleData.listOfPpl:
         temp[peopleData.personTag(x.persontags).name]+=1
         peopleDetails["details"].append({
@@ -34,13 +35,25 @@ def createPeopleJson():
         })
         if x.persontags == peopleData.personTag.nothing.value:
             continue
+        if x.persontags == peopleData.personTag.covid.value:
+            xCoord = mid
+            yCoord = mid
+            mid+=50
+        elif x.persontags == peopleData.personTag.locationWarning.value:
+            xCoord = randomFn.randInt(-400,0)
+            yCoord = randomFn.randInt(-400,0)
+        else:
+            xCoord = randomFn.randInt(0,400)
+            yCoord = randomFn.randInt(0,400)
+
         peopleJson["nodes"].append({
             "id": x.name,
             #"token": x.token,
             "group": peopleData.personTag(x.persontags).name,
-            #"x": randomFn.randInt(1,300),
-            #"y": randomFn.randInt(1,300)
+            "x": xCoord,
+            "y": yCoord
         })
+        
     tagJson["overall"].append({
         peopleData.personTag(0).name: temp[peopleData.personTag(0).name],
         peopleData.personTag(1).name: temp[peopleData.personTag(1).name],

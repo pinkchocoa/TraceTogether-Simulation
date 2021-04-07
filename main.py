@@ -6,7 +6,7 @@ import comparison
 import randomFn
 import UIdata
 
-chanceToCatchCovid = 20
+chanceToCatchCovid = 3
 
 locDict = locData.getLocFromFile()
 peopleData.generatePeople(500)
@@ -19,6 +19,8 @@ def setCloseWarning(person):
     person.setTag(peopleData.personTag.closeWarning)
 
 def setSpread(person):
+    #real life use case, u ask them to go swab
+    #therefore there actually isnt that much recursion
     if randomFn.randChance(chanceToCatchCovid): 
         hasCovid(person.token)
 
@@ -27,33 +29,36 @@ def hasCovid(token):
     person.setTag(peopleData.personTag.covid)
     #run through all locations that person has been
     loc = person.getLoc()
-    prev = None
-    for x in loc.keys():
-        if prev != x:
-            peopleData.covidLoc[x] += 1 #remember to remove duplicates
-        if len(peopleData.listOfPplPerLoc[x]) == 1:
+    prev = None #to check for location duplicates for count
+    #since people can go to the same location many times
+    for location in loc.keys():
+        if prev != location:
+            peopleData.covidLoc[location] += 1 
+        if len(peopleData.listOfPplPerLoc[location]) <= 1:
             continue
         else: #more than one person has been to location
             #check everyone that has been to location
-            for personX in peopleData.listOfPpl:
+            for tokenX in peopleData.listOfPplPerLoc[location]:
+                personX = peopleData.listOfPpl[tokenX]
                 #for each person
                 locX = personX.getLoc()
-                if x in locX: #person as been to said location too
-                    #check timeframe
-                    #this may change bc need to check with covid visit window
-                    if comparison.checkTimeStamp(locX[x], loc[x]):
-                        print("coincide!")
-                        print(token, "and", personX.token, "were at", x)
-                        setCloseWarning(personX)
-                        setSpread(personX)
-                        print("end")
-                        #add edge
-                        UIdata.addPeopleConnectJson({"from": person.name, "to": personX.name})
-                    else:
-                        if personX.persontags == peopleData.personTag.nothing.value:
-                            print("same location!")
-                            setLocWarning(personX)
-        prevLoc = x
+                #check timeframe
+                #this may change bc need to check with covid visit window
+
+                #need to loop through duplicate keys, not done yet
+                if comparison.checkTimeStamp(locX[location], loc[location]):
+                    print("coincide!")
+                    print(token, "and", personX.token, "were at", location)
+                    setCloseWarning(personX)
+                    setSpread(personX)
+                    print("end")
+                    #add edge
+                    UIdata.addPeopleConnectJson({"from": person.name, "to": personX.name})
+                else:
+                    if personX.persontags == peopleData.personTag.nothing.value:
+                        print("same location!")
+                        setLocWarning(personX)
+        prev = location
 
 hasCovid(4)
 hasCovid(6)

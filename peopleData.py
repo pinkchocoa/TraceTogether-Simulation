@@ -61,7 +61,7 @@ def generatePeople(x):
 def generateLoctime(locData):
     locIdx = generateLocCheckIn(locData)
     for person in listOfPpl:
-        totalLoc = randomFn.randInt(1,5)
+        totalLoc = randomFn.randInt(1,14)
         time = randomFn.random_timestamp(totalLoc, 1)
         for x in range(totalLoc):
             place = randomFn.randInt(0, len(locIdx)-1)
