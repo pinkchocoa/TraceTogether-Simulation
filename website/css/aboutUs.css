@@ -5,6 +5,10 @@
     padding: 0 px;
     font-family: "Poppins",sans-serif;
 }
+header
+{
+    width:300px;
+}
 body
 {
     display: flex;
@@ -13,24 +17,31 @@ body
     min-height: 100vh;
     background: #f2f3f7;
 }
-h1 {
+h1 
+{
     font-weight: bold;
     font-size: 45px;
     padding: 2px;
     margin: 2px;
     text-align: center;
 }
-.gifimage
+h3 
 {
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-p
-{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 2px;
+    margin: 2px;
     text-align: center;
-    justify-content: center;
+    letter-spacing: 1px;
+}
+h4 
+{
+    font-weight: bold;
+    font-size: 16px;
+    padding: 2px;
+    margin: 2px;
+    text-align: center;
+    letter-spacing: 1px;
 }
 a
 {
