@@ -14,6 +14,12 @@ html, body, #container
     padding: 0;
     
 }
+.navtab
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .h1
 {
   display: flex;
