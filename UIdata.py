@@ -20,6 +20,9 @@ tableJson = {}
 tableJson["rank"] = []
 tableJson["chart"] = []
 
+traceInfo = {}
+traceInfo["info"] = []
+
 def createPeopleJson():
     temp={}
     temp[peopleData.personTag(0).name]=0
@@ -29,6 +32,13 @@ def createPeopleJson():
     mid = -250
     for x in peopleData.listOfPpl:
         temp[peopleData.personTag(x.persontags).name]+=1
+        traceInfo["info"].append({
+            "id": x.name,
+            "phoneNum": x.phoneNumber,
+            "group": peopleData.personTag(x.persontags).name,
+            "location": list(x.location.keys())
+            })
+
         if x.persontags == peopleData.personTag.nothing.value:
             continue
         if x.persontags == peopleData.personTag.covid.value:
@@ -67,6 +77,8 @@ def createPeopleJson():
         json.dump(tagJson, outfile)
     with open('website/json/peopleDetails.json', 'w') as outfile:
         json.dump(peopleDetails, outfile)
+    with open('website/json/traceInfo.json', 'w') as outfile:
+        json.dump(traceInfo, outfile)
 
 def addPeopleConnectJson(x):
     peopleJson["edges"].append(x)
