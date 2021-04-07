@@ -81,7 +81,6 @@ def addPeopleConnectJson(x):
     peopleJson["edges"].append(x)
 
 def createTableJson():
-
     for k,v in peopleData.covidLoc.items():
         tableJson["rank"].append({
             "mall": k,
