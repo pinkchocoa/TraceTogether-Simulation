@@ -1,5 +1,5 @@
 #i stole this from the internet 
-
+from fileio import file_to_2dlist
 class Node():
     """A node class for A* Pathfinding"""
 
@@ -12,7 +12,7 @@ class Node():
         self.f = 0
 
     def __eq__(self, other):
-        return self.position == other.position
+        return self.position == other.positions
 
 
 def astar(maze, start, end):
@@ -96,17 +96,9 @@ def astar(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
-
-# setGraph()
-# print(edgeList)\
-
-# ANOTHER IDEA
-# TO SET LOCATION WEIGHT FOR COVID PEOPLE VISIT PLACES TO HAVE INCREASED WEIGHT
-# ^ BUT THIS WILL NEED THE EDGES TO EXIST IN THE FIRST PLACE RIGHT
-# ACTUALLY NO BC THNE ONLY NEED TO ASTAR WHEN SOMEONE INPUTS LOCATION????
-# ACTUALLY THAT MEANS THAT THERE IS NO WEIGHT INVOLVE THO??
-
-# WHAT ABOUT WE HAVE KRUSKAL SEPARATE TO SHOW COVID SPREAD/PEOPLE MOVING AROUND LIKE THOSE INFOGRAPHIC
-
-# THEN IF SMEONE IS AT SOMEHWRE (INPUT LOCATION)
-# GIVE A LIST OF MALLS THE PERSON CAN GO (NEAREST MALL TO THE PERSON)
+            
+maze = file_to_2dlist('data/mazeWalls.txt')
+print(maze[30][26], maze[27][23])
+for x in range(1):
+    path = astar(maze, (30, 26), (27, 23))
+    print(path)
