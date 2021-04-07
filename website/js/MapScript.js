@@ -958,7 +958,7 @@ function initMap(){
       content: currentMarker[0],
     });
 
-    marker.addListener("mouseover", () => {
+    marker.addListener("click", () => {
         infowindow.open(map, marker);
       });
 }

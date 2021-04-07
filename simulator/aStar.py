@@ -12,7 +12,10 @@ class Node():
         self.f = 0
 
     def __eq__(self, other):
-        return self.position == other.positions
+        return self.position == other.position
+
+    def __hash__(self):               #<-- added a hash method
+        return hash(self.position)
 
 
 def astar(maze, start, end):
@@ -26,7 +29,7 @@ def astar(maze, start, end):
 
     # Initialize both open and closed list
     open_list = []
-    closed_list = []
+    closed_list = set()                # <-- closed_list must be a set
 
     # Add the start node
     open_list.append(start_node)
@@ -44,7 +47,7 @@ def astar(maze, start, end):
 
         # Pop current off open list, add to closed list
         open_list.pop(current_index)
-        closed_list.append(current_node)
+        closed_list.add(current_node)     # <-- change append to add
 
         # Found the goal
         if current_node == end_node:
@@ -80,9 +83,8 @@ def astar(maze, start, end):
         for child in children:
 
             # Child is on the closed list
-            for closed_child in closed_list:
-                if child == closed_child:
-                    continue
+            if child in closed_list:              # <-- remove inner loop so continue takes you to the end of the outer loop
+                continue
 
             # Create the f, g, and h values
             child.g = current_node.g + 1
@@ -96,9 +98,29 @@ def astar(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
-            
-maze = file_to_2dlist('data/mazeWalls.txt')
-print(maze[30][26], maze[27][23])
-for x in range(1):
+
+def test1():
+    maze = file_to_2dlist('data/mazeWalls.txt')
+    #print(maze[30][26], maze[27][23])
     path = astar(maze, (30, 26), (27, 23))
     print(path)
+
+def test2():
+    maze = [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0]]
+
+    start = (0, 0)
+    end = (7, 6)
+
+    path = astar(maze, start, end)
+    print (path)
+
+test1()
