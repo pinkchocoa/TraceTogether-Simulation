@@ -68,7 +68,7 @@ def createPeopleJson():
         peopleData.personTag(2).name: temp[peopleData.personTag(2).name],
         peopleData.personTag(3).name: temp[peopleData.personTag(3).name]
     })
-    with open('website/json/people.json', 'w') as outfile:
+    with open('website/json/network.json', 'w') as outfile:
         json.dump(peopleJson, outfile)
     with open('website/json/tag.json', 'w') as outfile:
         json.dump(tagJson, outfile)

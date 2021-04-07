@@ -24,7 +24,7 @@ covidRange = 50
 mazeRange = 3
 covidChance = 3
 edges = {}
-edges["nodes"] = []
+edges["edges"] = []
 
 def covid(covidSet):
     newcovidSet = set()
@@ -48,7 +48,7 @@ def covid(covidSet):
                     if randChance(covidChance):
                         newcovidSet.add(idx)
                         print("Person", x, "infected", "Person", idx)
-                        edges["nodes"].append({"from": x, "to": idx})
+                        edges["edges"].append({"from": x, "to": idx})
                     else:
                         y.changeImage(2)
                 # uncomment to see astar algo (that was too far apart)
