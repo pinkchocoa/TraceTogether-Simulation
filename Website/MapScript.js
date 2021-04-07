@@ -865,7 +865,7 @@ function initMap(){
   let covidLocation = [];
   
   //Fetch data from JSON file
-  fetch("/Website/json/peopleDetails.json")
+  fetch("json/peopleDetails.json")
      .then(function(resp){
          return resp.json();
      })
@@ -912,7 +912,7 @@ function initMap(){
               fillOpacity: 0.35,
               map,
               center: {lat: locationmarkers[i][1], lng: locationmarkers[i][2]},
-              radius: locationmarkers[i][3] * 1000,
+              radius: locationmarkers[i][3] * 100,
           });
           }
         }
