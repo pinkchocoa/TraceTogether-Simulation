@@ -3,26 +3,55 @@
     <head>
         <title>Data Charts</title>
         <meta charset="UTF-8">
-
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
-        <link rel="stylesheet" type="text/css" href="stylecharts.css">
+        <script language="JavaScript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script language="JavaScript" type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        
+        
+        <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="css/stylecharts.css">
     
     </head>
 
     <body>
         <div class="container">
                     <div class="header">
-                        <h1>Data Charts</h1>
+                        <h1>Data Charts</h1>    
+                        <div class="card-header">
+                            <a href="networkGraph.html">Network Graph</a>
+                        </div>  
                     </div>
-                    <div class="card-header">
-                        <a href="">Network Graph</a>
+
                     </div>
-                    <div class="canvas-card">
-                        <canvas id="overAllChart"></canvas>
-                        <canvas id="genderChart"></canvas>
+                   
+
+                    <div class = "content-container">
+
+                        <div class="canvas-card1" style="position:relative; width:850px; height:500px;">
+                            <canvas id="overAllChart" ></canvas>
+                        </div>
+
+                        <div class="canvas-card2" style="position:relative; width:1500px; height:800px;">   
+                            <canvas id="clusterRanks"></canvas>
+                        </div>
+
+                        
+                        <div class="containerList">
+                            <h1 id="title">Covid Cluster for Malls</h1>
+                            <table id="our-table">
+                                <thead>
+                                    <tr>
+                                        <th class="th-sm" >Malls</th>
+                                        <th class="th-sm">Covid Cluster</th>
+                                        <th class="th-sm">Crowd Cluster</th>
+                                    </tr>
+                                </thead>
+                                    <tbody id="table-body"></tbody>
+                            </table>
                     </div>
-        </div>
+        </div>               
+                    
 
         <script>
         Chart.defaults.global.plugins.datalabels.display = true;
@@ -127,36 +156,50 @@
             }
         }
 
+        var xmlhttp = new XMLHttpRequest();
+        var url = "table.json";
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var data = JSON.parse(this.responseText);
+                //console.log(data);
 
+                var mallname = data.rank.map(function(elem){
+                    return elem.mall;
+                });
+                var covidcount = data.rank.map(function(elem){
+                    return elem.covidCount;
+                });
+                var crowdcount = data.rank.map(function(elem){
+                    return elem.crowdcount;
+                });        
 
             /*
                 This is the chart that displays the Gender Chart: 
                 STARTS HERE
-            
-            var ctx = document.getElementById('genderChart').getContext('2d');
-            var genderchart = new Chart(ctx, {
+            */
+            var ctx = document.getElementById('clusterRanks').getContext('2d');
+            var clusterRankChart = new Chart(ctx, {
                 // The type of chart we want to create
                 type: 'bar',
                 // The data for our dataset
                 data: {
-                    labels: labels,
+                    labels: mallname,
                     datasets: [{
-                        label: "Female",
-                        data: 
+                        label: "Clusters",
+                        borderWidth: 0.75,
+                        borderColor: "red",
+                        backgroundColor: "transparent",
+                        data: covidcount
                     }]
                 },
                 // Configuration options go here
                 options: {
-                    indexAxis: "y",
-                    elements:{
-                        bar:{
-                            borderWidth: 2,
-                        }
-                    },
                     responsive: true,
                     title:{
                         display:true,
-                        text:"Overall chart",
+                        text:"Covid Cluster From Singapore Malls ",
                         fontSize:25,
                         padding: 10,
                         margin: 10,
@@ -170,15 +213,62 @@
                         labels:{
                             fontColor:'rgba(0,0,0)'
                         }
+                    },
+                    plugins:{
+                        datalabels:{
+                            color: "#1B1717",
+                            anchor: "end",
+                            align: "start",
+                            offset: -20,
+                            font:{
+                                weight: "bold",
+                                size:"8",
+                            },
+                            formatter: (value) => {
+                                return value;
+                            }
+                        }
                     }
                 }
             });
-            
+            /*
                 This is the chart that displays the Gender Chart: 
                 Ends HERE
             */
-            
+            }
+        }
 
+        /*
+            Ranking for covid cluster
+        */
+        window.mallArray = [];
+        window.covidCountArray = [];
+        var xmlhttp = new XMLHttpRequest();
+        var url = "table.json";
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var data = JSON.parse(this.responseText);
+                //console.log(data);
+
+                for (var i in data.rank){
+                var row = `<tr>
+                    <td>${data.rank[i].mall}</td>
+                    <td>${data.rank[i].covidCount}</td>
+                    <td>${data.rank[i].crowdCount}</td>`
+                    var table = $('#table-body')
+                    table.append(row)
+                }
+                $(document).ready(function () {
+                    $('#our-table').DataTable({
+                    "scrollY": "50vh",
+                    "scrollY": 200,
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    });
+            }
+        }
         </script>
     </body>
 </html>

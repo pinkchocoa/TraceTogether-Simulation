@@ -7,11 +7,36 @@
 }
 body
 {
-    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background: #f2f3f7;
+}
+.card-header
+{
+    padding: 1px;
+    margin: 1px;
+}
+.header
+{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 10px;
+   margin: 10px;
+}
+.content-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px;
+    margin: 1px
+}
+.canvas-card
+{
+    height : 900px;
 }
 a
 {
@@ -48,25 +73,51 @@ a:hover span
 }
 h1
 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
   font-weight: bold;
   font-size: 45px;
-  padding: 2px;
+  padding: 1px;
   margin: 1px;
+  text-align: center;
     
 }
-.card-header
+
+#title
 {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    padding: 1px;
-    margin: 1px;
+  font-weight: bold;
+  font-size:28px;
+  padding:10px;
+  margin:5px;
+  
+}
+.containerList
+{
+    padding:5px;
+    margin:5px;
+    width:70%; 
+    margin-left:28%; 
+    margin-right:27%;
+    width: 800px;
+    height: 800px;
+}
+
+.our-table 
+{
+	max-width: 500px;
+	margin: 0 auto;
+	}
+	th, td {
+	white-space: nowrap;
+    text-align: left;
+	}
+	table.dataTable thead .sorting:after,
+	table.dataTable thead .sorting:before,
+	table.dataTable thead .sorting_asc:after,
+	table.dataTable thead .sorting_asc:before,
+	table.dataTable thead .sorting_asc_disabled:after,
+	table.dataTable thead .sorting_asc_disabled:before,
+	table.dataTable thead .sorting_desc:after,
+	table.dataTable thead .sorting_desc:before,
+	table.dataTable thead .sorting_desc_disabled:after,
+	table.dataTable thead .sorting_desc_disabled:before {
+	bottom: .5em;
 }

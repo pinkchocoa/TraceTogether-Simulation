@@ -1,30 +1,28 @@
 from typing import Tuple
 
+import aStar
 import pygame
 import sys
 import os
 import randomFn
+import numpy
 
 '''
 Variables
 '''
 
-worldx = 960
+worldx = 720
 worldy = 720
-fps = 40
-ani = 4
+fps = 12
 world = pygame.display.set_mode([worldx, worldy])
-
-BLUE = (25, 25, 200)
-BLACK = (23, 23, 23)
-WHITE = (254, 254, 254)
-ALPHA = (0, 255, 0)
-
+maze = numpy.zeros((int(worldx/20), int(worldy/20)), dtype=int)
+images = []
+images.append(pygame.image.load(os.path.join('images', 'green20.png')).convert_alpha())
+images.append(pygame.image.load(os.path.join('images', 'red20.png')).convert_alpha())
+images.append(pygame.image.load(os.path.join('images', 'yellow20.png')).convert_alpha())
 '''
 Objects
 '''
-
-
 class Player(pygame.sprite.Sprite):
     """
     Spawn a player
@@ -35,10 +33,7 @@ class Player(pygame.sprite.Sprite):
         self.movex = 0
         self.movey = 0
         self.frame = 0
-        self.images = []
-        img = pygame.image.load(os.path.join('images', 'hero1.png'))
-        self.images.append(img)
-        self.image = self.images[0]
+        self.image = images[0]
         self.rect = self.image.get_rect()
 
     def control(self, x, y):
@@ -46,51 +41,98 @@ class Player(pygame.sprite.Sprite):
         control player movement
         """
         #bounding box
-        self.movex += x
-        self.movey += y
+        self.movex = x
+        self.movey = y
 
     def update(self):
         """
         Update sprite position
         """
         if (self.rect.x + self.movex) < 0:
-            self.rect.x = 0
+            moveInDirection(randomFn.randInt(1,8))
             return
-        elif  (self.rect.x + self.movex) > worldx:
-            self.rect.x = worldx-20
+        elif  (self.rect.x + self.movex) > worldx-20:
+            moveInDirection(randomFn.randInt(1,8))
             return
-        if (self.rect.y + self.movey) < 0:
-            self.rect.y = 0
+        if (self.rect.y + self.movey) < 0  :
+            moveInDirection(randomFn.randInt(1,8))
             return
-        elif  (self.rect.y + self.movey) > worldy:
-            self.rect.y = worldy-20
+        elif  (self.rect.y + self.movey) > worldy-20:
+            moveInDirection(randomFn.randInt(1,8))
+            return
+        if (randomFn.randChance(5)):
+            moveInDirection(randomFn.randInt(1,8))
             return
         self.rect.x = self.rect.x + self.movex
         self.rect.y = self.rect.y + self.movey
 
-
 '''
 Setup
 '''
-
-backdrop = pygame.image.load(os.path.join('images', 'stage.png'))
+backdrop = pygame.image.load(os.path.join('images', 'stage.png')).convert_alpha()
 clock = pygame.time.Clock()
 pygame.init()
 backdropbox = world.get_rect()
 main = True
 
-player = Player()  # spawn player
-player.rect.x = 0  # go to x
-player.rect.y = 0  # go to y
-player_list = pygame.sprite.Group()
-player_list.add(player)
-steps = 1
+totalPlayers = 80
+playerList = []
+playerGroup = pygame.sprite.Group()
+
+def createPlayers():
+    player = Player()  # spawn player
+    player.rect.x = randomFn.randInt(0,worldx)  # go to x
+    player.rect.y = randomFn.randInt(0,worldy)  # go to y
+    player.movex, player.movey = direction[randomFn.randInt(1,8)]
+    playerGroup.add(player)
+    playerList.append(player)
+
+steps = 5
+covidSet = set()
+covidSet.add(5)
+covidRange = 70
+covidChance = 3
+
+direction={1:[steps,0], 2:[-steps,0], 3:[0,steps], 4:[0,-steps]
+    ,5:[steps,steps], 6:[-steps,steps], 7:[steps,-steps], 8:[-steps,-steps]}
+
+for x in range(totalPlayers):
+    createPlayers()
+
+def changeCoord(x):
+    if x != 0 :
+        return int(x/20)
+    return 0
+
+def covid(covidSet):
+    
+    newcovidSet = set()
+    for x in covidSet:
+        player = playerList[x]
+        player.image = images[1]
+
+        #gotta check if anyone is close to this guy
+        for idx, y in enumerate(playerList):
+            if idx == x or idx in covidSet or idx in newcovidSet:
+                continue
+            if abs(player.rect.x - y.rect.x) > covidRange or  abs(player.rect.y - y.rect.y) > covidRange:
+                continue
+            else:
+                xx = changeCoord(player.rect.x)
+                xy = changeCoord(player.rect.y)
+                yx = changeCoord(y.rect.x)
+                yy = changeCoord(y.rect.y)
+                path = aStar.astar(maze, (xx, xy), (yx, yy))
+                if path != None and len(path) <= int(covidRange/20) and randomFn.randChance(covidChance):
+                    newcovidSet.add(idx)
+                else:
+                    y.image = images[2]
+    return set.union(covidSet, newcovidSet)
+
 
 def moveInDirection(d):
-    direction={1:[steps,0], 2:[-steps,0], 3:[0,steps], 4:[0,-steps]}
     player.control(direction[d][0], direction[d][1])
-
-
+    
 '''
 Main Loop
 '''
@@ -102,14 +144,13 @@ while main:
                 sys.exit()
             finally:
                 main = False
-    prevx,prevy = player.rect.x, player.rect.y
-    while(prevx == player.rect.x and prevy == player.rect.y):
-        moveInDirection(randomFn.randInt(1,4))
+    for player in playerGroup:
         player.update()
 
+    covidSet = covid(covidSet)
 
     world.blit(backdrop, backdropbox)
     
-    player_list.draw(world)
+    playerGroup.draw(world)
     pygame.display.flip()
     clock.tick(fps)
