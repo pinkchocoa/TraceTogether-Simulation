@@ -865,7 +865,7 @@ function initMap(){
   let covidLocation = [];
   
   //Fetch data from JSON file
-  fetch("./peopleDetails.json")
+  fetch("/Website/json/peopleDetails.json")
      .then(function(resp){
          return resp.json();
      })
