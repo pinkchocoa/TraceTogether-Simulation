@@ -1,4 +1,4 @@
-from fileio import file_to_2dlist
+
 class node():
     """A node class for A* Pathfinding"""
 

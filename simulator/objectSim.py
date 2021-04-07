@@ -1,7 +1,6 @@
 #this file creates objects of the game
 import pygame
-import randomFn
-from fileio import file_to_2dlist
+from general import file_to_2dlist, randInt, randChance
 
 worldx = 720
 worldy = 720
@@ -50,11 +49,11 @@ class Player(pygame.sprite.Sprite):
         Update sprite position
         """
         def moveInDirection():
-            d = randomFn.randInt(1,8)
+            d = randInt(1,8)
             self.control(direction[d][0], direction[d][1])
             return True
 
-        if (randomFn.randChance(5)): #chance to change directions
+        if (randChance(5)): #chance to change directions
             moveInDirection()
             return
         
@@ -74,11 +73,11 @@ def createPlayers(totalPlayers):
     playerList = []
     for x in range(totalPlayers):
         player = Player()  # spawn player
-        player.rect.x = randomFn.randInt(0,worldx)  # go to x
-        player.rect.y = randomFn.randInt(0,worldy)  # go to y
+        player.rect.x = randInt(0,worldx)  # go to x
+        player.rect.y = randInt(0,worldy)  # go to y
         while maze[changeCoord(player.rect.y)][changeCoord(player.rect.x)] == 1:
-            player.rect.x = randomFn.randInt(0,worldx)  # go to x
-            player.rect.y = randomFn.randInt(0,worldy)  # go to y
+            player.rect.x = randInt(0,worldx)  # go to x
+            player.rect.y = randInt(0,worldy)  # go to y
         #player.movex, player.movey = direction[randomFn.randInt(1,8)]
         playerGroup.add(player)
         playerList.append(player)

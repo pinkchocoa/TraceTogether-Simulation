@@ -1,11 +1,8 @@
-from typing import Tuple
-
-import aStar
 import pygame
-import sys
-import randomFn
+import sys #sys.exit
 import json
-
+import aStar
+from general import randChance
 from objectSim import Player, world, createPlayers, maze, changeCoord, worldx, worldy
 
 # global variables
@@ -48,7 +45,7 @@ def covid(covidSet):
                 yy = changeCoord(y.rect.y)
                 path = aStar.astar(maze, (xy, xx), (yy, yx))
                 if path != None and len(path) <= mazeRange:
-                    if randomFn.randChance(covidChance):
+                    if randChance(covidChance):
                         newcovidSet.add(idx)
                         print("Person", x, "infected", "Person", idx)
                         edges["nodes"].append({"from": x, "to": idx})
