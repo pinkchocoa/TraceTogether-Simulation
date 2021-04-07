@@ -34,7 +34,6 @@ def changeCoord(x):
     return 0
 
 def covid(covidSet):
-    
     newcovidSet = set()
     for x in covidSet:
         player = playerList[x]
@@ -54,6 +53,7 @@ def covid(covidSet):
                 path = aStar.astar(maze, (xx, xy), (yx, yy))
                 if path != None and len(path) <= int(covidRange/20) and randomFn.randChance(covidChance):
                     newcovidSet.add(idx)
+                    print("Person", x, "infected", "Person", idx)
                 else:
                     y.changeImage(2)
     return set.union(covidSet, newcovidSet)

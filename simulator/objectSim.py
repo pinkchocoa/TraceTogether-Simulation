@@ -19,7 +19,6 @@ class Player(pygame.sprite.Sprite):
     """
     Spawn a person
     """
-
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.movex = 0
@@ -40,22 +39,31 @@ class Player(pygame.sprite.Sprite):
         """
         Update sprite position
         """
-        def moveInDirection(d):
+        def moveInDirection():
+            d = randomFn.randInt(1,8)
             self.control(direction[d][0], direction[d][1])
-        if (self.rect.x + self.movex) < 0:
-            moveInDirection(randomFn.randInt(1,8))
+            return True
+        def checkWorldBoxes(x, y, bound):
+            if (x + y) < 0 or (x + y) > bound:
+                return moveInDirection()
+        def checkBoundingBoxes(): #if hit bounding box, change directions
+            #world x bounding boxes
+            if checkWorldBoxes(self.rect.x, self.movex, worldx-20):
+                return True
+            
+            #maze x bounding boxes
+
+
+            #world y bounding boxes
+            if checkWorldBoxes(self.rect.y, self.movey, worldy-20):
+                return True
+            #maze y bounding boxes
+            
+        if checkBoundingBoxes():
             return
-        elif  (self.rect.x + self.movex) > worldx-20:
-            moveInDirection(randomFn.randInt(1,8))
-            return
-        if (self.rect.y + self.movey) < 0  :
-            moveInDirection(randomFn.randInt(1,8))
-            return
-        elif  (self.rect.y + self.movey) > worldy-20:
-            moveInDirection(randomFn.randInt(1,8))
-            return
-        if (randomFn.randChance(5)):
-            moveInDirection(randomFn.randInt(1,8))
+
+        if (randomFn.randChance(5)): #chance to change directions
+            moveInDirection()
             return
         self.rect.x = self.rect.x + self.movex
         self.rect.y = self.rect.y + self.movey
