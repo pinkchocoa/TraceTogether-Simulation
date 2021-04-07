@@ -12,7 +12,7 @@ class Node():
         self.f = 0
 
     def __eq__(self, other):
-        return self.position == other.position
+        return self.position == other.positions
 
 
 def astar(maze, start, end):
@@ -97,8 +97,8 @@ def astar(maze, start, end):
             # Add the child to the open list
             open_list.append(child)
             
-# maze = file_to_2dlist('data/mazeWalls.txt')
-# print(maze[30][26], maze[27][23])
-# for x in range(1):
-#     path = astar(maze, (30, 26), (27, 23))
-#     print(path)
+maze = file_to_2dlist('data/mazeWalls.txt')
+print(maze[30][26], maze[27][23])
+for x in range(1):
+    path = astar(maze, (30, 26), (27, 23))
+    print(path)
