@@ -6,13 +6,14 @@
 #
 
 #Imports
-#from aStar import astar
+#local imports
 import locData
 import peopleData
-import multidict 
 import comparison
 import randomFn
 import UIdata
+#library imports
+import multidict
 
 
 chanceToCatchCovid = 3  #percentage chance of catching covid(3% chance)
@@ -50,7 +51,7 @@ def hasCovid(token): #function to check if the person has covid
     loc = person.getLoc() #retriving all location that person has been too
     prev = None #to check for location duplicates for count
                 #since people can go to the same location many times
-    for location in loc.keys(): #look through all the locations
+    for location, value in loc.items(): #look through all the locations
         if prev != location:  #check if the mall a covid infected person has been to is not on the list
             peopleData.covidLoc[location] += 1  #add the location into the list
         if len(peopleData.listOfPplPerLoc[location]) <= 1: #check the amount of people in the covid infected location
@@ -65,50 +66,26 @@ def hasCovid(token): #function to check if the person has covid
                 #check timeframe
                 #this may change bc need to check with covid visit window
 
-                #need to loop through duplicate keys, not done yet
-                if comparison.checkTimeStamp(locX[location], loc[location]): #checking the time personX check in to all the locations he visited
-                    print("coincide!") #if their timing meets, print out conincide
-                    print(token, "and", personX.token, "were at", location)
-                    setCloseWarning(personX) #set a close contact warning on personX
-                    setSpread(personX) 
-                    print("end")
-                    #add edge
-                    UIdata.addPeopleConnectJson({"from": person.name, "to": personX.name})
-                else:
-                    if personX.persontags == peopleData.personTag.nothing.value: #check if the person has a nothing value
-                        print("same location!") 
-                        setLocWarning(personX)  #set a location warning on personX
+                #need to loop through duplicate keys/values, for the same location as it is a multdict
+                xLocKeyList = locX.getall(location)
+                for x in xLocKeyList:
+                    if comparison.checkTimeStamp(locX[location], value): #checking the time personX check in to all the locations he visited
+                        print("coincide!") #if their timing meets, print out conincide
+                        print(token, "and", personX.token, "were at", location)
+                        setCloseWarning(personX) #set a close contact warning on personX
+                        setSpread(personX) 
+                        print("end")
+                        #add edge
+                        UIdata.addPeopleConnectJson({"from": person.name, "to": personX.name})
+                    else:
+                        if personX.persontags == peopleData.personTag.nothing.value: #check if the person has a nothing value
+                            print("same location!") 
+                            setLocWarning(personX)  #set a location warning on personX
         prev = location
 
 
 #setting how many people to have covid 
+#randomly setting 2 people catch the virus
 hasCovid(4) 
 hasCovid(6) 
-
-#print(peopleData.covidLoc)
-
 UIdata.createJson()
-#peopleData.printLocSet()
-
-#for x in peopleData.listOfPpl:
-#    x.print()
-
-#to do, set person to covid and location
-#warnings should have time frame!
-
-# start = 'Bugis Junction'
-# end = 'Tampines Mall'
-# path = astar(maze, locDict[start], locDict[end])
-# print(path)
-# print(len(path)) #90
-# start = 'Bugis Junction'
-# end = 'Marina Bay Sands'
-# path = astar(maze, locDict[start], locDict[end])
-# print(path)
-# print(len(path)) #16
-
-#jodie's todo
-#create tags for locations as well
-#use a star algo to set location tags
-#think of a way to add weight for bluetooth and use graph algos
-#make sure everything works and clean up codes
