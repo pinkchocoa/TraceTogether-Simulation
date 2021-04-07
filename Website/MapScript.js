@@ -960,8 +960,11 @@ function initMap(){
       content: currentMarker[0],
     });
 
-    marker.addListener("click", () => {
+    marker.addListener("mouseover", () => {
         infowindow.open(map, marker);
+      });
+    marker.addListener("mouseout", () => {
+        infowindow.close(map, marker);
       });
 }
 
