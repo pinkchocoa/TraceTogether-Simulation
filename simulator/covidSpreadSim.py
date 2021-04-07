@@ -6,14 +6,10 @@ import sys
 import randomFn
 import json
 
-from objectSim import Player, world, createPlayers, maze, changeCoord
+from objectSim import Player, world, createPlayers, maze, changeCoord, worldx, worldy
 
 # global variables
-worldx = 720
-worldy = 720
 fps = 12
-#maze = numpy.zeros((int(worldx/20), int(worldy/20)), dtype=int)
-#maze = file_to_2dlist('data/mazeWalls.txt')
 
 '''
 Setup
@@ -58,6 +54,7 @@ def covid(covidSet):
                         edges["nodes"].append({"from": x, "to": idx})
                     else:
                         y.changeImage(2)
+                # uncomment to see astar algo (that was too far apart)
                 # else:
                 #     if path == None:
                 #         print("none")
@@ -88,12 +85,3 @@ while main:
     playerGroup.draw(world)
     pygame.display.flip()
     clock.tick(fps)
-
-
-
-#thonks
-#the maze is a 36*36 grid
-#to show off a star we shoud have some walls and shit
-#but that also means that my guy cant walk through walls and i need to make many bounding boxes
-#to make bounding boxes easier i can translate the pixel coords to the grids to determine where they are?
-#probably want to come up w a grid first in excel
