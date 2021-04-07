@@ -5,33 +5,31 @@ import pygame
 import sys
 import randomFn
 import numpy
-from objectSim import Player, world, createPlayers
+
+from objectSim import Player, world, createPlayers, maze, changeCoord
 
 # global variables
 worldx = 720
 worldy = 720
 fps = 12
-maze = numpy.zeros((int(worldx/20), int(worldy/20)), dtype=int)
+#maze = numpy.zeros((int(worldx/20), int(worldy/20)), dtype=int)
+#maze = file_to_2dlist('data/mazeWalls.txt')
 
 '''
 Setup
 '''
-backdrop = pygame.image.load('images/stage.png').convert_alpha()
+backdrop = pygame.image.load('images/stage.png').convert()
 clock = pygame.time.Clock()
 pygame.init()
 backdropbox = world.get_rect()
 main = True
-totalPlayers = 80
+totalPlayers = 50
 playerList, playerGroup = createPlayers(totalPlayers)
 covidSet = set()
-covidSet.add(5)
-covidRange = 70
+covidSet.add(0)
+covidRange = 60
+mazeRange = 3
 covidChance = 3
-
-def changeCoord(x):
-    if x != 0 :
-        return int(x/20)
-    return 0
 
 def covid(covidSet):
     newcovidSet = set()
@@ -43,19 +41,28 @@ def covid(covidSet):
         for idx, y in enumerate(playerList):
             if idx == x or idx in covidSet or idx in newcovidSet:
                 continue
-            if abs(player.rect.x - y.rect.x) > covidRange or  abs(player.rect.y - y.rect.y) > covidRange:
-                continue
+            if abs(player.rect.x - y.rect.x) > covidRange or abs(player.rect.y - y.rect.y) > covidRange:
+                continue #to reduce amount of astar checks required
             else:
                 xx = changeCoord(player.rect.x)
                 xy = changeCoord(player.rect.y)
                 yx = changeCoord(y.rect.x)
                 yy = changeCoord(y.rect.y)
-                path = aStar.astar(maze, (xx, xy), (yx, yy))
-                if path != None and len(path) <= int(covidRange/20) and randomFn.randChance(covidChance):
-                    newcovidSet.add(idx)
-                    print("Person", x, "infected", "Person", idx)
+                print(xy,xx,yy,yx)
+                path = aStar.astar(maze, (xy, xx), (yy, yx))
+                #path = [1]
+                #print(len(path), path)
+                if path != None and len(path) <= mazeRange:
+                    if randomFn.randChance(covidChance):
+                        newcovidSet.add(idx)
+                        print("Person", x, "infected", "Person", idx)
+                    else:
+                        y.changeImage(2)
                 else:
-                    y.changeImage(2)
+                    if path == None:
+                        print("none")
+                    else:
+                        print(len(path), path)
     return set.union(covidSet, newcovidSet)
 
 '''
