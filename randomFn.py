@@ -39,13 +39,13 @@ def random_timestamp(x, today): #generates a random time
     end = (today).strftime(frmt)
 
     for i in range(x): 
-        one = random_date(start, end) 
-        one = datetime.datetime.strptime(one,frmt)
+        one = random_date(start, end)  #set a random start and end date 
+        one = datetime.datetime.strptime(one,frmt) #formatting the date/time into desired format
         two = one+datetime.timedelta(hours=16)
-        two = random_date(one.strftime(frmt), two.strftime(frmt))
-        two = datetime.datetime.strptime(two, frmt)
-        res.append([one,two])
-        end = one.strftime(frmt)
+        two = random_date(one.strftime(frmt), two.strftime(frmt)) 
+        two = datetime.datetime.strptime(two, frmt) #formatting the date/time into desired format
+        res.append([one,two]) #appending the values into res[] 
+        end = one.strftime(frmt) 
         if d == 1:
             d = 7
             start = (today-datetime.timedelta(days=d)).strftime(frmt)
