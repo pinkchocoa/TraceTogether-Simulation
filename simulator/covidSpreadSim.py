@@ -23,13 +23,15 @@ clock = pygame.time.Clock()
 pygame.init()
 backdropbox = world.get_rect()
 main = True
-totalPlayers = 50
+totalPlayers = 20
 playerList, playerGroup = createPlayers(totalPlayers)
 covidSet = set()
 covidSet.add(0)
-covidRange = 70
+covidRange = 50
 mazeRange = 3
 covidChance = 3
+edges = {}
+edges["nodes"] = []
 
 def covid(covidSet):
     newcovidSet = set()
@@ -53,13 +55,14 @@ def covid(covidSet):
                     if randomFn.randChance(covidChance):
                         newcovidSet.add(idx)
                         print("Person", x, "infected", "Person", idx)
+                        edges["nodes"].append({"from": x, "to": idx})
                     else:
                         y.changeImage(2)
-                else:
-                    if path == None:
-                        print("none")
-                    else:
-                        print(len(path), path)
+                # else:
+                #     if path == None:
+                #         print("none")
+                #     else:
+                #         print(len(path), path)
     return set.union(covidSet, newcovidSet)
 
 '''
@@ -84,6 +87,8 @@ while main:
     pygame.display.flip()
     clock.tick(fps)
 
+with open('website/json/infected.json', 'w') as outfile:
+        json.dump(edges, outfile)
 
 #thonks
 #the maze is a 36*36 grid
