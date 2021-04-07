@@ -6,21 +6,13 @@ import sys
 import os
 import randomFn
 import numpy
-import object
+from objectSim import Player, world, createPlayers
 
 # global variables
 worldx = 720
 worldy = 720
 fps = 12
-world = pygame.display.set_mode([worldx, worldy])
 maze = numpy.zeros((int(worldx/20), int(worldy/20)), dtype=int)
-images = []
-images.append(pygame.image.load(os.path.join('images', 'green20.png')).convert_alpha())
-images.append(pygame.image.load(os.path.join('images', 'red20.png')).convert_alpha())
-images.append(pygame.image.load(os.path.join('images', 'yellow20.png')).convert_alpha())
-
-
-
 
 '''
 Setup
@@ -32,28 +24,18 @@ backdropbox = world.get_rect()
 main = True
 
 totalPlayers = 80
-playerList = []
-playerGroup = pygame.sprite.Group()
+playerList, playerGroup = createPlayers(totalPlayers)
 
-def createPlayers():
-    player = Player()  # spawn player
-    player.rect.x = randomFn.randInt(0,worldx)  # go to x
-    player.rect.y = randomFn.randInt(0,worldy)  # go to y
-    player.movex, player.movey = direction[randomFn.randInt(1,8)]
-    playerGroup.add(player)
-    playerList.append(player)
 
-steps = 5
+
+
 covidSet = set()
 covidSet.add(5)
 covidRange = 70
 covidChance = 3
 
-direction={1:[steps,0], 2:[-steps,0], 3:[0,steps], 4:[0,-steps]
-    ,5:[steps,steps], 6:[-steps,steps], 7:[steps,-steps], 8:[-steps,-steps]}
 
-for x in range(totalPlayers):
-    createPlayers()
+
 
 def changeCoord(x):
     if x != 0 :
@@ -65,7 +47,7 @@ def covid(covidSet):
     newcovidSet = set()
     for x in covidSet:
         player = playerList[x]
-        player.image = images[1]
+        player.changeImage(1)
 
         #gotta check if anyone is close to this guy
         for idx, y in enumerate(playerList):
@@ -82,12 +64,11 @@ def covid(covidSet):
                 if path != None and len(path) <= int(covidRange/20) and randomFn.randChance(covidChance):
                     newcovidSet.add(idx)
                 else:
-                    y.image = images[2]
+                    y.changeImage(2)
     return set.union(covidSet, newcovidSet)
 
 
-def moveInDirection(d):
-    player.control(direction[d][0], direction[d][1])
+
     
 '''
 Main Loop
