@@ -5,17 +5,17 @@
     padding: 0 px;
     font-family: "Poppins",sans-serif;
 }
-body
+.h1
 {
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #f2f3f7;
-}
-.card-header
-{
-    padding: 1px;
-    margin: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 45px;
+  padding: 2px;
+  margin: 2px;
+    
 }
 .header
 {
@@ -26,17 +26,20 @@ body
    padding: 10px;
    margin: 10px;
 }
-.content-container
+body 
 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1px;
-    margin: 1px
+    height: 100%;
+	margin: 0;
+	font-family: sans-serif;
+	font-weight: 100;
+	background: #f2f3f7;
 }
-.canvas-card
+.container 
 {
-    height : 900px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 a
 {
@@ -71,43 +74,27 @@ a:hover span
     display: inline-block;
     transform: scale(0.98);
 }
-h1
-{
-  font-weight: bold;
-  font-size: 45px;
-  padding: 1px;
-  margin: 1px;
-  text-align: center;
-    
-}
 
-#title
-{
-  font-weight: bold;
-  font-size:28px;
-  padding:10px;
-  margin:5px;
-  
+th {
+	text-align: left;
 }
 .containerList
 {
     padding:5px;
     margin:5px;
-    width:80%; 
-    margin-left:27%; 
+    margin-left:26%; 
     margin-right:27%;
-    width: 800px;
-    height: 800px;
+    width: 1000px;
+    height: 1000px;
 }
 
 .our-table 
 {
-	max-width: 1000px;
+	height: 800px;
 	margin: 0 auto;
 	}
 	th, td {
-	white-space: nowrap;
-    text-align: left;
+	text-align: left;
 	}
 	table.dataTable thead .sorting:after,
 	table.dataTable thead .sorting:before,
@@ -121,3 +108,5 @@ h1
 	table.dataTable thead .sorting_desc_disabled:before {
 	bottom: .5em;
 }
+
+

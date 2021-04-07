@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script language="JavaScript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="table.css">
+</head>
+
+<div class="header">
+    <h1>TraceTogether Infomation</h1>
+    <div class="card-header">
+        <a href="main.html">Main Page</a>
+        <a href="clustermap.html">Cluster Map</a>
+        <a href="networkGraph.html">Network Graph</a>
+    </div>  
+</div>
+<div class="containerList">
+    <table id="our-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th class="th-sm">Names</th>
+                <th class="th-sm">Phone Number</th>
+                <th class="th-sm">Status</th>
+                <th class="th-sm">Locations Been</th>
+            </tr>
+        </thead>
+            <tbody id="table-body"></tbody>
+    </table>
+</div>
+
+<body>
+    <script>
+        window.mallArray = [];
+        window.covidCountArray = [];
+        var xmlhttp = new XMLHttpRequest();
+        var url = "json/traceInfo.json";
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var data = JSON.parse(this.responseText);
+                //console.log(data);
+
+                for (var i in data.info){
+                var row = `<tr>
+                    <td>${data.info[i].id}</td>
+                    <td>${data.info[i].phoneNum}</td>
+                    <td>${data.info[i].group}</td>
+                    <td>${data.info[i].location}</td>`
+                    var table = $('#table-body')
+                    table.append(row)
+                }
+                $(document).ready(function () {
+                    $('#our-table').DataTable({
+                    "scrollY": 500,
+                    "paging": false
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    });
+            }
+        }
+
+
+            
+            
+           
+    </script>
+</body>
+</html>

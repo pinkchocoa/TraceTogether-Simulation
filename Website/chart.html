@@ -19,6 +19,8 @@
                     <div class="header">
                         <h1>Data Charts</h1>    
                         <div class="card-header">
+                            <a href="main.html">Main Page</a>
+                            <a href="clustermap.html">Cluster Map</a>
                             <a href="networkGraph.html">Network Graph</a>
                         </div>  
                     </div>
@@ -32,11 +34,10 @@
                             <canvas id="overAllChart" ></canvas>
                         </div>
 
-                        <div class="canvas-card2" style="position:relative; width:1500px; height:800px;">   
+                        <div class="canvas-card2" style="position:relative; width:1250px; height:700px;">   
                             <canvas id="clusterRanks"></canvas>
                         </div>
 
-                        
                         <div class="containerList">
                             <h1 id="title">Covid Cluster for Malls</h1>
                             <table id="our-table">
@@ -173,8 +174,8 @@
           
 
             /*
-                This is the chart that displays the Gender Chart: 
-                STARTS HERE
+                This is the chart that displays the mall cluster Chart: 
+                Ends HERE
             */
             var ctx = document.getElementById('clusterRanks').getContext('2d');
             var clusterRankChart = new Chart(ctx, {
@@ -186,8 +187,8 @@
                     datasets: [{
                         label: "Clusters",
                         borderWidth: 0.75,
-                        borderColor: "red",
-                        backgroundColor: "transparent",
+                        borderColor: "white",
+                        backgroundColor: "#FF6384",
                         data: covidcount
                     }]
                 },
@@ -204,6 +205,12 @@
                         position:"top"
                     },
                     scales: {
+                        yAxes:[{
+                            ticks:{
+                                max: 5,
+                                min: 0
+                            }
+                        }]
                     },
                     legend:{
                         position:"top",
@@ -219,17 +226,17 @@
                             offset: -20,
                             font:{
                                 weight: "bold",
-                                size:"8",
+                                size:"10",
                             },
                             formatter: (value) => {
-                                return value + " Covid Cluster";
+                                return value + " Cluster";
                             }
                         }
                     }
                 }
             });
             /*
-                This is the chart that displays the Gender Chart: 
+                This is the chart that displays the mall cluster Chart: 
                 Ends HERE
             */
             }

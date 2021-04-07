@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Yatra+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styleClusterMap.css">               
+<body>
+        <div class="container">
+            <div class="header">
+                <h1>TraceTogether Covid Cluster Map</h1>    
+                <div class="card-header">
+                    <a href="main.html">Main Page</a>
+                    <a href="chart.html">Charts</a>
+                    <a href="networkGraph.html">Network Graph</a>
+                </div>  
+            </div>
+            <div id="map"></div>
+        </div>
+    
+    <script src="js/MapScript.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANaXVnvoZZKvrSTzOTou5sA-7rslXld1o&map_ids=d06829fc6911d098&callback=initMap"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css"href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+</body>
+</html>
