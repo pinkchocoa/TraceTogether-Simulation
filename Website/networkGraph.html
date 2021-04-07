@@ -5,8 +5,8 @@
       <script src="js/anychart-base.min.js"></script>
       <script src="js/anychart-graph.min.js"></script>
       <script src="js/anychart-data-adapter.min.js"></script>
-      <script src="js/anychart-ui.min.js"></script>
-      <script src="js/anychart-exports.min.js"></script>
+      <!-- <script src="js/anychart-ui.min.js"></script>
+      <script src="js/anychart-exports.min.js"></script> -->
       <link href="css/styles.css" rel="stylesheet" type="text/css">
       <link href="css/anychart-ui.min.css" rel="stylesheet" type="text/css">
       <link href="css/anychart-font.min.css" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
     <div id="container"></div>
     <script>
         anychart.onDocumentReady(function () {
-            anychart.data.loadJsonFile("people1.json", function (data) {
+            anychart.data.loadJsonFile("~/json/people.json", function (data) {
             // create a chart from the loaded data
             var chart = anychart.graph(data);
             
@@ -37,11 +37,9 @@
               
             // enable the labels of nodes
             chart.nodes().labels().enabled(true);
-
-           /* 
+           
            // set chart layout type
             chart.layout().type('fixed');
-
               
             chart
             .nodes()
@@ -49,13 +47,11 @@
             .fontSize(10)
             .enabled(true)
             .anchor('auto')
-            .autoRotate(true);
-            */
-
-
+            .autoRotate(false);
+            
             //iteration count
             // set chart layout settings
-            chart.layout({ iterationCount: -50 });
+            chart.layout({ iterationCount: 500 });
 
             // configure the labels of nodes
             chart.nodes().labels().format("{%id}");
@@ -68,19 +64,19 @@
             var closeWarning = chart.group("closeWarning")
             
             //fill the coivd nodes in groups
-            covid.normal().fill("#ff0000");
+            covid.normal().fill("#ff0000"); //red color
             covid.hovered().fill("white");
-            covid.normal().height(20);
+            covid.normal().height(15);
 
             //fill the locationWarning nodes in groups
-            locationWarning.normal().fill("#ffb037");
+            locationWarning.normal().fill("#FFFF00"); //yellow color
             locationWarning.hovered().fill("white");
-            locationWarning.normal().height(20);
+            locationWarning.normal().height(15);
 
             //fill the closewarning nodes in groups
-            closeWarning.normal().fill("#FFFF00");
+            closeWarning.normal().fill("#ffb037"); //orange color
             closeWarning.hovered().fill("white");
-            closeWarning.normal().height(20);
+            closeWarning.normal().height(15);
           
             //edges config
             var edges = chart.edges();
