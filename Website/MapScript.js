@@ -879,7 +879,7 @@ function initMap(){
          }
 
          for (let i=0; i<allGroup.length; i++){
-          if (allGroup[i] == "covid"){
+          if (allGroup[i] == "covid" || allGroup[i] == "locationWarning" || allGroup[i] == "closeWarning"){
             covidIndex.push(i);
           }
         }
