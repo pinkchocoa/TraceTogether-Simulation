@@ -58,7 +58,7 @@
         window.horichart = [];
 
         var xmlhttp = new XMLHttpRequest();
-        var url = "overall.json";
+        var url = "json/tag.json";
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
         xmlhttp.onreadystatechange = function(){
@@ -157,23 +157,20 @@
         }
 
         var xmlhttp = new XMLHttpRequest();
-        var url = "table.json";
+        var url = "json/table.json";
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
         xmlhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 var data = JSON.parse(this.responseText);
                 //console.log(data);
-
-                var mallname = data.rank.map(function(elem){
+                var mallname = data.chart.map(function(elem){
                     return elem.mall;
                 });
-                var covidcount = data.rank.map(function(elem){
+                var covidcount = data.chart.map(function(elem){
                     return elem.covidCount;
                 });
-                var crowdcount = data.rank.map(function(elem){
-                    return elem.crowdcount;
-                });        
+          
 
             /*
                 This is the chart that displays the Gender Chart: 
@@ -225,7 +222,7 @@
                                 size:"8",
                             },
                             formatter: (value) => {
-                                return value;
+                                return value + " Covid Cluster";
                             }
                         }
                     }
@@ -244,7 +241,7 @@
         window.mallArray = [];
         window.covidCountArray = [];
         var xmlhttp = new XMLHttpRequest();
-        var url = "table.json";
+        var url = "json/table.json";
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
         xmlhttp.onreadystatechange = function(){
