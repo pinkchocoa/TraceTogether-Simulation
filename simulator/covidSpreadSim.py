@@ -3,7 +3,6 @@ from typing import Tuple
 import aStar
 import pygame
 import sys
-import os
 import randomFn
 import numpy
 from objectSim import Player, world, createPlayers
@@ -17,25 +16,17 @@ maze = numpy.zeros((int(worldx/20), int(worldy/20)), dtype=int)
 '''
 Setup
 '''
-backdrop = pygame.image.load(os.path.join('images', 'stage.png')).convert_alpha()
+backdrop = pygame.image.load('images/stage.png').convert_alpha()
 clock = pygame.time.Clock()
 pygame.init()
 backdropbox = world.get_rect()
 main = True
-
 totalPlayers = 80
 playerList, playerGroup = createPlayers(totalPlayers)
-
-
-
-
 covidSet = set()
 covidSet.add(5)
 covidRange = 70
 covidChance = 3
-
-
-
 
 def changeCoord(x):
     if x != 0 :
@@ -67,9 +58,6 @@ def covid(covidSet):
                     y.changeImage(2)
     return set.union(covidSet, newcovidSet)
 
-
-
-    
 '''
 Main Loop
 '''

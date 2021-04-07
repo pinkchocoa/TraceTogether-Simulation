@@ -1,3 +1,4 @@
+#this file creates objects of the game
 import pygame
 import randomFn
 
