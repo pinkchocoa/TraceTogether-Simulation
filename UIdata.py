@@ -9,10 +9,7 @@ peopleJson["edges"]=[]
 
 tagJson = {}
 tagJson["overall"]=[]
-# tagJson[peopleData.personTag(0).name]=0
-# tagJson[peopleData.personTag(1).name]=0
-# tagJson[peopleData.personTag(2).name]=0
-# tagJson[peopleData.personTag(3).name]=0
+
 peopleDetails = {}
 peopleDetails["details"]=[]
 

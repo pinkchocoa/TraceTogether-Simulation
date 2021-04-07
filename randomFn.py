@@ -51,7 +51,3 @@ def random_timestamp(x, today): #generates a random time
             start = (today-datetime.timedelta(days=d)).strftime(frmt)
     return res
 
-# res = random_timestamp(3)
-# for i in range(3):
-#     for j in range(2):
-#         print(res[i][j])
