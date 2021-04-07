@@ -4,7 +4,7 @@ import aStar
 import pygame
 import sys
 import randomFn
-import numpy
+import json
 
 from objectSim import Player, world, createPlayers, maze, changeCoord
 
@@ -71,6 +71,8 @@ Main Loop
 while main:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            with open('website/json/infected.json', 'w') as outfile:
+                json.dump(edges, outfile)
             pygame.quit()
             try:
                 sys.exit()
@@ -87,8 +89,7 @@ while main:
     pygame.display.flip()
     clock.tick(fps)
 
-with open('website/json/infected.json', 'w') as outfile:
-        json.dump(edges, outfile)
+
 
 #thonks
 #the maze is a 36*36 grid
