@@ -7,7 +7,6 @@
 
 #Imports
 #local imports
-import locData
 import peopleData
 import comparison
 import randomFn
@@ -17,7 +16,7 @@ import multidict
 
 
 chanceToCatchCovid = 3  #percentage chance of catching covid(3% chance)
-locList = locData.getLocFromFile() #retrieve location data by calling function getLocFromFile() 
+locList = peopleData.getLocFromFile() #retrieve location data by calling function getLocFromFile() 
 peopleData.generatePeople(100) #generate the amount of person data needed  
 peopleData.generateLoctime(locList) #generate timestamp for each person generated
 

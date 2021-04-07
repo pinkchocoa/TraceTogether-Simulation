@@ -11,6 +11,7 @@ from enum import Enum #https://www.tutorialspoint.com/enum-support-for-enumerati
 import multidict #pip install multidict https://pypi.org/project/multidict/ https://multidict.readthedocs.io/en/stable/
 import randomFn
 import datetime
+from fileio import file_to_dict
 
 listOfPpl = list() #stores list of person objects
 listOfPplPerLoc = {} #stores location as key and set() of people as value
@@ -56,6 +57,11 @@ class person:
 
     def getLoc(self): #function to retrieve locations person has been too
         return self.location #return all the locations 
+
+def getLocFromFile():
+    locDataFile = 'data/malls.txt'
+    locDict = file_to_dict(locDataFile) #putting in location into a dict
+    return list(locDict.keys()) 
 
 def generateLocCheckIn(locData): #function to initiliaze variables for location data
     for x in locData:
