@@ -130,4 +130,4 @@ def test2():
     path = astar(maze, start, end)
     print (path)
 
-test2()
+test1()
