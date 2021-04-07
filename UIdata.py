@@ -42,12 +42,8 @@ def createPeopleJson():
         elif x.persontags == peopleData.personTag.locationWarning.value:
             xCoord = randomFn.randInt(-750,-350)
             yCoord = randomFn.randInt(-350,350)
-        else:
-            if randomFn.randInt(0,1) == 0:
-                xCoord = randomFn.randInt(-350,-250)
-            else:
-                xCoord = randomFn.randInt(250,750)
-           
+        else: #closeWarning
+            xCoord = randomFn.randInt(350,750)
             yCoord = randomFn.randInt(-350,350)
 
         peopleJson["nodes"].append({
