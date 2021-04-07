@@ -71,7 +71,7 @@ function initMap(){
             });
          }
 
-         fetch("json/personDetails.json")
+         fetch("json/peopleDetails.json")
             .then(function(resp){
                 return resp.json();
             })
