@@ -1,3 +1,12 @@
+## @file main.py
+#
+# @brief this file contains all the neccessary information to determine whether a person has covid
+#
+# @author Jodie
+#
+
+
+#Imports
 from enum import Enum #https://www.tutorialspoint.com/enum-support-for-enumerations-in-python
 import multidict #pip install multidict https://pypi.org/project/multidict/ https://multidict.readthedocs.io/en/stable/
 import randomFn
@@ -9,13 +18,15 @@ covidLoc = {} #stores location as key and int of people that has covid as value
 
 
 class personTag(Enum):
-    nothing = 0 #set a person without covid or any warnings, with a tag number 0 
-    covid = 1 #set a person with covid, with a tag number 1 
-
-    #closewarning is close contact ( person has been in the same mall same time on the same day)
-    closeWarning = 2 #set a person with close contact, with a tag number 2
-
-    #locationwarning is just a warning (person has been in the same mall within the last 7 days)
+    """! This class sets an integer variable tag to a person 
+       brief: To set a person without covid or any warning, a number "0" will be tag to the person
+              To set a person with covid, a number "1" will be tag to the person
+              To set a person with close contact, a numnber "2" will be tag to the person
+              To set a person with location warning, a number "3" will be tag to the person 
+    """
+    nothing = 0  
+    covid = 1 
+    closeWarning = 2 
     locationWarning = 3 #set a person with location warning,  with a tag number 3
 
 class person:

@@ -1,3 +1,11 @@
+## @file main.py
+#
+# @brief this file contains all the neccessary information to determine whether a person has covid
+#
+# @author Jodie
+#
+
+#Imports
 #from aStar import astar
 import locData
 import peopleData
@@ -6,25 +14,36 @@ import comparison
 import randomFn
 import UIdata
 
-chanceToCatchCovid = 3  #percentage chance of catching covid(3% chance)
 
+chanceToCatchCovid = 3  #percentage chance of catching covid(3% chance)
 locDict = locData.getLocFromFile() #retrieve location data by calling function getLocFromFile() 
 peopleData.generatePeople(100) #generate the amount of person data needed  
 peopleData.generateLoctime(locDict) #generate timestamp for each person generated
 
-def setLocWarning(person):   #function to set location warning for a person
-    person.setTag(peopleData.personTag.locationWarning)  #if a person has a location warning, a number "3" will be tag to them
+def setLocWarning(person):
+    """! This method set a location warning for a person
+       brief: if a person has a location warning, a number "3" will be tag to them
+    """
+    person.setTag(peopleData.personTag.locationWarning)  
 
-def setCloseWarning(person):  #function to set close contact warning for a person
-    person.setTag(peopleData.personTag.closeWarning) #if a person has a location warning, a number "2" will be tag to them
+def setCloseWarning(person): 
+    """! This method set a close contact warning for a person
+       brief: if a person has a close contact warning, a number "2" will be tag to them
+    """
+    person.setTag(peopleData.personTag.closeWarning) 
 
 def setSpread(person): #function to set covid spread rate
     #real life use case, u ask them to go swab
     #therefore there actually isnt that much recursion
+    """! This method set covid spread rate 
+    """
     if randomFn.randChance(chanceToCatchCovid): 
         hasCovid(person.token)
 
 def hasCovid(token): #function to check if the person has covid
+    """! This method set a location warning for a person
+       brief: if a person has covid, a number "1" will be tag to them
+    """
     person = peopleData.listOfPpl[token] #establishing person as an object to be easily reference
     person.setTag(peopleData.personTag.covid) #if a person has a location warning, a number "1" will be tag to them
     #run through all locations that person has been
@@ -36,7 +55,8 @@ def hasCovid(token): #function to check if the person has covid
             peopleData.covidLoc[location] += 1  #add the location into the list
         if len(peopleData.listOfPplPerLoc[location]) <= 1: #check the amount of people in the covid infected location
             continue
-        else: #more than one person has been to location
+        else:
+            #more than one person has been to location
             #check everyone that has been to location
             for tokenX in peopleData.listOfPplPerLoc[location]: #check the token for each person in th covid infected location
                 personX = peopleData.listOfPpl[tokenX] #establishing personX as an object for easy reference
@@ -60,8 +80,10 @@ def hasCovid(token): #function to check if the person has covid
                         setLocWarning(personX)  #set a location warning on personX
         prev = location
 
-hasCovid(4) #set person to have covid
-hasCovid(6) #set person to have covid
+
+#setting how many people to have covid 
+hasCovid(4) 
+hasCovid(6) 
 
 #print(peopleData.covidLoc)
 
