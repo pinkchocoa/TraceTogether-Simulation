@@ -9,7 +9,7 @@ import UIdata
 chanceToCatchCovid = 3
 
 locDict = locData.getLocFromFile()
-peopleData.generatePeople(500)
+peopleData.generatePeople(100)
 peopleData.generateLoctime(locDict)
 
 def setLocWarning(person):

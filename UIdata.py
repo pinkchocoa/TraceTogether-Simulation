@@ -60,11 +60,11 @@ def createPeopleJson():
         peopleData.personTag(2).name: temp[peopleData.personTag(2).name],
         peopleData.personTag(3).name: temp[peopleData.personTag(3).name]
     })
-    with open('people.json', 'w') as outfile:
+    with open('json/people.json', 'w') as outfile:
         json.dump(peopleJson, outfile)
-    with open('tag.json', 'w') as outfile:
+    with open('json/tag.json', 'w') as outfile:
         json.dump(tagJson, outfile)
-    with open('peopleDetails.json', 'w') as outfile:
+    with open('json/peopleDetails.json', 'w') as outfile:
         json.dump(peopleDetails, outfile)
 
 def addPeopleConnectJson(x):
@@ -78,11 +78,8 @@ def createTableJson():
             "covidCount": v,
             "crowdCount": len(peopleData.listOfPplPerLoc[k]) #numbner of unique check in over 7 days
         })
-    with open('table.json', 'w') as outfile:
+    with open('json/table.json', 'w') as outfile:
         json.dump(tableJson, outfile)
-# def createPeopleConnectJson():
-#     with open('peopleEdge.json', 'w') as outfile:
-#         json.dump(peopleEdge, outfile)
 
 
 def createJson():

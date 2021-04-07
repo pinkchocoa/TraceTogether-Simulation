@@ -7,10 +7,7 @@ import os
 import randomFn
 import numpy
 
-'''
-Variables
-'''
-
+# global variables
 worldx = 720
 worldy = 720
 fps = 12
@@ -20,12 +17,12 @@ images = []
 images.append(pygame.image.load(os.path.join('images', 'green20.png')).convert_alpha())
 images.append(pygame.image.load(os.path.join('images', 'red20.png')).convert_alpha())
 images.append(pygame.image.load(os.path.join('images', 'yellow20.png')).convert_alpha())
-'''
-Objects
-'''
+
+
+# object class
 class Player(pygame.sprite.Sprite):
     """
-    Spawn a player
+    Spawn a person
     """
 
     def __init__(self):
