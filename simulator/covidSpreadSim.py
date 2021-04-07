@@ -27,9 +27,11 @@ totalPlayers = 50
 playerList, playerGroup = createPlayers(totalPlayers)
 covidSet = set()
 covidSet.add(0)
-covidRange = 60
+covidRange = 50
 mazeRange = 3
 covidChance = 3
+edges = {}
+edges["nodes"] = []
 
 def covid(covidSet):
     newcovidSet = set()
@@ -48,21 +50,19 @@ def covid(covidSet):
                 xy = changeCoord(player.rect.y)
                 yx = changeCoord(y.rect.x)
                 yy = changeCoord(y.rect.y)
-                print(xy,xx,yy,yx)
                 path = aStar.astar(maze, (xy, xx), (yy, yx))
-                #path = [1]
-                #print(len(path), path)
                 if path != None and len(path) <= mazeRange:
                     if randomFn.randChance(covidChance):
                         newcovidSet.add(idx)
                         print("Person", x, "infected", "Person", idx)
+                        edges["nodes"].append({"from": x, "to": idx})
                     else:
                         y.changeImage(2)
-                else:
-                    if path == None:
-                        print("none")
-                    else:
-                        print(len(path), path)
+                # else:
+                #     if path == None:
+                #         print("none")
+                #     else:
+                #         print(len(path), path)
     return set.union(covidSet, newcovidSet)
 
 '''
@@ -87,6 +87,8 @@ while main:
     pygame.display.flip()
     clock.tick(fps)
 
+with open('website/json/infected.json', 'w') as outfile:
+        json.dump(edges, outfile)
 
 #thonks
 #the maze is a 36*36 grid

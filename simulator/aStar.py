@@ -1,6 +1,5 @@
-#i stole this from the internet 
 from fileio import file_to_2dlist
-class Node():
+class node():
     """A node class for A* Pathfinding"""
 
     def __init__(self, parent=None, position=None):
@@ -11,45 +10,53 @@ class Node():
         self.h = 0
         self.f = 0
 
-    def __eq__(self, other):
-        return self.position == other.positions
+    def __eq__(self, other): # comparison
+        return self.position == other.position
+
+    def __hash__(self):               #<-- added a hash method
+        return hash(self.position) # not sure, need to google
 
 
-def astar(maze, start, end):
-    """Returns a list of tuples as a path from the given start to the given end in the given maze"""
+def astar(maze, start, goal):
+    """Returns a list of tuples as a path from the given start to the given goal in the given maze"""
+    if maze[start[0]][start[1]] == 1 or maze[goal[0]][goal[1]] == 1:
+        return None
 
-    # Create start and end node
-    start_node = Node(None, start)
-    start_node.g = start_node.h = start_node.f = 0
-    end_node = Node(None, end)
-    end_node.g = end_node.h = end_node.f = 0
+    # Create start and goal node
+    startNode = node(None, start)
+    startNode.g = startNode.h = startNode.f = 0
+    goalNode = node(None, goal)
+    goalNode.g = goalNode.h = goalNode.f = 0
 
     # Initialize both open and closed list
-    open_list = []
-    closed_list = []
+    openList = []
+    closedSet = set()
 
     # Add the start node
-    open_list.append(start_node)
+    openList.append(startNode)
 
-    # Loop until you find the end
-    while len(open_list) > 0:
+    # Loop until you find the goal
+    while len(openList) > 0:
 
         # Get the current node
-        current_node = open_list[0]
-        current_index = 0
-        for index, item in enumerate(open_list):
-            if item.f < current_node.f:
-                current_node = item
-                current_index = index
+        currentNode = openList[0]
+        currIdx = 0
+        for index, item in enumerate(openList):
+            if item.f < currentNode.f:
+                currentNode = item
+                currIdx = index
 
         # Pop current off open list, add to closed list
-        open_list.pop(current_index)
-        closed_list.append(current_node)
+        openList.pop(currIdx)
+        if currentNode.position in closedSet:
+            continue
+        else:
+            closedSet.add(currentNode.position)     # <-- change append to add
 
         # Found the goal
-        if current_node == end_node:
+        if currentNode == goalNode:
             path = []
-            current = current_node
+            current = currentNode
             while current is not None:
                 path.append(current.position)
                 current = current.parent
@@ -57,21 +64,21 @@ def astar(maze, start, end):
 
         # Generate children
         children = []
-        for new_position in [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)]: # Adjacent squares
+        for newPos in [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)]: # Adjacent squares
 
             # Get node position
-            node_position = (current_node.position[0] + new_position[0], current_node.position[1] + new_position[1])
+            nodePos = (currentNode.position[0] + newPos[0], currentNode.position[1] + newPos[1])
 
             # Make sure within range
-            if node_position[0] > (len(maze) - 1) or node_position[0] < 0 or node_position[1] > (len(maze[len(maze)-1]) -1) or node_position[1] < 0:
+            if nodePos[0] > (len(maze) - 1) or nodePos[0] < 0 or nodePos[1] > (len(maze[len(maze)-1]) -1) or nodePos[1] < 0:
                 continue
 
             # Make sure walkable terrain
-            if maze[node_position[0]][node_position[1]] != 0:
+            if maze[nodePos[0]][nodePos[1]] != 0:
                 continue
 
             # Create new node
-            new_node = Node(current_node, node_position)
+            new_node = node(currentNode, nodePos)
 
             # Append
             children.append(new_node)
@@ -80,25 +87,19 @@ def astar(maze, start, end):
         for child in children:
 
             # Child is on the closed list
-            for closed_child in closed_list:
-                if child == closed_child:
-                    continue
+            if child.position in closedSet:              # <-- remove inner loop so continue takes you to the end of the outer loop
+                continue
 
             # Create the f, g, and h values
-            child.g = current_node.g + 1
-            child.h = ((child.position[0] - end_node.position[0]) ** 2) + ((child.position[1] - end_node.position[1]) ** 2)
+            child.g = currentNode.g + 1
+            child.h = ((child.position[0] - goalNode.position[0]) ** 2) + ((child.position[1] - goalNode.position[1]) ** 2)
             child.f = child.g + child.h
 
             # Child is already in the open list
-            for open_node in open_list:
+            for open_node in openList:
                 if child == open_node and child.g > open_node.g:
                     continue
 
             # Add the child to the open list
-            open_list.append(child)
-            
-maze = file_to_2dlist('data/mazeWalls.txt')
-print(maze[30][26], maze[27][23])
-for x in range(1):
-    path = astar(maze, (30, 26), (27, 23))
-    print(path)
+            openList.append(child)
+    return None

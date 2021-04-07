@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:400,500,600,700,800,900&display=swap');
+*
+{
+    margin: 0;
+    padding: 0 px;
+    font-family: "Poppins",sans-serif;
+}
+.h1
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 45px;
+  padding: 2px;
+  margin: 2px;
+}
+.header
+{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 10px;
+   margin: 10px;
+}
+body 
+{
+    height: 100%;
+	margin: 0;
+	font-family: sans-serif;
+	font-weight: 100;
+	background: #f2f3f7;
+}
+.container 
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+a
+{
+    position: relative;
+    display: inline-block;
+    padding: 20px 30px;
+    margin: 20px;
+    text-decoration: none ;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #5a84a2;
+    font-size: 18px;
+    border-radius: 40px;
+    box-shadow: -2px -2px 8px rgba(255,255,255,1),
+                2px -2px 12px rgba(255,255,255,0.5),
+                inset 2px 2px 4px rgba(255,255,255,0.1),
+                inset 2px 2px 8px rgba(255,255,255,0.15),
+                2px 2px 8px rgba(0,0,0,0.15);
+
+}
+a:hover
+{
+    box-shadow: inset -2px -2px 8px rgba(255,255,255,1),
+                inset -2px -2px 12px rgba(255,255,255,0.5),
+                inset 2px 2px 4px rgba(255,255,255,0.1),
+                inset 2px 2px 8px rgba(255,255,255,0.15),
+                inset 2px 2px 8px rgba(0,0,0,0.15);
+}
+a:hover span
+{
+    display: inline-block;
+    transform: scale(0.98);
+}
+
+th {
+	text-align: left;
+}
+.containerList
+{
+    padding:5px;
+    margin:5px;
+    margin-left:26%; 
+    margin-right:27%;
+    width: 1000px;
+    height: 1000px;
+}
+
+.our-table 
+{
+	height: 800px;
+	margin: 0 auto;
+	}
+	th, td {
+	text-align: left;
+	}
+	table.dataTable thead .sorting:after,
+	table.dataTable thead .sorting:before,
+	table.dataTable thead .sorting_asc:after,
+	table.dataTable thead .sorting_asc:before,
+	table.dataTable thead .sorting_asc_disabled:after,
+	table.dataTable thead .sorting_asc_disabled:before,
+	table.dataTable thead .sorting_desc:after,
+	table.dataTable thead .sorting_desc:before,
+	table.dataTable thead .sorting_desc_disabled:after,
+	table.dataTable thead .sorting_desc_disabled:before {
+	bottom: .5em;
+}
+
+
