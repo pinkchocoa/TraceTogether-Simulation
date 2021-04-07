@@ -154,3 +154,11 @@ while main:
     playerGroup.draw(world)
     pygame.display.flip()
     clock.tick(fps)
+
+
+#thonks
+#the maze is a 36*36 grid
+#to show off a star we shoud have some walls and shit
+#but that also means that my guy cant walk through walls and i need to make many bounding boxes
+#to make bounding boxes easier i can translate the pixel coords to the grids to determine where they are?
+#probably want to come up w a grid first in excel
