@@ -879,7 +879,7 @@ function initMap(){
          }
 
          for (let i=0; i<allGroup.length; i++){
-          if (allGroup[i] == "covid" || allGroup[i] == "closeWarning"){
+          if (allGroup[i] == "covid"){
             covidIndex.push(i);
           }
         }
@@ -907,12 +907,12 @@ function initMap(){
             const cityCircle = new google.maps.Circle({
               strokeColor: "#FF0000",
               strokeOpacity: 0.8,
-              strokeWeight: 2,
+              strokeWeight: 1,
               fillColor: "#FF0000",
               fillOpacity: 0.35,
               map,
               center: {lat: locationmarkers[i][1], lng: locationmarkers[i][2]},
-              radius: locationmarkers[i][3] * 400,
+              radius: locationmarkers[i][3] * 600,
           });
           }
         }
