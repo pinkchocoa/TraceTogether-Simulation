@@ -20,6 +20,8 @@ class Node():
 
 def astar(maze, start, end):
     """Returns a list of tuples as a path from the given start to the given end in the given maze"""
+    if maze[start[0]][start[1]] == 1 or maze[end[0]][end[1]] == 1:
+        return None
 
     # Create start and end node
     start_node = Node(None, start)
@@ -98,11 +100,13 @@ def astar(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
+    return None
 
 def test1():
     maze = file_to_2dlist('data/mazeWalls.txt')
     #print(maze[30][26], maze[27][23])
-    path = astar(maze, (30, 26), (27, 23))
+    #path = astar(maze, (30, 26), (27, 23))
+    path = astar(maze, (22, 23), (21, 26))
     print(path)
 
 def test2():
@@ -118,9 +122,12 @@ def test2():
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0]]
 
     start = (0, 0)
-    end = (7, 6)
+    end = (1, 8)
+
+    #start = (0,0)
+    #end = (6, 6)
 
     path = astar(maze, start, end)
     print (path)
 
-test1()
+test2()
