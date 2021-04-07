@@ -48,8 +48,15 @@ def astar(maze, start, end):
                 current_index = index
 
         # Pop current off open list, add to closed list
+        #print("current node:", current_node.position)
         open_list.pop(current_index)
-        closed_list.add(current_node)     # <-- change append to add
+        if current_node.position in closed_list:
+            continue
+        else:
+            closed_list.add(current_node.position)     # <-- change append to add
+        #for x in closed_list:
+            #print("closedlist: ", x)
+        #print("end")
 
         # Found the goal
         if current_node == end_node:
@@ -73,6 +80,8 @@ def astar(maze, start, end):
 
             # Make sure walkable terrain
             if maze[node_position[0]][node_position[1]] != 0:
+                #print("current node:", current_node.position)
+                #print("wall:", node_position)
                 continue
 
             # Create new node
@@ -85,7 +94,7 @@ def astar(maze, start, end):
         for child in children:
 
             # Child is on the closed list
-            if child in closed_list:              # <-- remove inner loop so continue takes you to the end of the outer loop
+            if child.position in closed_list:              # <-- remove inner loop so continue takes you to the end of the outer loop
                 continue
 
             # Create the f, g, and h values
@@ -121,11 +130,11 @@ def test2():
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0]]
 
-    start = (0, 0)
-    end = (1, 8)
+    start = (0, 3)
+    end = (0, 5)
 
-    #start = (0,0)
-    #end = (6, 6)
+    start = (0,0)
+    end = (6, 6)
 
     path = astar(maze, start, end)
     print (path)

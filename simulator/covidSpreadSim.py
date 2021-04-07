@@ -27,7 +27,7 @@ totalPlayers = 50
 playerList, playerGroup = createPlayers(totalPlayers)
 covidSet = set()
 covidSet.add(0)
-covidRange = 60
+covidRange = 70
 mazeRange = 3
 covidChance = 3
 
@@ -48,10 +48,7 @@ def covid(covidSet):
                 xy = changeCoord(player.rect.y)
                 yx = changeCoord(y.rect.x)
                 yy = changeCoord(y.rect.y)
-                print(xy,xx,yy,yx)
                 path = aStar.astar(maze, (xy, xx), (yy, yx))
-                #path = [1]
-                #print(len(path), path)
                 if path != None and len(path) <= mazeRange:
                     if randomFn.randChance(covidChance):
                         newcovidSet.add(idx)
