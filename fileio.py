@@ -136,5 +136,3 @@ def file_to_dict(file_name):
                 value = data[1].split(',')
                 results[key] = value
     return results
-
-#print(file_to_dict('malls.txt'))

@@ -10,8 +10,8 @@ sgMinLat = 238 #lat 1.238
 sgMaxLat = 466
 latRange = sgMaxLat - sgMinLat
 
-#not in used
 def createMaze():
+    #not in use
     #gotta convert coords to x,y that i can use for a maze
     return numpy.zeros((latRange, lngRange), dtype=int)
 
