@@ -18,19 +18,10 @@ import multidict
 chanceToCatchCovid = 3  #percentage chance of catching covid(3% chance)
 peopleData.generatePeople(100)
 
-def setLocWarning(person):
-    """! This method set a location warning for a person
-    """
-    person.setTag(peopleData.personTag.locationWarning)  
-
-def setCloseWarning(person): 
-    """! This method set a close contact warning for a person
-    """
-    person.setTag(peopleData.personTag.closeWarning) 
-
 def setSpread(person): #function to set covid spread rate
     #real life use case, u ask them to go swab
     #therefore there actually isnt that much recursion
+    #so no need to worry about recursion depth
     """! 
     """
     if randomFn.randChance(chanceToCatchCovid): 
@@ -59,14 +50,16 @@ def hasCovid(token):
                 for checkIn in locationCheckIns:
                     if comparison.checkTimeStamp(checkIn, value):
                         print(token, "and", closePerson.token, "were at", location)
-                        setCloseWarning(closePerson) #set a close contact warning on closePerson
+                        #set a close contact warning on closePerson
+                        closePerson.setTag(peopleData.personTag.closeWarning) 
                         setSpread(closePerson) #chance of spreading the virus
                         #add edge for network graph/connection display
                         UIdata.addPeopleConnectJson({"from": personWCovid.name, "to": closePerson.name})
                     else: #they have both been to the same place but not at the same time
                         if closePerson.persontags == peopleData.personTag.nothing.value:
                             print("same location!") 
-                            setLocWarning(closePerson)  #set a location warning on closePerson
+                            #set a location warning on closePerson
+                            closePerson.setTag(peopleData.personTag.locationWarning)
         prev = location
 
 
