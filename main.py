@@ -24,6 +24,7 @@ def setSpread(person):
     @param person person to check covid spread rate to
     """
     if randomFn.randChance(chanceToCatchCovid): 
+        print("covid spread")
         hasCovid(person.token)
 
 def hasCovid(token):
@@ -49,7 +50,7 @@ def hasCovid(token):
                 locationCheckIns = cpLocData.getall(location) #grab a list of timestamp for the same location
                 for checkIn in locationCheckIns:
                     if comparison.checkTimeStamp(checkIn, value):
-                        print(token, "and", closePerson.token, "were at", location)
+                        #print(token, "and", closePerson.token, "were at", location)
                         #set a close contact warning on closePerson
                         closePerson.setTag(peopleData.personTag.closeWarning) 
                         setSpread(closePerson) #chance of spreading the virus
@@ -57,7 +58,7 @@ def hasCovid(token):
                         UIdata.addPeopleConnectJson({"from": personWCovid.name, "to": closePerson.name})
                     else: #they have both been to the same place but not at the same time
                         if closePerson.persontags == peopleData.personTag.nothing.value:
-                            print("same location!") 
+                            #print("same location!") 
                             #set a location warning on closePerson
                             closePerson.setTag(peopleData.personTag.locationWarning)
         prev = location
