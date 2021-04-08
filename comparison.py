@@ -1,8 +1,15 @@
+## @file comparison.py
+#
+# @brief this file checks if timestamp conincides 
+#
+
+
+#library imporst
 import datetime
 
 
 def checkTimeStamp(setoftimestamps1,setoftimestamps2):
-    """!checkTimeStamp  method checks if the timestamp conincides
+    """!checkTimeStamp method checks if the timestamp conincides
     @param setoftimestamps1, setoftimestamps2 
     @return True/False 
     """

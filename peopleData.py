@@ -1,3 +1,9 @@
+## @file peopleData.py
+#
+# @brief this file contains the dataset for a person
+#
+
+
 #Imports
 #local imports 
 import randomFn
