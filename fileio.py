@@ -19,6 +19,7 @@ def create_project_dir(directory):
         #print('Creating directory ' + directory)
         os.makedirs(directory)
 
+
 def create_file(path):
     """! This method creates a file with the user input
     @param path file path
@@ -26,6 +27,7 @@ def create_file(path):
     if not os.path.isfile(path):
         write_file(path, '')
         #print("file created")
+
 
 # Create a new file
 def write_file(path, data):
@@ -80,10 +82,11 @@ def set_to_file(links, file_name):
             url = l.replace(" ","") # remove spaces
             f.write(l+"\n")
 
+
 # Iterate through a list, each item will be a line in a file
 def list_to_file(x, file_name):
-    """! This method iterate through a set, each item will be a line in a file
-    @param links a set of data to be entered into the file
+    """! This method iterate through a list, each item will be a line in a file
+    @param x a list of data to be entered into the file
     @param file_name file name
     """
     with open(file_name, "w", encoding="utf-8") as f: #added encoding for UnicodeEncodeError 
@@ -92,9 +95,10 @@ def list_to_file(x, file_name):
                 f.write(str(b)+" ")
             f.write("\n")
 
+
 # Read a file and convert each line to set items
 def file_to_list(file_name):
-    """! This method reads a file and convert each line to set items
+    """! This method reads a file and convert each line to a list
     @param file_name file name
     @return set with the file data
     """
@@ -104,10 +108,11 @@ def file_to_list(file_name):
             results.append(line.replace('\n', '')) # remove new line character
     return results
 
+
 def file_to_2dlist(file_name):
-    """! This method reads a file and convert each line to set items
+    """! This method reads a file and convert each line to a 2d list
     @param file_name file name
-    @return set with the file data
+    @return 2d list with the file data
     """
     results = []
     with open(file_name, 'rt', encoding="utf-8") as f:
@@ -120,11 +125,10 @@ def file_to_2dlist(file_name):
     return results
 
 
-# Read a file and convert each line to set items
 def file_to_dict(file_name):
-    """! This method reads a file and convert each line to set items
+    """! This method reads a file and convert each line to a dictionary
     @param file_name file name
-    @return set with the file data
+    @return dictionary with the file data
     """
     results = {}
     with open(file_name, 'rt', encoding="utf-8") as f:
