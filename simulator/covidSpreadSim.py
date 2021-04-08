@@ -73,9 +73,9 @@ def covid(covidSet):
                     else:
                         y.changeImage(2)
                 # uncomment to see astar algo (that was too far apart)
-                else:
-                    if path == None:
-                        print("none")
+                #else:
+                #    if path == None:
+                #        print("none")
                 #     else:
                 #         print(len(path), path)
     return set.union(covidSet, newcovidSet)

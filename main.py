@@ -15,11 +15,13 @@ import multidict
 chanceToCatchCovid = 3  #percentage chance of catching covid(3% chance)
 peopleData.generatePeople(100)
 
-def setSpread(person): #function to set covid spread rate
-    #real life use case, u ask them to go swab
-    #therefore there actually isnt that much recursion
-    #so no need to worry about recursion depth
-    """! 
+def setSpread(person):
+    """! function to set covid spread rate
+    this is a recursion function to tag people with covid
+    while it is recursion, 
+    it will never hit recursion depth in real life use cases
+    however as the entire data set is randomised, it is possible to
+    @param person person to check covid spread rate to
     """
     if randomFn.randChance(chanceToCatchCovid): 
         hasCovid(person.token)

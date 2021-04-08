@@ -6,7 +6,7 @@
 directions =  [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)]
 
 class node():
-    """!A node class for A* Pathfinding"""
+    """!node class for a star Pathfinding"""
 
     def __init__(self, parent=None, position=None):
         self.parent = parent

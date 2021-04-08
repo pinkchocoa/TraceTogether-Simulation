@@ -20,19 +20,18 @@ covidLoc = {} #stores location as key and int of people that has covid as value
 
 
 class personTag(Enum):
-    """! personTag class sets an enumto a person 
-    @param Enum Enum
+    """! personTag class is an Enum for status tags
     """
-    nothing = 0  
-    covid = 1 
-    closeWarning = 2 
-    locationWarning = 3
+    nothing = 0  #healthy
+    covid = 1  #contracted covid
+    closeWarning = 2 #close contact with someone w covid
+    locationWarning = 3 #went to a place that someone w covid went to
 
 class person:
     """!person class provides details for a person
-    @param token token is the identifier for a person
-           name name is the name of a person 
-           phoneNumber is the number of a person 
+    @var token token is the identifier for a person
+    @var name name is the name of a person 
+    @var phoneNumber is the number of a person 
     """    
     def __init__(self,token,name,phoneNumber):   
             super().__init__()
@@ -45,7 +44,6 @@ class person:
             self.location = multidict.MultiDict() #allows multiple keys
 
     def print(self):
-    
         print("token:", self.token)
         print("name:", self.name)
         print("phone number:", self.phoneNumber)
@@ -67,7 +65,7 @@ def getLocFromFile():
     return list(locDict.keys()) #only want the index actually
 
 def generateLocCheckIn(locData):
-    """!generateLocCheckIn function initiliaze variables for location data
+    """!generateLocCheckIn function initilizes variables for listOfPplPerLoc and covidLoc
     @param locData locData
     """  
     for x in locData:
@@ -75,7 +73,7 @@ def generateLocCheckIn(locData):
         covidLoc[x] = 0
 
 def generateLocTime(locIdx): 
-    """!generateLocCheckIn function generates check in time 
+    """!generateLocCheckIn function generates random checkin/out for each person 
     @param locIdx locIdx
     """  
     generateLocCheckIn(locIdx)
@@ -89,9 +87,8 @@ def generateLocTime(locIdx):
 
 def generatePeople(x):
     """!generatePeople function generates people data  
-    @param x x
+    @param x number of people to generate
     """  
-    gene
     locIdx = getLocFromFile()
     for id in range(x):
       listOfPpl.append(person(id, randomFn.randName(),randomFn.randInt(80000000,99999998)))

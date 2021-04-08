@@ -47,8 +47,8 @@ def createPeopleJson():
             })
 
         if x.persontags == peopleData.personTag.nothing.value: 
-            continue  #skipping nothingtag, do not need this tag for this json file
-        if x.persontags == peopleData.personTag.covid.value: #Randomising covid tag coordinates within range to map in chart, add into json
+            continue  
+        if x.persontags == peopleData.personTag.covid.value: 
             xCoord = mid # -250, 250 
             yCoord = randomFn.randInt(-150,150)
             mid+=90
@@ -57,16 +57,15 @@ def createPeopleJson():
             "group": peopleData.personTag(x.persontags).name,
             "location": list(x.location.keys())
             })
-        elif x.persontags == peopleData.personTag.locationWarning.value:#Randomising locationWarning tag coordinates within range to map in chart, add into json
+        elif x.persontags == peopleData.personTag.locationWarning.value:
             xCoord = randomFn.randInt(-750,-350) 
             yCoord = randomFn.randInt(-350,350)
-        else: #Randomising closewarning tag within range to map in chart
+        else: 
             xCoord = randomFn.randInt(350,750)
             yCoord = randomFn.randInt(-350,350)
 
         peopleJson["nodes"].append({
             "id": x.name,
-            #"token": x.token,
             "group": peopleData.personTag(x.persontags).name,
             "x": xCoord,
             "y": yCoord
@@ -78,13 +77,13 @@ def createPeopleJson():
         peopleData.personTag(2).name: temp[peopleData.personTag(2).name],
         peopleData.personTag(3).name: temp[peopleData.personTag(3).name]
     })
-    with open('website/json/network.json', 'w') as outfile:
+    with open('docs/json/network.json', 'w') as outfile:
         json.dump(peopleJson, outfile)
-    with open('website/json/tag.json', 'w') as outfile:
+    with open('docs/json/tag.json', 'w') as outfile:
         json.dump(tagJson, outfile)
-    with open('website/json/peopleDetails.json', 'w') as outfile:
+    with open('docs/json/peopleDetails.json', 'w') as outfile:
         json.dump(peopleDetails, outfile)
-    with open('website/json/traceInfo.json', 'w') as outfile:
+    with open('docs/json/traceInfo.json', 'w') as outfile:
         json.dump(traceInfo, outfile)
 
 """!
@@ -108,7 +107,7 @@ def createTableJson():
                 "mall": k,
                 "covidCount": v
             })
-    with open('website/json/table.json', 'w') as outfile:
+    with open('docs/json/table.json', 'w') as outfile:
         json.dump(tableJson, outfile)
 
 """!
