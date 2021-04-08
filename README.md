@@ -16,6 +16,6 @@
 
 For covid spread simulation, run covidSpreadSim.py in simulator/covidSpreadSim.py
 
-To replicate TraceTogether data, run main.py to generate json files that will be reflected in the websites in /docs
+To replicate TraceTogether data, run main.py to generate json files that will be reflected in the websites in /docs/index.html
 
 UI/Documentation: https://pinkchocoa.github.io/TraceTogether-Simulation/index.html
