@@ -1,7 +1,11 @@
 import datetime
 
-# function to check if timestamp coincides
+
 def checkTimeStamp(setoftimestamps1,setoftimestamps2):
+    """!checkTimeStamp  method checks if the timestamp conincides
+    @param setoftimestamps1, setoftimestamps2 
+    @return True/False 
+    """
     results = []
     for timestamp in setoftimestamps1: 
         results.append(setoftimestamps2[0] < timestamp < setoftimestamps2[1]) 
