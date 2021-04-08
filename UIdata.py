@@ -1,3 +1,9 @@
+## @file UIDate.py
+#
+# @brief This file contains functions to generate json files
+#
+#
+
 import peopleData
 import json
 import randomFn

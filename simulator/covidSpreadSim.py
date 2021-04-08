@@ -1,4 +1,4 @@
-## @file aStar.py
+## @file covidSpreadSim.py
 #
 # @brief this file contains the a star algorithm to find shortest path
 #

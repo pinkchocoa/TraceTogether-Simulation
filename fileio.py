@@ -1,8 +1,6 @@
-## @file general.py
+## @file fileio.py
 #
 # @brief this file contains the general functions used for filo i/o purposes
-#
-# @author Jodie
 #
 # @section libraries_main Libraries/Modules
 # - os standard library

@@ -1,4 +1,4 @@
-## @file aStar.py
+## @file objectSim.py
 #
 # @brief this file contains the a star algorithm to find shortest path
 #

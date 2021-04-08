@@ -1,5 +1,8 @@
-"""! This file contains all the function to generate random data. 
-"""
+## @file randomFn.py
+#
+# @brief This file contains all the function to generate random data. 
+#
+#
 
 import random #https://docs.python.org/3/library/random.html
 import names #pip install names https://pypi.org/project/names/
