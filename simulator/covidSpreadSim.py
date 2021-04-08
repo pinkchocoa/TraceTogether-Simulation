@@ -1,3 +1,21 @@
+## @file aStar.py
+#
+# @brief this file contains the a star algorithm to find shortest path
+#
+# @section libraries_main Libraries/Modules
+# - sys standard library
+#   - required to do sys.ext
+# - pygame
+#   - used to run the simulation
+# - json
+#   - json dump to a json file
+# - aStar
+#   - contains aStar algorithm for finding the shortest path
+# - general
+#   - using it to determine if covid spreads
+# - objectSim
+#   - objects required for the simulation
+
 import pygame
 import sys #sys.exit
 import json
@@ -5,12 +23,13 @@ import aStar
 from general import randChance
 from objectSim import Player, world, createPlayers, maze, changeCoord, worldx, worldy
 
-# global variables
-fps = 12
+
 
 '''
-Setup
+setup
 '''
+# global variables
+fps = 12
 backdrop = pygame.image.load('images/stage.png').convert()
 clock = pygame.time.Clock()
 pygame.init()
@@ -27,6 +46,9 @@ edges = {}
 edges["edges"] = []
 
 def covid(covidSet):
+    """! This method runs through all covid patients to check who is near them
+    @param covidSet covidSet contains the identifier of covid patients
+    """
     newcovidSet = set()
     for x in covidSet:
         player = playerList[x]
@@ -52,33 +74,31 @@ def covid(covidSet):
                     else:
                         y.changeImage(2)
                 # uncomment to see astar algo (that was too far apart)
-                # else:
-                #     if path == None:
-                #         print("none")
+                else:
+                    if path == None:
+                        print("none")
                 #     else:
                 #         print(len(path), path)
     return set.union(covidSet, newcovidSet)
 
 '''
-Main Loop
+main Loop
 '''
 while main:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            with open('website/json/infected.json', 'w') as outfile:
+            with open('docs/json/infected.json', 'w') as outfile:
                 json.dump(edges, outfile)
             pygame.quit()
             try:
                 sys.exit()
             finally:
                 main = False
-    for player in playerGroup:
+    for player in playerGroup: #update every person
         player.update()
 
-    covidSet = covid(covidSet)
-
-    world.blit(backdrop, backdropbox)
-    
-    playerGroup.draw(world)
+    covidSet = covid(covidSet) #check through covid patients
+    world.blit(backdrop, backdropbox) #draw world
+    playerGroup.draw(world) #draw people
     pygame.display.flip()
-    clock.tick(fps)
+    clock.tick(fps) #limit fps
