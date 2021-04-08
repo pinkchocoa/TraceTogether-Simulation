@@ -1,11 +1,3 @@
-## @file peopleData.py
-#
-# @brief this file contains all t
-#
-# @author Jodie
-#
-
-
 #Imports
 #local imports 
 import randomFn
