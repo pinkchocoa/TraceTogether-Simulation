@@ -82,9 +82,9 @@ def covid(covidSet):
 '''
 main Loop
 '''
-while main:
+while main: #while game is running
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT: #upon exiting game
             with open('docs/json/infected.json', 'w') as outfile:
                 json.dump(edges, outfile)
             pygame.quit()
