@@ -96,4 +96,5 @@ def astar(maze, start, goal):
                 if child == x and child.g > x.g:
                     continue
             openList.append(child)
+            
     return None
