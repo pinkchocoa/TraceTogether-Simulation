@@ -1,8 +1,6 @@
 ## @file main.py
 #
-# @brief this file contains all the neccessary information to determine whether a person has covid
-#
-# @author Jodie
+# @brief this file contains the 
 #
 
 #Imports
@@ -28,9 +26,10 @@ def setSpread(person): #function to set covid spread rate
         hasCovid(person.token)
 
 def hasCovid(token):
-    """!
+    """!hasCovid function sets a person status with covid
+    @param token token is the identifier for a person 
     """
-    personWCovid = peopleData.listOfPpl[token]
+    personWCovid = peopleData.listOfPpl[token] 
     personWCovid.setTag(peopleData.personTag.covid) #set person to covid
     loc = personWCovid.getLoc() #location data
     prev = None #to check for location duplicates for count
