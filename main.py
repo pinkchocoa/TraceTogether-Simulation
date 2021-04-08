@@ -1,6 +1,6 @@
 ## @file main.py
 #
-# @brief this file contains the 
+# @brief this file contains the main function of our project
 #
 
 #Imports
