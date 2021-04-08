@@ -1,3 +1,15 @@
+## @file aStar.py
+#
+# @brief this file contains the a star algorithm to find shortest path
+#
+# @section libraries_main Libraries/Modules
+# - sys standard library
+#   - required to do sys.ext
+# - pygame
+#   - used to run the simulation
+# - general
+#   - using it for random functions and file io
+
 #this file creates objects of the game
 import pygame
 from general import file_to_2dlist, randInt, randChance
@@ -15,6 +27,9 @@ direction={1:[steps,0], 2:[-steps,0], 3:[0,steps], 4:[0,-steps]
 maze = file_to_2dlist('data/mazeWalls.txt')
 
 def changeCoord(x):
+    """! This converts the coordinate of the pixel on screen to the grid maze
+    @return converted coordinate
+    """
     if x != 0 :
         x = int(x/20)
         if x >= 36:
@@ -37,16 +52,16 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     def control(self, x, y):
-        """
-        control player movement
+        """ control player movement
+        @param x velocity
+        @param y velocity
         """
         #bounding box
         self.movex = x
         self.movey = y
 
     def update(self):
-        """
-        Update sprite position
+        """ Update sprite position
         """
         def moveInDirection():
             d = randInt(1,8)
@@ -66,9 +81,16 @@ class Player(pygame.sprite.Sprite):
             self.rect.y += self.movey
 
     def changeImage(self, x):
+        """! This changes the image of the player object
+        @x image to be changed to
+        """
         self.image = images[x]
 
 def createPlayers(totalPlayers):
+    """! This creates player objects
+    @param totalPlayers total player objects to be created
+    @return list of player objects and sprite group
+    """
     playerGroup = pygame.sprite.Group()
     playerList = []
     for x in range(totalPlayers):

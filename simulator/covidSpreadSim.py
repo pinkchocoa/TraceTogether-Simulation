@@ -46,6 +46,7 @@ edges["edges"] = []
 def covid(covidSet):
     """! This method runs through all covid patients to check who is near them
     @param covidSet covidSet contains the identifier of covid patients
+    @return an updated covidSet
     """
     newcovidSet = set()
     for x in covidSet:
