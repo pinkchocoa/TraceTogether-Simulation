@@ -2,8 +2,7 @@
 #
 # @brief this file contains the a star algorithm to find shortest path
 #
-# @author Jodie
-#
+
 directions =  [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)]
 
 class node():
@@ -12,7 +11,6 @@ class node():
     def __init__(self, parent=None, position=None):
         self.parent = parent
         self.position = position
-
         self.g = 0
         self.h = 0
         self.f = 0
@@ -85,16 +83,13 @@ def astar(maze, start, goal):
             # child is on the closed set
             if child.position in closedSet:
                 continue
-
             # create the f, g, and h values
             child.g = currentNode.g + 1
             child.h = ((child.position[0] - goalNode.position[0]) ** 2) + ((child.position[1] - goalNode.position[1]) ** 2)
             child.f = child.g + child.h
-
             # child is already in the open list
             for x in openList:
                 if child == x and child.g > x.g:
                     continue
-                
             openList.append(child)
     return None
