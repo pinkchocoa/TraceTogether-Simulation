@@ -12,7 +12,6 @@ import UIdata
 #library imports
 import multidict
 
-
 chanceToCatchCovid = 3  #percentage chance of catching covid(3% chance)
 peopleData.generatePeople(100)
 
