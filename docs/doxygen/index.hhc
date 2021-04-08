@@ -61,18 +61,6 @@
       </UL>
     <LI><OBJECT type="text/sitemap"><param name="Name" value="peopleData"><param name="Local" value="namespacepeople_data.html"><param name="ImageNumber" value="1"></OBJECT>
       <UL>
-      <LI><OBJECT type="text/sitemap"><param name="Name" value="person"><param name="Local" value="classpeople_data_1_1person.html"><param name="ImageNumber" value="1"></OBJECT>
-        <UL>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__"><param name="Local" value="classpeople_data_1_1person.html#a16f716c8546110126678dc9251edae04"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="getLoc"><param name="Local" value="classpeople_data_1_1person.html#ad3dc12e4672d0f6f5da105d0929f4e22"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="print"><param name="Local" value="classpeople_data_1_1person.html#a59898acc7f1164bd423340e67fc89f2c"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="setTag"><param name="Local" value="classpeople_data_1_1person.html#ac340650865fa3abd56c08297bcbbb912"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="location"><param name="Local" value="classpeople_data_1_1person.html#a579798351ad2457c735f590067da3cfe"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="name"><param name="Local" value="classpeople_data_1_1person.html#a3211b67fe0448b2d03a1ec82ac6c0e1c"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="persontags"><param name="Local" value="classpeople_data_1_1person.html#a16e7ff0dce2401e25fe7e970bc6e5cf5"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="phoneNumber"><param name="Local" value="classpeople_data_1_1person.html#a6c820e6d3ebe6b5f875fd586dd1dc200"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="token"><param name="Local" value="classpeople_data_1_1person.html#a06501342dea838b88d8833694d5dcf7f"><param name="ImageNumber" value="11"></OBJECT>
-        </UL>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="personTag"><param name="Local" value="classpeople_data_1_1person_tag.html"><param name="ImageNumber" value="1"></OBJECT>
         <UL>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="closeWarning"><param name="Local" value="classpeople_data_1_1person_tag.html#a0ff232b158b0f276db92e8987c207b1d"><param name="ImageNumber" value="11"></OBJECT>
@@ -86,7 +74,6 @@
   <LI><OBJECT type="text/sitemap"><param name="Name" value="Class Hierarchy"><param name="Local" value="hierarchy.html"><param name="ImageNumber" value="1"></OBJECT>
     <UL>
     <LI><OBJECT type="text/sitemap"><param name="Name" value="aStar.node"><param name="Local" value="classa_star_1_1node.html"><param name="ImageNumber" value="11"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Name" value="peopleData.person"><param name="Local" value="classpeople_data_1_1person.html"><param name="ImageNumber" value="11"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Name" value="Sprite"><param name="ImageNumber" value="1"></OBJECT>
       <UL>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="objectSim.Player"><param name="Local" value="classobject_sim_1_1_player.html"><param name="ImageNumber" value="11"></OBJECT>
@@ -196,18 +183,6 @@
       </UL>
     <LI><OBJECT type="text/sitemap"><param name="Name" value="peopleData.py"><param name="Local" value="people_data_8py.html"><param name="ImageNumber" value="1"></OBJECT>
       <UL>
-      <LI><OBJECT type="text/sitemap"><param name="Name" value="person"><param name="Local" value="classpeople_data_1_1person.html"><param name="ImageNumber" value="1"></OBJECT>
-        <UL>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__"><param name="Local" value="classpeople_data_1_1person.html#a16f716c8546110126678dc9251edae04"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="getLoc"><param name="Local" value="classpeople_data_1_1person.html#ad3dc12e4672d0f6f5da105d0929f4e22"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="print"><param name="Local" value="classpeople_data_1_1person.html#a59898acc7f1164bd423340e67fc89f2c"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="setTag"><param name="Local" value="classpeople_data_1_1person.html#ac340650865fa3abd56c08297bcbbb912"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="location"><param name="Local" value="classpeople_data_1_1person.html#a579798351ad2457c735f590067da3cfe"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="name"><param name="Local" value="classpeople_data_1_1person.html#a3211b67fe0448b2d03a1ec82ac6c0e1c"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="persontags"><param name="Local" value="classpeople_data_1_1person.html#a16e7ff0dce2401e25fe7e970bc6e5cf5"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="phoneNumber"><param name="Local" value="classpeople_data_1_1person.html#a6c820e6d3ebe6b5f875fd586dd1dc200"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="token"><param name="Local" value="classpeople_data_1_1person.html#a06501342dea838b88d8833694d5dcf7f"><param name="ImageNumber" value="11"></OBJECT>
-        </UL>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="personTag"><param name="Local" value="classpeople_data_1_1person_tag.html"><param name="ImageNumber" value="1"></OBJECT>
         <UL>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="closeWarning"><param name="Local" value="classpeople_data_1_1person_tag.html#a0ff232b158b0f276db92e8987c207b1d"><param name="ImageNumber" value="11"></OBJECT>
@@ -222,6 +197,11 @@
       <LI><OBJECT type="text/sitemap"><param name="Name" value="covidLoc"><param name="Local" value="people_data_8py.html#a545a85794fc10ae79d93673294467c25"><param name="ImageNumber" value="11"></OBJECT>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="listOfPpl"><param name="Local" value="people_data_8py.html#a20ff9f594573927f09761a0dc98f8611"><param name="ImageNumber" value="11"></OBJECT>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="listOfPplPerLoc"><param name="Local" value="people_data_8py.html#ae9ed6b879b608944c2a44c96a71fe313"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="location"><param name="Local" value="people_data_8py.html#a4378feae6cbebcd424dbc3c2bd6674ea"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="name"><param name="Local" value="people_data_8py.html#afadb8d326ada12fcaafd480610da7759"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="persontags"><param name="Local" value="people_data_8py.html#a4e17d34a39d50ce7e9f1a6367ce30198"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="phoneNumber"><param name="Local" value="people_data_8py.html#a949b1ab61cc662800108434f5eb911fc"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="token"><param name="Local" value="people_data_8py.html#ad028c16fcecdb870d7f31165c77e14c2"><param name="ImageNumber" value="11"></OBJECT>
       </UL>
     <LI><OBJECT type="text/sitemap"><param name="Name" value="randomFn.py"><param name="Local" value="random_fn_8py.html"><param name="ImageNumber" value="1"></OBJECT>
       <UL>
