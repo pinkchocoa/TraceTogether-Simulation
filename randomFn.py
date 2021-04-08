@@ -1,15 +1,27 @@
+"""! This file contains all the function to generate random data. 
+"""
+
 import random #https://docs.python.org/3/library/random.html
 import names #pip install names https://pypi.org/project/names/
 import time
 import datetime
 
 def randInt(min,max): #min <= x <= max
+    """! This function used to generate random Integer. 
+    @param min smallest number can be generated
+    @param max largest number can be generated
+    """
     return random.randint(min,max) #return a random int value
 
 def randChance(perc): #generate a random percentage chance 
+    """! This function used to generate random percentage value. 
+    @param perc percentage
+    """
     return (randInt(0,100) < perc) #return a random percentage
 
 def randName(): #generates a random name
+    """! This function used to generate random names 
+    """
     x = "female" if randInt(0,1) == 0 else "male" #determine the gender of the person, before assign a name
     return names.get_full_name(x) #returns person name
 
@@ -31,6 +43,10 @@ def random_date(start, end): #generates a random date
     return str_time_prop(start, end, '%Y-%m-%d %I:%M:%S', prop)
 
 def random_timestamp(x, today): #generates a random time
+    """! This function used to generate random timestamp. 
+    @param today today's date
+    @param x number of timestamp want to be generated.
+    """
     res = []
     today = datetime.date.today() #set the date to be today's date 
     frmt = '%Y-%m-%d %I:%M:%S' # set the format to display the date
