@@ -1,5 +1,7 @@
 # TraceTogether-Simulation
 
+ Video Installation Guide: https://youtu.be/8ay84U5tv10
+
  external libraries used:
 
 > $ pip install multidict
@@ -14,8 +16,8 @@
 
 
 
-For covid spread simulation, run covidSpreadSim.py in /simulator/covidSpreadSim.py
+For covid spread simulation, run covidSpreadSim.py in simulator/covidSpreadSim.py
 
-To replicate TraceTogether data, run /main.py to generate json files that will be reflected in the websites in /docs/index.html (live server required)
+To replicate TraceTogether data, run main.py to generate json files that will be reflected in the websites in /docs/index.html (live server required)
 
 UI/Documentation: https://pinkchocoa.github.io/TraceTogether-Simulation/index.html
