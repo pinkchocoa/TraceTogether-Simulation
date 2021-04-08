@@ -23,8 +23,6 @@ import aStar
 from general import randChance
 from objectSim import Player, world, createPlayers, maze, changeCoord, worldx, worldy
 
-
-
 '''
 setup
 '''
