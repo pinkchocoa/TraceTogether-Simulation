@@ -20,6 +20,10 @@ tableJson["chart"] = []
 traceInfo = {}
 traceInfo["info"] = []
 
+"""!
+@brief Creating 2 kinds of json files
+@brief Dictionary: "info" and "nodes"
+"""
 def createPeopleJson():
     temp={}
     temp[peopleData.personTag(0).name]=0
@@ -29,17 +33,17 @@ def createPeopleJson():
     mid = -250
     for x in peopleData.listOfPpl:
         temp[peopleData.personTag(x.persontags).name]+=1
-        traceInfo["info"].append({
+        traceInfo["info"].append({ #appending data to the dictionary
             "id": x.name,
             "phoneNum": x.phoneNumber,
             "group": peopleData.personTag(x.persontags).name,
             "location": list(x.location.keys())
             })
 
-        if x.persontags == peopleData.personTag.nothing.value:
-            continue
-        if x.persontags == peopleData.personTag.covid.value:
-            xCoord = mid # -250, 250
+        if x.persontags == peopleData.personTag.nothing.value: 
+            continue  #skipping nothingtag, do not need this tag for this json file
+        if x.persontags == peopleData.personTag.covid.value: #Randomising covid tag coordinates within range to map in chart, add into json
+            xCoord = mid # -250, 250 
             yCoord = randomFn.randInt(-150,150)
             mid+=90
             peopleDetails["details"].append({
@@ -47,10 +51,10 @@ def createPeopleJson():
             "group": peopleData.personTag(x.persontags).name,
             "location": list(x.location.keys())
             })
-        elif x.persontags == peopleData.personTag.locationWarning.value:
-            xCoord = randomFn.randInt(-750,-350)
+        elif x.persontags == peopleData.personTag.locationWarning.value:#Randomising locationWarning tag coordinates within range to map in chart, add into json
+            xCoord = randomFn.randInt(-750,-350) 
             yCoord = randomFn.randInt(-350,350)
-        else: #closeWarning
+        else: #Randomising closewarning tag within range to map in chart
             xCoord = randomFn.randInt(350,750)
             yCoord = randomFn.randInt(-350,350)
 
@@ -77,15 +81,21 @@ def createPeopleJson():
     with open('website/json/traceInfo.json', 'w') as outfile:
         json.dump(traceInfo, outfile)
 
+"""!
+@brief Creating dictionary for edges
+"""
 def addPeopleConnectJson(x):
     peopleJson["edges"].append(x)
 
+"""!
+@brief Creating dictionary for ranks
+"""
 def createTableJson():
     for k,v in peopleData.covidLoc.items():
         tableJson["rank"].append({
             "mall": k,
             "covidCount": v,
-            "crowdCount": len(peopleData.listOfPplPerLoc[k]) #numbner of unique check in over 7 days
+            "crowdCount": len(peopleData.listOfPplPerLoc[k]) #number of unique check in over 7 days
         })
         if v != 0:
             tableJson["chart"].append({
@@ -95,7 +105,9 @@ def createTableJson():
     with open('website/json/table.json', 'w') as outfile:
         json.dump(tableJson, outfile)
 
-
+"""!
+@brief Creating Json
+"""
 def createJson():
     createPeopleJson()
     createTableJson()
