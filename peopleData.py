@@ -52,6 +52,7 @@ class person:
             print(x, y[0], y[1])
     
     def setTag(self, tag): 
+        #print(tag.name)
         self.persontags = tag.value
 
     def getLoc(self):
@@ -70,7 +71,7 @@ def generateLocCheckIn(locData):
     """  
     for x in locData:
         listOfPplPerLoc[x] = set()
-        covidLoc[x] = 0
+        covidLoc[x] = set()
 
 def generateLocTime(locIdx): 
     """!generateLocCheckIn function generates random checkin/out for each person 

@@ -70,7 +70,7 @@ def createPeopleJson():
             "x": xCoord,
             "y": yCoord
         })
-        
+
     tagJson["overall"].append({
         peopleData.personTag(0).name: temp[peopleData.personTag(0).name],
         peopleData.personTag(1).name: temp[peopleData.personTag(1).name],
@@ -99,13 +99,13 @@ def createTableJson():
     for k,v in peopleData.covidLoc.items():
         tableJson["rank"].append({
             "mall": k,
-            "covidCount": v,
+            "covidCount": len(v),
             "crowdCount": len(peopleData.listOfPplPerLoc[k]) #number of unique check in over 7 days
         })
         if v != 0:
             tableJson["chart"].append({
                 "mall": k,
-                "covidCount": v
+                "covidCount": len(v)
             })
     with open('docs/json/table.json', 'w') as outfile:
         json.dump(tableJson, outfile)

@@ -24,8 +24,8 @@ def setSpread(person):
     @param person person to check covid spread rate to
     """
     if randomFn.randChance(chanceToCatchCovid): 
-        print("covid spread")
-        hasCovid(person.token)
+        print("covid spread", person)
+        hasCovid(person)
 
 def hasCovid(token):
     """!hasCovid function sets a person status with covid
@@ -34,17 +34,16 @@ def hasCovid(token):
     personWCovid = peopleData.listOfPpl[token] 
     personWCovid.setTag(peopleData.personTag.covid) #set person to covid
     loc = personWCovid.getLoc() #location data
-    prev = None #to check for location duplicates for count
-                #since people can go to the same location many times
     for location, value in loc.items():
-        if prev != location:  #person already added to count for that location
-            peopleData.covidLoc[location] += 1  #otherwise add
+        peopleData.covidLoc[location].add(token)
         if len(peopleData.listOfPplPerLoc[location]) <= 1: #only 1 unique person that has been to the location
             continue #we dont need to check
         else:
             #check everyone that has been to location
             for tokenX in peopleData.listOfPplPerLoc[location]: #get each unique person that has been to said location
                 closePerson = peopleData.listOfPpl[tokenX]
+                if closePerson.persontags == peopleData.personTag.covid.value:
+                    continue
                 cpLocData = closePerson.getLoc() #grab the location data for closePerson
                 #need to loop through duplicate keys/values, for the same location as it is a multdict
                 locationCheckIns = cpLocData.getall(location) #grab a list of timestamp for the same location
@@ -53,7 +52,7 @@ def hasCovid(token):
                         #print(token, "and", closePerson.token, "were at", location)
                         #set a close contact warning on closePerson
                         closePerson.setTag(peopleData.personTag.closeWarning) 
-                        setSpread(closePerson) #chance of spreading the virus
+                        setSpread(closePerson.token) #chance of spreading the virus
                         #add edge for network graph/connection display
                         UIdata.addPeopleConnectJson({"from": personWCovid.name, "to": closePerson.name})
                     else: #they have both been to the same place but not at the same time
@@ -61,7 +60,6 @@ def hasCovid(token):
                             #print("same location!") 
                             #set a location warning on closePerson
                             closePerson.setTag(peopleData.personTag.locationWarning)
-        prev = location
 
 
 #setting people to have covid 
