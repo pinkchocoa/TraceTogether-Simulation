@@ -9,16 +9,13 @@ For covid spread simulation, run covidSpreadSim.py in simulator/covidSpreadSim.p
 To replicate TraceTogether data, run main.py to generate json files that will be reflected in the websites in /docs/index.html (live server required)
 
 # external libraries used:
-
-> $ pip install multidict
-> 
-> $ pip install pygame
-> 
-> $ pip install datetime
-> 
-> $ pip install names
-> 
-> $ pip install numpy
+```
+pip install multidict
+pip install pygame
+pip install datetime
+pip install names
+pip install numpy
+```
 
 
 
